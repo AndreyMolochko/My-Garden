@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="BaseButton">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="BaseButton.PrimaryButton">
+        <item name="android:background">@drawable/background_primary_button</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
 </resources>
