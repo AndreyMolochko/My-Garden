@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   android:background="@drawable/plant_background"
-                                                   android:paddingEnd="@dimen/big_padding"
-                                                   android:paddingStart="@dimen/big_padding">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/plant_background"
+    android:paddingEnd="@dimen/big_padding"
+    android:paddingStart="@dimen/big_padding">
 
     <TextView
-            android:id="@+id/welcome_page_title"
-            android:fontFamily="@font/raleway_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_font_size"
-            android:text="@string/app_name"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/medium_font_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/welcome_page_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_font_size"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/app_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/medium_font_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/welcome_page_sign_in"
-            style="@style/BaseButton.PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_in"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_page_title" app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/welcome_page_sign_up"/>
+        android:id="@+id/welcome_page_sign_in"
+        style="@style/BaseButton.PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_page_sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_page_title"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-            android:id="@+id/welcome_page_sign_up"
-            style="@style/BaseButton.PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_padding"
-            android:text="@string/sign_up"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_page_sign_in"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.5"/>
+        android:id="@+id/welcome_page_sign_up"
+        style="@style/BaseButton.PrimaryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_page_sign_in"
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
