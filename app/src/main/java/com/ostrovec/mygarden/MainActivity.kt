@@ -1,11 +1,11 @@
 package com.ostrovec.mygarden
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
+import com.ostrovec.mygarden.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityWelcomPageBinding
 
