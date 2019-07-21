@@ -1,33 +1,28 @@
 package com.ostrovec.mygarden
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var buttonSignIn: TextView
-    private lateinit var buttonSignUp: TextView
+    private lateinit var binding: ActivityWelcomPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.fragment_welcome_page)
-        initViews()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_welcom_page)
+
         initListeners()
     }
 
-    private fun initViews() {
-        buttonSignIn = findViewById(R.id.welcome_page_sign_in)
-        buttonSignUp = findViewById(R.id.welcome_page_sign_up)
-    }
-
-    private fun initListeners(){
-        buttonSignIn.setOnClickListener{
+    private fun initListeners() {
+        binding.welcomePageSignIn.setOnClickListener {
             println("click on the sign in button")
         }
 
-        buttonSignUp.setOnClickListener {
+        binding.welcomePageSignUp.setOnClickListener {
             println("click on the sign up button")
         }
     }
