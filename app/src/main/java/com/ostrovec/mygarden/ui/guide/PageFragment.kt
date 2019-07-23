@@ -15,10 +15,10 @@ class PageFragment : Fragment() {
         private val DESCRIPTION_KEY = "DESCRIPTION_KEY"
         private val IMAGE_KEY = "IMAGE_KEY"
 
-        fun getNewInstance(description: String, image: Int): PageFragment {
+        fun getNewInstance(description: Int, image: Int): PageFragment {
             val pageFragment: PageFragment = PageFragment()
             val bundle: Bundle = Bundle()
-            bundle.putString(DESCRIPTION_KEY, description)
+            bundle.putInt(DESCRIPTION_KEY, description)
             bundle.putInt(IMAGE_KEY, image)
             pageFragment.arguments = bundle
 
@@ -42,7 +42,8 @@ class PageFragment : Fragment() {
 
 
     private fun initViews() {
-        binding.fragmentPageDescriptionTextView.text = arguments!!.getString(DESCRIPTION_KEY)
+        binding.fragmentPageDescriptionTextView.text = getString(arguments!!.getInt
+        (DESCRIPTION_KEY))
         binding.fragmentPageImageView.setImageResource(arguments!!.getInt(IMAGE_KEY))
     }
 
