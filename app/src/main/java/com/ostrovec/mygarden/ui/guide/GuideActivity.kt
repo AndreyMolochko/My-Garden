@@ -28,11 +28,11 @@ class GuideActivity : BaseActivity() {
     private fun getPagesFragments(): List<Fragment> {
         val pages: List<Fragment> = arrayListOf()
         val firstFragment: PageFragment = PageFragment.getNewInstance(R.string.guide_text_sign_up,
-                R.drawable.ic_launcher_background)
+                R.drawable.ic_log_in)
         val secondFragment: PageFragment = PageFragment.getNewInstance(R.string.guide_text_add_plants,
-                R.drawable.ic_launcher_background)
+                R.drawable.ic_flower_pot)
         val thirdFragment: PageFragment = PageFragment.getNewInstance(R.string.guide_text_turn_notification,
-                R.drawable.ic_launcher_background)
+                R.drawable.ic_message)
         (pages as ArrayList).add(firstFragment)
         pages.add(secondFragment)
         pages.add(thirdFragment)
