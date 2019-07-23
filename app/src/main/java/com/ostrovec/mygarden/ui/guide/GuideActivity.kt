@@ -3,7 +3,6 @@ package com.ostrovec.mygarden.ui.guide
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
@@ -20,9 +19,10 @@ class GuideActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        val viewPagerAdapter: ViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         binding.guideViewPager.adapter = viewPagerAdapter
         viewPagerAdapter.setPages(getPagesFragments())
+        binding.guideTabLayout.setupWithViewPager(binding.guideViewPager)
     }
 
     private fun getPagesFragments(): List<Fragment> {
