@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
+import com.ostrovec.mygarden.utils.SharedPrefsWoker
 
 class GuideActivity : BaseActivity() {
 
@@ -13,6 +15,9 @@ class GuideActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!SharedPrefsWoker(this).shownGuide()) {
+            WelcomeActivity.open(this@GuideActivity)
+        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_guide)
         initViews()
