@@ -16,8 +16,8 @@ class PageFragment : Fragment() {
         private val IMAGE_KEY = "IMAGE_KEY"
 
         fun getNewInstance(description: Int, image: Int): PageFragment {
-            val pageFragment: PageFragment = PageFragment()
-            val bundle: Bundle = Bundle()
+            val pageFragment = PageFragment()
+            val bundle = Bundle()
             bundle.putInt(DESCRIPTION_KEY, description)
             bundle.putInt(IMAGE_KEY, image)
             pageFragment.arguments = bundle
