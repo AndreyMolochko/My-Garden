@@ -38,7 +38,7 @@
             style="@style/BaseButton.PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/normal_padding"
+            android:layout_marginBottom="@dimen/big_padding"
             android:layout_marginEnd="@dimen/big_padding"
             android:layout_marginStart="@dimen/big_padding"
             android:onClick="@{(view)->handler.onClickOK(context)}"
