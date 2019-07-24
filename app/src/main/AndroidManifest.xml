@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.welcome.WelcomeActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

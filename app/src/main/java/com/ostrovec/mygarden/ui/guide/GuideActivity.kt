@@ -23,6 +23,7 @@ class GuideActivity : BaseActivity() {
         binding.guideViewPager.adapter = viewPagerAdapter
         viewPagerAdapter.setPages(getPagesFragments())
         binding.guideTabLayout.setupWithViewPager(binding.guideViewPager)
+        binding.handler = GuideHandler()
     }
 
     private fun getPagesFragments(): List<Fragment> {
