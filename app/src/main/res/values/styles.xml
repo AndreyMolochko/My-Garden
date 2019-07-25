@@ -24,4 +24,9 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="HeaderTitle">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">@font/raleway_bold</item>
+    </style>
+
 </resources>
