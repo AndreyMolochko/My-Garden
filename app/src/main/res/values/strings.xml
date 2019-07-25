@@ -3,10 +3,13 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="guide_text_sign_up">Sign up and you can to log in from other
-        devices</string>
+        devices
+    </string>
     <string name="guide_text_add_plants">Add your real plants and follow them with this
-        application</string>
+        application
+    </string>
     <string name="guide_text_turn_notification">Turn on notifications in the settings and you
-        will know when to care for the plants</string>
+        will know when to care for the plants
+    </string>
     <string name="ok">OK</string>
 </resources>
