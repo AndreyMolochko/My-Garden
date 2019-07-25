@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
 
 class WelcomeActivity : BaseActivity() {
 
@@ -29,7 +30,7 @@ class WelcomeActivity : BaseActivity() {
 
     private fun initListeners() {
         binding.welcomePageSignIn.setOnClickListener {
-            println("click on the sign in button")
+            MyPlantsActivity.open(this@WelcomeActivity)
         }
 
         binding.welcomePageSignUp.setOnClickListener {
