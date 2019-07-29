@@ -12,5 +12,6 @@
     <dimen name="big_font_size">34sp</dimen>
 
     <dimen name="border_radius_button">4dp</dimen>
+    <dimen name="height_toolbar">56dp</dimen>
 
 </resources>
