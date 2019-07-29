@@ -3,13 +3,13 @@ package com.ostrovec.mygarden.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageButton
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.ostrovec.mygarden.R
 
 class AppToolbar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr:
 Int =
-        0) : ConstraintLayout(context, attrs, defStyleAttr) {
+        0) : FrameLayout(context, attrs, defStyleAttr) {
 
     var backButton: ImageButton
 
