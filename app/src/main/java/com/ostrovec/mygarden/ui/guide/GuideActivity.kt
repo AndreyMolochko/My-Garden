@@ -1,5 +1,6 @@
 package com.ostrovec.mygarden.ui.guide
 
+import android.content.Context
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -10,6 +11,14 @@ import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import com.ostrovec.mygarden.utils.SharedPrefsWoker
 
 class GuideActivity : BaseActivity() {
+
+    val onClickOK: GuideHandler = object : GuideHandler{
+        override fun onClickOK(context: Context) {
+                WelcomeActivity.open(context)
+                SharedPrefsWoker(context).setShownGuideActivity(false)
+        }
+
+    }
 
     private lateinit var binding: ActivityGuideBinding
 
@@ -28,7 +37,7 @@ class GuideActivity : BaseActivity() {
         binding.guideViewPager.adapter = viewPagerAdapter
         viewPagerAdapter.setPages(getPagesFragments())
         binding.guideTabLayout.setupWithViewPager(binding.guideViewPager)
-        binding.handler = GuideHandler()
+        binding.handler = onClickOK
     }
 
     private fun getPagesFragments(): List<Fragment> {

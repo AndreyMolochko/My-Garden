@@ -7,8 +7,9 @@ import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityMyPlantsBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 
-class MyPlantsActivity : BaseActivity() {
+class MyPlantsActivity : BaseNavigationActivity() {
 
     companion object{
         fun open(context: Context){
@@ -22,6 +23,6 @@ class MyPlantsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_my_plants)
+        binding = setContainerView(R.layout.activity_my_plants)
     }
 }
