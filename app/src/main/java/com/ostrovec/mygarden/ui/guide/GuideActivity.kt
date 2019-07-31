@@ -12,7 +12,7 @@ import com.ostrovec.mygarden.utils.SharedPrefsWoker
 
 class GuideActivity : BaseActivity() {
 
-    val onClickOK: GuideHandler = object : GuideHandler{
+    val guideHandler: GuideHandler = object : GuideHandler{
         override fun onClickOK(context: Context) {
                 WelcomeActivity.open(context)
                 SharedPrefsWoker(context).setShownGuideActivity(false)
@@ -37,7 +37,7 @@ class GuideActivity : BaseActivity() {
         binding.guideViewPager.adapter = viewPagerAdapter
         viewPagerAdapter.setPages(getPagesFragments())
         binding.guideTabLayout.setupWithViewPager(binding.guideViewPager)
-        binding.handler = onClickOK
+        binding.handler = guideHandler
     }
 
     private fun getPagesFragments(): List<Fragment> {

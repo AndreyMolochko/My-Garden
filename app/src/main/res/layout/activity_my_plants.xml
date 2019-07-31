@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.myplants.MyPlantsHandler" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -24,10 +30,11 @@
             android:id="@+id/my_plants_add_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:background="@color/colorWhite"
+            android:onClick="@{(view)->handler.onClickAdd(context)}"
             app:layout_constraintBottom_toBottomOf="@+id/my_plants_title_text_view"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/medium_padding"
             app:layout_constraintTop_toTopOf="@id/my_plants_title_text_view"
             app:srcCompat="@drawable/ic_plus_button" />
 
@@ -36,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_plants_title_text_view"/>
+            app:layout_constraintTop_toBottomOf="@id/my_plants_title_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

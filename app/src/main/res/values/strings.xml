@@ -13,4 +13,9 @@
     </string>
     <string name="ok">OK</string>
     <string name="my_plants">My plants</string>
+    <string name="addition_plant">Addition plant</string>
+    <string name="name">Name</string>
+    <string name="watering">Watering</string>
+    <string name="photo">Photo</string>
+    <string name="save">Save</string>
 </resources>

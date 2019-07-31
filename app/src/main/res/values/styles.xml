@@ -24,9 +24,27 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <style name="BaseButton.SecondaryButton">
+        <item name="android:background">@drawable/background_secondary_button</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
     <style name="HeaderTitle">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">@font/raleway_bold</item>
     </style>
+
+    <style name="Widget.Design.TextInputLayout" parent="AppTheme">
+        <item name="hintTextAppearance">@style/AppTheme.TextFloatLabelAppearance</item>
+        <item name="counterTextAppearance">@style/TextAppearance.Design.Counter</item>
+        <item name="counterOverflowTextAppearance">@style/TextAppearance.Design.Counter.Overflow</item>
+    </style>
+
+    <style name="AppTheme.TextFloatLabelAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textSize">@dimen/normal_font_size</item>
+    </style>
+
 
 </resources>
