@@ -20,89 +20,65 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/add_plants_name_edit_text"
+            style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:hint="@string/name"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:paddingEnd="@dimen/medium_padding"
-                android:paddingStart="@dimen/medium_padding"
-                android:textColor="@color/colorBlack" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view"/>
 
         <ImageView
             android:id="@+id/add_plants_name_check_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_name_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_name_edit_text"
             app:srcCompat="@drawable/ic_check" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/add_plants_watering_edit_text"
+            style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:hint="@string/watering"
             app:layout_constraintEnd_toStartOf="@id/add_plants_watering_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/watering"
-                android:paddingEnd="@dimen/medium_padding"
-                android:paddingStart="@dimen/medium_padding"
-                android:textColor="@color/colorBlack" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text"/>
 
         <ImageView
             android:id="@+id/add_plants_watering_check_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_watering_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_watering_edit_text"
-            app:srcCompat="@drawable/ic_check" />
+            app:srcCompat="@drawable/ic_circle" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/add_plants_photo_edit_text"
+            style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:hint="@string/photo"
             app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/photo"
-                android:paddingEnd="@dimen/medium_padding"
-                android:paddingStart="@dimen/medium_padding"
-                android:textColor="@color/colorBlack" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text"/>
 
         <ImageView
             android:id="@+id/add_plants_photo_check_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_photo_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text"
-            app:srcCompat="@drawable/ic_check" />
+            app:srcCompat="@drawable/ic_circle" />
 
         <TextView
             android:id="@+id/add_plants_save_text_view"
@@ -111,9 +87,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/big_padding"
             android:text="@string/save"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
