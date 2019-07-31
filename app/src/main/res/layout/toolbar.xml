@@ -9,7 +9,7 @@
         android:id="@+id/toolbar_back_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normal_padding"
+        android:layout_marginStart="@dimen/medium_padding"
         android:background="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

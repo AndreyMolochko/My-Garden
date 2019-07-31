@@ -1,12 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
+        android:paddingEnd="@dimen/medium_padding"
+        android:paddingStart="@dimen/medium_padding"
         tools:context=".ui.addplant.AddPlantActivity">
+
+        <TextView
+            android:id="@+id/add_plants_title_text_view"
+            style="@style/HeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addition_plant"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_plants_name_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:paddingEnd="@dimen/medium_padding"
+                android:paddingStart="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/add_plants_name_check_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/add_plants_name_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_plants_name_edit_text"
+            app:srcCompat="@drawable/ic_check" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_plants_watering_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            app:layout_constraintEnd_toStartOf="@id/add_plants_watering_check_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/watering"
+                android:paddingEnd="@dimen/medium_padding"
+                android:paddingStart="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/add_plants_watering_check_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/add_plants_watering_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_plants_watering_edit_text"
+            app:srcCompat="@drawable/ic_check" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_plants_photo_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/photo"
+                android:paddingEnd="@dimen/medium_padding"
+                android:paddingStart="@dimen/medium_padding"
+                android:textColor="@color/colorBlack" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/add_plants_photo_check_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/add_plants_photo_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text"
+            app:srcCompat="@drawable/ic_check" />
+
+        <TextView
+            android:id="@+id/add_plants_save_text_view"
+            style="@style/BaseButton.SecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big_padding"
+            android:text="@string/save"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
