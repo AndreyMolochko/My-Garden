@@ -18,4 +18,6 @@
     <string name="watering">Watering</string>
     <string name="photo">Photo</string>
     <string name="save">Save</string>
+    <string name="period_in_days">Irrigation period in days</string>
+    <string name="days">days</string>
 </resources>

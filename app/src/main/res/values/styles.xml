@@ -32,6 +32,7 @@
     <style name="HeaderTitle">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">@font/raleway_bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
     </style>
 
     <style name="EditText">
@@ -46,6 +47,12 @@
         <item name="android:paddingTop">@dimen/small_padding</item>
         <item name="android:paddingBottom">@dimen/small_padding</item>
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+    </style>
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textSize">@dimen/normal_font_size</item>
     </style>
 
 </resources>
