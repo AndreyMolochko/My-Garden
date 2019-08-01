@@ -32,6 +32,7 @@
             android:layout_marginTop="@dimen/normal_padding"
             android:descendantFocusability="blocksDescendants"
             android:orientation="vertical"
+            android:onValueChange="@{(picker,oldv,newv) -> handler.onNumberPickerValueChange(newv)}"
             android:theme="@style/AppTheme.Picker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
@@ -20,15 +21,21 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
     }
 
-    val addPLantHandler: AddPlantHandler = object : AddPlantHandler{
+    val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun clickOnWatering() {
             showAlertPickerNumberDay()
         }
     }
 
-    val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler{
+    val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler {
+
         override fun clickOk() {
             closeAlertDialog()
+        }
+
+        override fun onNumberPickerValueChange(newValue: Int) {
+            //TODO two way binding or adapter
+            binding.addPlantsWateringEditText.setText("$newValue ${getString(R.string.days)}")
         }
     }
 
@@ -56,7 +63,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         alertDialog?.show()
     }
 
-    private fun closeAlertDialog(){
+    private fun closeAlertDialog() {
         alertDialog.dismiss()
     }
 }
