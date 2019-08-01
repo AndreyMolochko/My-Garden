@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,12 +27,12 @@
 
         <NumberPicker
             android:id="@+id/picker_number_number_picker"
-            android:theme="@style/AppTheme.Picker"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_padding"
-            android:orientation="vertical"
             android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical"
+            android:theme="@style/AppTheme.Picker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/picker_number_title_text_view" />
@@ -36,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_padding"
+            android:onClick="@{(view)->handler.clickOk()}"
             android:paddingEnd="@dimen/big_padding"
             android:paddingStart="@dimen/big_padding"
             android:text="@string/ok"

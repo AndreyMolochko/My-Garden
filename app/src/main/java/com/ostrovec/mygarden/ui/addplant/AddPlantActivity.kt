@@ -26,7 +26,14 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
     }
 
+    val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler{
+        override fun clickOk() {
+            closeAlertDialog()
+        }
+    }
+
     private lateinit var binding: ActivityAddPlantBinding
+    private lateinit var alertDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +46,17 @@ class AddPlantActivity : BaseNavigationActivity() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
                 .from(this@AddPlantActivity), R.layout.alert_dialog_number_picker, null, false)
+        alertBinding.handler = dialogNumberPickerHandler
         alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
         alertBinding.pickerNumberNumberPicker.minValue = 1
         alertBinding.pickerNumberNumberPicker.maxValue = 180
         alertBinding.pickerNumberNumberPicker.value = 5
         builder.setView(alertBinding.root)
-        val alertDialog = builder.create()
+        alertDialog = builder.create()
         alertDialog?.show()
+    }
+
+    private fun closeAlertDialog(){
+        alertDialog.dismiss()
     }
 }
