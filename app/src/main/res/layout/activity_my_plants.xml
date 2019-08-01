@@ -22,7 +22,6 @@
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:text="@string/my_plants"
-            android:textColor="@color/colorBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

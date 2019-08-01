@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/addition_plant"
-            android:textColor="@color/colorBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +28,7 @@
             android:hint="@string/name"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view"/>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view" />
 
         <ImageView
             android:id="@+id/add_plants_name_check_image_view"
@@ -47,9 +46,10 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/watering"
+            android:enabled="false"
             app:layout_constraintEnd_toStartOf="@id/add_plants_watering_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text"/>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text" />
 
         <ImageView
             android:id="@+id/add_plants_watering_check_image_view"
@@ -69,7 +69,7 @@
             android:hint="@string/photo"
             app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text"/>
+            app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text" />
 
         <ImageView
             android:id="@+id/add_plants_photo_check_image_view"

@@ -32,6 +32,7 @@
     <style name="HeaderTitle">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:fontFamily">@font/raleway_bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
     </style>
 
     <style name="EditText">

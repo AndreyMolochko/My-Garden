@@ -23,4 +23,8 @@ class AddPlantActivity : BaseNavigationActivity() {
 
         binding = setContainerView(R.layout.activity_add_plant)
     }
+
+    private fun showAlertPickerNumberDay(){
+
+    }
 }
