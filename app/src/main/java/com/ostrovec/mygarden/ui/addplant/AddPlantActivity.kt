@@ -1,18 +1,28 @@
 package com.ostrovec.mygarden.ui.addplant
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
+import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 
 class AddPlantActivity : BaseNavigationActivity() {
 
     companion object {
-        fun open(context: Context){
-            val intent = Intent(context,AddPlantActivity::class.java)
+        fun open(context: Context) {
+            val intent = Intent(context, AddPlantActivity::class.java)
             context.startActivity(intent)
+        }
+    }
+
+    val addPLantHandler: AddPlantHandler = object : AddPlantHandler{
+        override fun clickOnWatering() {
+            showAlertPickerNumberDay()
         }
     }
 
@@ -22,9 +32,19 @@ class AddPlantActivity : BaseNavigationActivity() {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_add_plant)
+        binding.handler = addPLantHandler
     }
 
-    private fun showAlertPickerNumberDay(){
-
+    private fun showAlertPickerNumberDay() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
+                .from(this@AddPlantActivity), R.layout.alert_dialog_number_picker, null, false)
+        alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
+        alertBinding.pickerNumberNumberPicker.minValue = 1
+        alertBinding.pickerNumberNumberPicker.maxValue = 180
+        alertBinding.pickerNumberNumberPicker.value = 5
+        builder.setView(alertBinding.root)
+        val alertDialog = builder.create()
+        alertDialog?.show()
     }
 }

@@ -21,7 +21,6 @@ class MyPlantsActivity : BaseNavigationActivity() {
         override fun onClickAdd(context: Context) {
             AddPlantActivity.open(context)
         }
-
     }
 
     private lateinit var binding: ActivityMyPlantsBinding

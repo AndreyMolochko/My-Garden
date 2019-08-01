@@ -18,4 +18,5 @@
     <string name="watering">Watering</string>
     <string name="photo">Photo</string>
     <string name="save">Save</string>
+    <string name="period_in_days">Period in days</string>
 </resources>
