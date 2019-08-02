@@ -1,5 +1,6 @@
 package com.ostrovec.mygarden.di
 
+import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.guide.GuideActivity
 import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
@@ -16,4 +17,7 @@ abstract class ActivityModule{
 
     @ContributesAndroidInjector
     abstract fun contributeMyPlantsActivity(): MyPlantsActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeAddPlantsActivity(): AddPlantActivity
 }
