@@ -39,6 +39,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         override fun onNumberPickerValueChange(newValue: Int) {
             //TODO two way binding or adapter
             binding.addPlantsWateringEditText.setText("$newValue ${getString(R.string.days)}")
+            chechSaveButton()
         }
     }
 
@@ -52,6 +53,13 @@ class AddPlantActivity : BaseNavigationActivity() {
         binding = setContainerView(R.layout.activity_add_plant)
         addPlantViewModel = getViewModel(AddPlantViewModel::class.java)
         binding.handler = addPLantHandler
+        initSubscribers()
+    }
+
+    private fun initSubscribers(){
+        addPlantViewModel.saveButtonClickable.subscribe({
+            Log.e("ONDATA","saveButton"+it)
+        })
     }
 
     private fun showAlertPickerNumberDay() {
@@ -70,5 +78,21 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private fun closeAlertDialog() {
         alertDialog.dismiss()
+    }
+
+    private fun chechSaveButton(){
+        addPlantViewModel.checkSaveButton(getName(),getIrrigation(),getPhotos())
+    }
+
+    private fun getName():String{
+        return binding.addPlantsNameEditText.text.toString()
+    }
+
+    private fun getIrrigation():String{
+        return binding.addPlantsWateringEditText.text.toString()
+    }
+
+    private fun getPhotos():String{
+        return binding.addPlantsPhotoEditText.text.toString()
     }
 }
