@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.model
+package com.ostrovec.mygarden.room.model
 
 import android.os.Parcel
 import android.os.Parcelable
