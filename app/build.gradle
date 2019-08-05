@@ -31,6 +31,9 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -53,6 +56,14 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    //Room
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     //Mockito
     testImplementation 'org.mockito:mockito-inline:2.8.47'
