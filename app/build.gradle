@@ -31,6 +31,9 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -44,7 +47,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     //RxJava
-    implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC1"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.6"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     // Dagger2
     def daggerVersion = 2.17
@@ -54,7 +58,18 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
+    //Room
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
     //Mockito
     testImplementation 'org.mockito:mockito-inline:2.8.47'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+
+    //Others
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

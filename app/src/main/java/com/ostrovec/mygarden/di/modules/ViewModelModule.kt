@@ -1,7 +1,9 @@
-package com.ostrovec.mygarden.di
+package com.ostrovec.mygarden.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.ostrovec.mygarden.di.ViewModelFactory
+import com.ostrovec.mygarden.di.ViewModelKey
 import com.ostrovec.mygarden.ui.addplant.AddPlantViewModel
 import dagger.Binds
 import dagger.Module
