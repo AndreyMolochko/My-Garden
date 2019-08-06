@@ -69,4 +69,7 @@ dependencies {
     //Mockito
     testImplementation 'org.mockito:mockito-inline:2.8.47'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+
+    //Others
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }
