@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
+import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
-import javax.inject.Inject
 
 class AddPlantActivity : BaseNavigationActivity() {
 
@@ -28,6 +26,10 @@ class AddPlantActivity : BaseNavigationActivity() {
     val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun clickOnWatering() {
             showAlertPickerNumberDay()
+        }
+
+        override fun clickOnPhoto() {
+            showAlertCameraPicker()
         }
 
         override fun clickOnSave() {
@@ -50,8 +52,9 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
-    private lateinit var alertDialog: AlertDialog
-    private val plant: Plant = Plant(0,"Flower",100,"","server",100,200)
+    private lateinit var alertNumberPickerDialog: AlertDialog
+    private lateinit var alertCameraDialog: AlertDialog
+    private val plant: Plant = Plant(0, "Flower", 100, "", "server", 100, 200)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,9 +67,9 @@ class AddPlantActivity : BaseNavigationActivity() {
         initSubscribers()
     }
 
-    private fun initSubscribers(){
+    private fun initSubscribers() {
         addPlantViewModel.saveButtonClickable.subscribe({
-            Log.e("ONDATA","saveButton"+it)
+            Log.e("ONDATA", "saveButton" + it)
         })
     }
 
@@ -80,27 +83,37 @@ class AddPlantActivity : BaseNavigationActivity() {
         alertBinding.pickerNumberNumberPicker.maxValue = 180
         alertBinding.pickerNumberNumberPicker.value = 5
         builder.setView(alertBinding.root)
-        alertDialog = builder.create()
-        alertDialog?.show()
+        alertNumberPickerDialog = builder.create()
+        alertNumberPickerDialog?.show()
     }
 
     private fun closeAlertDialog() {
-        alertDialog.dismiss()
+        alertNumberPickerDialog.dismiss()
     }
 
-    private fun chechSaveButton(){
-        addPlantViewModel.checkSaveButton(getName(),getIrrigation(),getPhotos())
+    private fun showAlertCameraPicker() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val alertCameraBinding: AlertDialogCameraBinding = DataBindingUtil.inflate(LayoutInflater
+                .from(this@AddPlantActivity), R.layout.alert_dialog_camera, null, false)
+        builder.setView(alertCameraBinding.root)
+        alertNumberPickerDialog = builder.create()
+        alertCameraDialog = builder.create()
+        alertCameraDialog?.show()
     }
 
-    private fun getName():String{
+    private fun chechSaveButton() {
+        addPlantViewModel.checkSaveButton(getName(), getIrrigation(), getPhotos())
+    }
+
+    private fun getName(): String {
         return binding.addPlantsNameEditText.text.toString()
     }
 
-    private fun getIrrigation():String{
+    private fun getIrrigation(): String {
         return binding.addPlantsWateringEditText.text.toString()
     }
 
-    private fun getPhotos():String{
+    private fun getPhotos(): String {
         return binding.addPlantsPhotoEditText.text.toString()
     }
 }

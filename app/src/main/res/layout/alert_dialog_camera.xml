@@ -16,6 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/big_padding"
+            android:fontFamily="@font/raleway_medium"
+            android:textSize="@dimen/edit_text_font_size"
             android:text="@string/camera"
             app:layout_constraintStart_toEndOf="@id/dialog_camera_camera_image_view"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/big_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:textSize="@dimen/edit_text_font_size"
+            android:fontFamily="@font/raleway_medium"
             android:text="@string/gallery"
             app:layout_constraintStart_toEndOf="@id/dialog_camera_gallery_image_view"
             app:layout_constraintTop_toBottomOf="@id/dialog_camera_camera_text_view" />
