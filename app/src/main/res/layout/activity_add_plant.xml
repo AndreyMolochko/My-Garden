@@ -37,7 +37,7 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/name"
-            android:text="@{model.name}"
+            android:text="@={model.name}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view" />

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/medium_padding"
+        android:paddingEnd="@dimen/big_padding"
+        android:paddingStart="@dimen/big_padding"
+        android:paddingTop="@dimen/medium_padding">
+
+        <TextView
+            android:id="@+id/dialog_camera_camera_text_view"
+            style="@style/HeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_padding"
+            android:text="@string/camera"
+            app:layout_constraintStart_toEndOf="@id/dialog_camera_camera_image_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/dialog_camera_camera_image_view"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_camera_camera_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dialog_camera_camera_text_view"
+            app:srcCompat="@drawable/ic_photo_camera" />
+
+        <TextView
+            android:id="@+id/dialog_camera_gallery_text_view"
+            style="@style/HeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:text="@string/gallery"
+            app:layout_constraintStart_toEndOf="@id/dialog_camera_gallery_image_view"
+            app:layout_constraintTop_toBottomOf="@id/dialog_camera_camera_text_view" />
+
+        <ImageView
+            android:id="@+id/dialog_camera_gallery_image_view"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_camera_gallery_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dialog_camera_gallery_text_view"
+            app:srcCompat="@drawable/ic_gallery" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
