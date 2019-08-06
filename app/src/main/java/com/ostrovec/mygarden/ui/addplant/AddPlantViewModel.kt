@@ -1,11 +1,11 @@
 package com.ostrovec.mygarden.ui.addplant
 
-import androidx.lifecycle.ViewModel
+import com.ostrovec.mygarden.ui.base.BaseViewModel
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 
-class AddPlantViewModel @Inject constructor() : ViewModel() {
+class AddPlantViewModel @Inject constructor() : BaseViewModel() {
     val saveButtonClickable = BehaviorSubject.create<Boolean>()
 
     fun checkSaveButton(name: String, irrigation: String, photo: String) {
