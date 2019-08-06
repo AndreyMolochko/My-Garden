@@ -50,6 +50,17 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
     }
 
+    val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler{
+        override fun clickOnCamera() {
+            println("click on camera")
+        }
+
+        override fun clickOnGallery() {
+            println("click on gallery")
+        }
+
+    }
+
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
     private lateinit var alertNumberPickerDialog: AlertDialog
@@ -96,6 +107,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         val alertCameraBinding: AlertDialogCameraBinding = DataBindingUtil.inflate(LayoutInflater
                 .from(this@AddPlantActivity), R.layout.alert_dialog_camera, null, false)
         builder.setView(alertCameraBinding.root)
+        alertCameraBinding.handler = dialogCameraHandler
         alertNumberPickerDialog = builder.create()
         alertCameraDialog = builder.create()
         alertCameraDialog?.show()

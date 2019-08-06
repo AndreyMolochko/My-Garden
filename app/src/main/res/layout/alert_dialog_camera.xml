@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.addplant.DialogCameraHandler" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,8 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/big_padding"
             android:fontFamily="@font/raleway_medium"
-            android:textSize="@dimen/edit_text_font_size"
+            android:onClick="@{(view)->handler.clickOnCamera()}"
             android:text="@string/camera"
+            android:textSize="@dimen/edit_text_font_size"
             app:layout_constraintStart_toEndOf="@id/dialog_camera_camera_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +34,7 @@
             android:id="@+id/dialog_camera_camera_image_view"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
+            android:onClick="@{(view)->handler.clickOnCamera()}"
             app:layout_constraintBottom_toBottomOf="@id/dialog_camera_camera_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/dialog_camera_camera_text_view"
@@ -38,9 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/big_padding"
             android:layout_marginTop="@dimen/normal_padding"
-            android:textSize="@dimen/edit_text_font_size"
             android:fontFamily="@font/raleway_medium"
+            android:onClick="@{(view)->handler.clickOnGallery()}"
             android:text="@string/gallery"
+            android:textSize="@dimen/edit_text_font_size"
             app:layout_constraintStart_toEndOf="@id/dialog_camera_gallery_image_view"
             app:layout_constraintTop_toBottomOf="@id/dialog_camera_camera_text_view" />
 
@@ -48,6 +58,7 @@
             android:id="@+id/dialog_camera_gallery_image_view"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
+            android:onClick="@{(view)->handler.clickOnGallery()}"
             app:layout_constraintBottom_toBottomOf="@id/dialog_camera_gallery_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/dialog_camera_gallery_text_view"
