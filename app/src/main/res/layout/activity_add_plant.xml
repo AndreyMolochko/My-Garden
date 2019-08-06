@@ -7,6 +7,10 @@
         <variable
             name="handler"
             type="com.ostrovec.mygarden.ui.addplant.AddPlantHandler" />
+
+        <variable
+            name="model"
+            type="com.ostrovec.mygarden.room.model.Plant" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,6 +37,7 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/name"
+            android:text="@{model.name}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view" />
@@ -44,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_name_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_name_edit_text"
-            app:srcCompat="@drawable/ic_check" />
+            bind:srcCompat="@{model.name}" />
 
         <EditText
             android:id="@+id/add_plants_watering_edit_text"
@@ -66,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_watering_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_watering_edit_text"
-            app:srcCompat="@drawable/ic_circle" />
+            bind:srcCompat="@{Long.toString(model.irrigationPeriod)}" />
 
         <EditText
             android:id="@+id/add_plants_photo_edit_text"
@@ -86,7 +91,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_photo_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text"
-            app:srcCompat="@drawable/ic_circle" />
+            bind:srcCompat="@{model.urlLocalPhoto}" />
 
         <TextView
             android:id="@+id/add_plants_save_text_view"

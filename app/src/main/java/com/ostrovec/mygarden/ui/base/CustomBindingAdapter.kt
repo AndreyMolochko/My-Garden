@@ -6,6 +6,7 @@ import com.ostrovec.mygarden.R
 
 object CustomBindingAdapter {
 
+    @JvmStatic
     @BindingAdapter("bind:srcCompat")
     fun setImage(imageView: ImageView, text: String) {
         if (text.isNotEmpty()) {

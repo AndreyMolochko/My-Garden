@@ -31,7 +31,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnSave() {
-            addPlantViewModel.addPlant(Plant(0,"Flower",100,"Image","server",100,200))
+            addPlantViewModel.addPlant(plant)
         }
     }
 
@@ -51,6 +51,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
     private lateinit var alertDialog: AlertDialog
+    private val plant: Plant = Plant(0,"Flower",100,"","server",100,200)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,8 @@ class AddPlantActivity : BaseNavigationActivity() {
         binding = setContainerView(R.layout.activity_add_plant)
         addPlantViewModel = getViewModel(AddPlantViewModel::class.java)
         binding.handler = addPLantHandler
+        binding.model = plant
+
         initSubscribers()
     }
 
