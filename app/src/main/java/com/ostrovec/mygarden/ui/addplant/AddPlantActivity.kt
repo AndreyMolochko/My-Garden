@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
+import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import javax.inject.Inject
 
@@ -27,6 +28,10 @@ class AddPlantActivity : BaseNavigationActivity() {
     val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun clickOnWatering() {
             showAlertPickerNumberDay()
+        }
+
+        override fun clickOnSave() {
+            addPlantViewModel.addPlant(Plant(0,"Flower",100,"Image","server",100,200))
         }
     }
 
