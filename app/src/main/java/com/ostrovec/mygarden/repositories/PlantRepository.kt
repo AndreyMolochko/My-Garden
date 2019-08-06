@@ -1,10 +1,9 @@
 package com.ostrovec.mygarden.repositories
 
-import com.ostrovec.mygarden.room.dao.PlantDao
-import javax.inject.Singleton
+import com.ostrovec.mygarden.room.model.Plant
+import io.reactivex.disposables.Disposable
 
-@Singleton
-class PlantRepository (private val plantDao: PlantDao){
+interface PlantRepository{
 
-
+    fun insertPlant(plant: Plant): Disposable
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import com.ostrovec.mygarden.MyGardenApp
 import com.ostrovec.mygarden.di.modules.ActivityModule
 import com.ostrovec.mygarden.di.modules.DatabaseModule
+import com.ostrovec.mygarden.di.modules.NetworkModule
 import com.ostrovec.mygarden.di.modules.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     ActivityModule::class,
     AndroidSupportInjectionModule::class,
     ViewModelModule::class,
-    DatabaseModule::class])
+    DatabaseModule::class,
+    NetworkModule::class])
 @Singleton
 interface AppComponent {
 
