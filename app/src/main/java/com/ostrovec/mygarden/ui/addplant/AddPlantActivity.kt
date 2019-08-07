@@ -108,14 +108,22 @@ class AddPlantActivity : BaseNavigationActivity() {
     }
 
     private fun showAlertPickerNumberDay() {
+        val minValuePicker = 1
+        val maxValuePicker = 180
+        val defaultValuePicker = 5
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
                 .from(this@AddPlantActivity), R.layout.alert_dialog_number_picker, null, false)
         alertBinding.handler = dialogNumberPickerHandler
         alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
-        alertBinding.pickerNumberNumberPicker.minValue = 1
-        alertBinding.pickerNumberNumberPicker.maxValue = 180
-        alertBinding.pickerNumberNumberPicker.value = 5
+        alertBinding.pickerNumberNumberPicker.minValue = minValuePicker
+        alertBinding.pickerNumberNumberPicker.maxValue = maxValuePicker
+        if (plant.irrigationPeriod > 0) {
+            alertBinding.pickerNumberNumberPicker.value = CalendarWorker
+                    .convertMillisecondsInDays(plant.irrigationPeriod)
+        } else {
+            alertBinding.pickerNumberNumberPicker.value = defaultValuePicker
+        }
         builder.setView(alertBinding.root)
         alertNumberPickerDialog = builder.create()
         alertNumberPickerDialog?.show()
