@@ -87,10 +87,14 @@ class AddPlantActivity : BaseNavigationActivity() {
 
         if (requestCode == GALLERY_REQUEST_CODE && data != null) {
             val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data!!.data)
+            plant.setUrlLocalPhoto = addPlantViewModel.extractImageFilePath(contentResolver, bitmap,
+                    applicationContext)
             setImageFromResourses(bitmap)
 
         } else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
             val bitmap = data!!.extras!!.get("data") as Bitmap
+            plant.setUrlLocalPhoto = addPlantViewModel.extractImageFilePath(contentResolver, bitmap,
+                    applicationContext)
             setImageFromResourses(bitmap)
         }
     }

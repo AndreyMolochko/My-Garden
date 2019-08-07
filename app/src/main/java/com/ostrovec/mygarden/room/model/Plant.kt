@@ -8,6 +8,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.ostrovec.mygarden.BR
 
 @Entity(tableName = "Plants")
 data class Plant(
@@ -23,7 +24,7 @@ data class Plant(
 
         @ColumnInfo(name = "url_local_photo")
         @SerializedName("url_local_photo")
-        var urlLocalPhoto: String?,
+        var urlLocalPhoto: String,
 
         @ColumnInfo(name = "url_server_photo")
         @SerializedName("url_server_photo")
@@ -46,6 +47,14 @@ data class Plant(
             parcel.readLong(),
             parcel.readLong()
     )
+
+    var setUrlLocalPhoto: String
+        @Bindable get() = urlLocalPhoto
+        set(value) {
+            urlLocalPhoto = value
+            notifyPropertyChanged(BR.setUrlLocalPhoto)
+        }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

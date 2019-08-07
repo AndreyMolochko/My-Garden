@@ -98,10 +98,10 @@
 
         <ImageView
             android:id="@+id/add_plants_photo_check_image_view"
-            bind:srcCompat="@{model.urlLocalPhoto}"
+            bind:srcCompat="@{model.setUrlLocalPhoto}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
-            android:layout_marginTop="@dimen/small_padding"
+            android:layout_marginTop="@dimen/normal_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text" />
 
