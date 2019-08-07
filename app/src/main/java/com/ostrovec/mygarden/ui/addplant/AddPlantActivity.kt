@@ -4,8 +4,10 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
@@ -44,19 +46,18 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun onNumberPickerValueChange(newValue: Int) {
-            //TODO two way binding or adapter
             binding.addPlantsWateringEditText.setText("$newValue ${getString(R.string.days)}")
-            chechSaveButton()
+            checkSaveButton()
         }
     }
 
-    val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler{
+    val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
-            println("click on camera")
+            takePhotoFromCamera()
         }
 
         override fun clickOnGallery() {
-            println("click on gallery")
+            choosePhotoFromGallery()
         }
 
     }
@@ -76,6 +77,17 @@ class AddPlantActivity : BaseNavigationActivity() {
         binding.model = plant
 
         initSubscribers()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == GALLERY_REQUEST_CODE && data != null) {
+            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,data!!.data)
+            binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
+            binding.addPlantsPhotoImageView.visibility = View.VISIBLE
+            binding.addPlantsPhotoEditText.visibility = View.GONE
+        }
     }
 
     private fun initSubscribers() {
@@ -113,7 +125,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         alertCameraDialog?.show()
     }
 
-    private fun chechSaveButton() {
+    private fun checkSaveButton() {
         addPlantViewModel.checkSaveButton(getName(), getIrrigation(), getPhotos())
     }
 

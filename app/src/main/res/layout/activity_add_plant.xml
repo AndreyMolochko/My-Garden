@@ -87,13 +87,25 @@
             app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text" />
 
         <ImageView
+            android:id="@+id/add_plants_photo_image_view"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:onClick="@{(view)->handler.clickOnPhoto()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text"
+            app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"/>
+
+        <ImageView
             android:id="@+id/add_plants_photo_check_image_view"
             bind:srcCompat="@{model.urlLocalPhoto}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
-            app:layout_constraintBottom_toBottomOf="@+id/add_plants_photo_edit_text"
+            android:layout_marginTop="@dimen/small_padding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text" />
+            app:layout_constraintTop_toTopOf="@id/add_plants_photo_image_view" />
 
         <TextView
             android:id="@+id/add_plants_save_text_view"
@@ -105,7 +117,7 @@
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text" />
+            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_image_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

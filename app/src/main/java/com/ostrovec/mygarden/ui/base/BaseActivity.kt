@@ -1,6 +1,8 @@
 package com.ostrovec.mygarden.ui.base
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +11,9 @@ import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity() {
+
+    protected val CAMERA_REQUEST_CODE = 0
+    protected val GALLERY_REQUEST_CODE = 1
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -21,5 +26,15 @@ open class BaseActivity : AppCompatActivity() {
 
     protected fun <T : ViewModel> getViewModel(cls: Class<T>): T {
         return ViewModelProviders.of(this, viewModelFactory).get(cls)
+    }
+
+    protected fun choosePhotoFromGallery(){
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent,GALLERY_REQUEST_CODE)
+    }
+
+    protected fun takePhotoFromCamera(){
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent,CAMERA_REQUEST_CODE)
     }
 }
