@@ -37,14 +37,14 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/name"
-            android:text="@={model.name}"
+            android:text="@={model.setName}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view" />
 
         <ImageView
             android:id="@+id/add_plants_name_check_image_view"
-            bind:srcCompat="@{model.name}"
+            bind:srcCompat="@{model.setName}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_name_edit_text"

@@ -16,7 +16,7 @@ data class Plant(
         @PrimaryKey(autoGenerate = true)
         val id: Int,
 
-        var name: String?,
+        var name: String,
 
         @ColumnInfo(name = "irrigation_period")
         @SerializedName("irrigation_period")
@@ -48,8 +48,17 @@ data class Plant(
             parcel.readLong()
     )
 
+    var setName: String
+        @Bindable
+        get() = name
+        set(value) {
+            name = value
+            notifyPropertyChanged(BR.setName)
+        }
+
     var setUrlLocalPhoto: String
-        @Bindable get() = urlLocalPhoto
+        @Bindable
+        get() = urlLocalPhoto
         set(value) {
             urlLocalPhoto = value
             notifyPropertyChanged(BR.setUrlLocalPhoto)

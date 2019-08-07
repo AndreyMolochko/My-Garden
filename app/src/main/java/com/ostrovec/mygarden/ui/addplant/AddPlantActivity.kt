@@ -69,7 +69,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     private lateinit var addPlantViewModel: AddPlantViewModel
     private lateinit var alertNumberPickerDialog: AlertDialog
     private lateinit var alertCameraDialog: AlertDialog
-    private val plant: Plant = Plant(0, "Flower", 100, "", "server", 100, 200)
+    private val plant: Plant = Plant(0, "", 100, "", "server", 100, 200)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
