@@ -2,10 +2,13 @@ package com.ostrovec.mygarden.room.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.ostrovec.mygarden.BR
 
 @Entity(tableName = "Plants")
 data class Plant(
@@ -13,7 +16,7 @@ data class Plant(
         @PrimaryKey(autoGenerate = true)
         val id: Int,
 
-        var name: String?,
+        var name: String,
 
         @ColumnInfo(name = "irrigation_period")
         @SerializedName("irrigation_period")
@@ -21,7 +24,7 @@ data class Plant(
 
         @ColumnInfo(name = "url_local_photo")
         @SerializedName("url_local_photo")
-        var urlLocalPhoto: String?,
+        var urlLocalPhoto: String,
 
         @ColumnInfo(name = "url_server_photo")
         @SerializedName("url_server_photo")
@@ -33,7 +36,8 @@ data class Plant(
 
         @ColumnInfo(name = "end_irrigation")
         @SerializedName("end_irrigation")
-        var endIrrigation: Long) : Parcelable {
+        var endIrrigation: Long) : BaseObservable(), Parcelable {
+
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
@@ -43,6 +47,31 @@ data class Plant(
             parcel.readLong(),
             parcel.readLong()
     )
+
+    var setName: String
+        @Bindable
+        get() = name
+        set(value) {
+            name = value
+            notifyPropertyChanged(BR.setName)
+        }
+
+    var setIrrigationPeriod: Long
+        @Bindable
+        get() = irrigationPeriod
+        set(value) {
+            irrigationPeriod = value
+            notifyPropertyChanged(BR.setIrrigationPeriod)
+        }
+
+    var setUrlLocalPhoto: String
+        @Bindable
+        get() = urlLocalPhoto
+        set(value) {
+            urlLocalPhoto = value
+            notifyPropertyChanged(BR.setUrlLocalPhoto)
+        }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)

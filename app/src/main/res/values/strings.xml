@@ -20,4 +20,6 @@
     <string name="save">Save</string>
     <string name="period_in_days">Irrigation period in days</string>
     <string name="days">days</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>

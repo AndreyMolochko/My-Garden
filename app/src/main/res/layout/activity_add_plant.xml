@@ -7,6 +7,10 @@
         <variable
             name="handler"
             type="com.ostrovec.mygarden.ui.addplant.AddPlantHandler" />
+
+        <variable
+            name="model"
+            type="com.ostrovec.mygarden.room.model.Plant" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,18 +37,20 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/name"
+            android:onTextChanged="@{handler.onTextChanged}"
+            android:text="@={model.setName}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_title_text_view" />
 
         <ImageView
             android:id="@+id/add_plants_name_check_image_view"
+            bind:srcCompat="@{model.setName}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_name_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_plants_name_edit_text"
-            app:srcCompat="@drawable/ic_check" />
+            app:layout_constraintTop_toTopOf="@id/add_plants_name_edit_text" />
 
         <EditText
             android:id="@+id/add_plants_watering_edit_text"
@@ -52,41 +58,53 @@
             android:layout_width="0dp"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:focusable="false"
             android:hint="@string/watering"
             android:onClick="@{(view)->handler.clickOnWatering()}"
-            android:focusable="false"
             app:layout_constraintEnd_toStartOf="@id/add_plants_watering_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text" />
 
         <ImageView
             android:id="@+id/add_plants_watering_check_image_view"
+            bind:srcCompat="@{model.setIrrigationPeriod}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_watering_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_plants_watering_edit_text"
-            app:srcCompat="@drawable/ic_circle" />
+            app:layout_constraintTop_toTopOf="@id/add_plants_watering_edit_text" />
 
         <EditText
             android:id="@+id/add_plants_photo_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:focusable="false"
             android:hint="@string/photo"
+            android:onClick="@{(view)->handler.clickOnPhoto()}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_watering_edit_text" />
 
         <ImageView
+            android:id="@+id/add_plants_photo_image_view"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:onClick="@{(view)->handler.clickOnPhoto()}"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/add_plants_photo_check_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text" />
+
+        <ImageView
             android:id="@+id/add_plants_photo_check_image_view"
+            bind:srcCompat="@{model.setUrlLocalPhoto}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
-            app:layout_constraintBottom_toBottomOf="@+id/add_plants_photo_edit_text"
+            android:layout_marginTop="@dimen/normal_padding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text"
-            app:srcCompat="@drawable/ic_circle" />
+            app:layout_constraintTop_toTopOf="@id/add_plants_photo_edit_text" />
 
         <TextView
             android:id="@+id/add_plants_save_text_view"
@@ -94,11 +112,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/big_padding"
-            android:text="@string/save"
             android:onClick="@{(view)->handler.clickOnSave()}"
+            android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_edit_text" />
+            app:layout_constraintTop_toBottomOf="@id/add_plants_photo_image_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
