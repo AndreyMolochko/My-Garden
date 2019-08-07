@@ -6,6 +6,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,10 @@ class AddPlantActivity : BaseNavigationActivity() {
     }
 
     val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            checkSaveButton()
+        }
+
         override fun clickOnWatering() {
             showAlertPickerNumberDay()
         }
@@ -71,7 +77,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     private lateinit var addPlantViewModel: AddPlantViewModel
     private lateinit var alertNumberPickerDialog: AlertDialog
     private lateinit var alertCameraDialog: AlertDialog
-    private val plant: Plant = Plant(0, "", 0L, "", "server", 100, 200)
+    private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +86,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         addPlantViewModel = getViewModel(AddPlantViewModel::class.java)
         binding.handler = addPLantHandler
         binding.model = plant
+        enableSaveButton(false)
 
         initSubscribers()
     }
@@ -99,15 +106,17 @@ class AddPlantActivity : BaseNavigationActivity() {
                     applicationContext)
             setImageFromResourses(bitmap)
         }
+        checkSaveButton()
     }
 
     private fun initSubscribers() {
         addPlantViewModel.saveButtonClickable.subscribe({
             Log.e("ONDATA", "saveButton" + it)
+            enableSaveButton(it)
         })
     }
 
-    private fun showAlertPickerNumberDay() {
+    private fun showAlertPickerNumberDay() {//TODO refactoring this method
         val minValuePicker = 1
         val maxValuePicker = 180
         val defaultValuePicker = 5
@@ -150,19 +159,12 @@ class AddPlantActivity : BaseNavigationActivity() {
         binding.addPlantsPhotoEditText.visibility = View.GONE
     }
 
+    private fun enableSaveButton(enable: Boolean) {
+        binding.addPlantsSaveTextView.isEnabled = enable
+    }
+
     private fun checkSaveButton() {
-        addPlantViewModel.checkSaveButton(getName(), getIrrigation(), getPhotos())
-    }
-
-    private fun getName(): String {
-        return binding.addPlantsNameEditText.text.toString()
-    }
-
-    private fun getIrrigation(): String {
-        return binding.addPlantsWateringEditText.text.toString()
-    }
-
-    private fun getPhotos(): String {
-        return binding.addPlantsPhotoEditText.text.toString()
+        addPlantViewModel.checkSaveButton(plant.name, plant.irrigationPeriod.toString(), plant
+                .setUrlLocalPhoto)
     }
 }
