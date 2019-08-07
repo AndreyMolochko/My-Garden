@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.addplant
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -53,7 +54,9 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
-            takePhotoFromCamera()
+            if (requestCameraPermissions()) {
+                takePhotoFromCamera()
+            }
         }
 
         override fun clickOnGallery() {
@@ -83,10 +86,12 @@ class AddPlantActivity : BaseNavigationActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == GALLERY_REQUEST_CODE && data != null) {
-            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,data!!.data)
-            binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
-            binding.addPlantsPhotoImageView.visibility = View.VISIBLE
-            binding.addPlantsPhotoEditText.visibility = View.GONE
+            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data!!.data)
+            setImageFromResourses(bitmap)
+
+        } else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
+            val bitmap = data!!.extras!!.get("data") as Bitmap
+            setImageFromResourses(bitmap)
         }
     }
 
@@ -123,6 +128,12 @@ class AddPlantActivity : BaseNavigationActivity() {
         alertNumberPickerDialog = builder.create()
         alertCameraDialog = builder.create()
         alertCameraDialog?.show()
+    }
+
+    private fun setImageFromResourses(bitmap: Bitmap) {
+        binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
+        binding.addPlantsPhotoImageView.visibility = View.VISIBLE
+        binding.addPlantsPhotoEditText.visibility = View.GONE
     }
 
     private fun checkSaveButton() {
