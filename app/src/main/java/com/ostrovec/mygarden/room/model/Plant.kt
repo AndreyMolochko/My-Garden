@@ -56,6 +56,14 @@ data class Plant(
             notifyPropertyChanged(BR.setName)
         }
 
+    var setIrrigationPeriod: Long
+        @Bindable
+        get() = irrigationPeriod
+        set(value) {
+            irrigationPeriod = value
+            notifyPropertyChanged(BR.setIrrigationPeriod)
+        }
+
     var setUrlLocalPhoto: String
         @Bindable
         get() = urlLocalPhoto

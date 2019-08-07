@@ -66,7 +66,7 @@
 
         <ImageView
             android:id="@+id/add_plants_watering_check_image_view"
-            bind:srcCompat="@{Long.toString(model.irrigationPeriod)}"
+            bind:srcCompat="@{model.setIrrigationPeriod}"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/add_plants_watering_edit_text"

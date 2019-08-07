@@ -16,6 +16,7 @@ import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.utils.CalendarWorker
 
 class AddPlantActivity : BaseNavigationActivity() {
 
@@ -47,6 +48,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun onNumberPickerValueChange(newValue: Int) {
+            plant.setIrrigationPeriod = CalendarWorker.convertDaysToMilliseconds(newValue)
             binding.addPlantsWateringEditText.setText("$newValue ${getString(R.string.days)}")
             checkSaveButton()
         }
@@ -69,7 +71,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     private lateinit var addPlantViewModel: AddPlantViewModel
     private lateinit var alertNumberPickerDialog: AlertDialog
     private lateinit var alertCameraDialog: AlertDialog
-    private val plant: Plant = Plant(0, "", 100, "", "server", 100, 200)
+    private val plant: Plant = Plant(0, "", 0L, "", "server", 100, 200)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

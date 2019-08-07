@@ -15,4 +15,15 @@ object CustomBindingAdapter {
             imageView.setImageResource(R.drawable.ic_circle)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("bind:srcCompat")
+    fun setImage(imageView: ImageView, days: Long) {
+        println("period = $days")
+        if (days > 0) {
+            imageView.setImageResource(R.drawable.ic_check)
+        } else {
+            imageView.setImageResource(R.drawable.ic_circle)
+        }
+    }
 }
