@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.addplant
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -56,7 +57,11 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
-            if (requestCameraPermissions()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (requestCameraPermissions()) {
+                    takePhotoFromCamera()
+                }
+            } else {
                 takePhotoFromCamera()
             }
         }
