@@ -75,7 +75,6 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
-    //private lateinit var alertNumberPickerDialog: AlertDialog
     private lateinit var alertCameraDialog: AlertDialog
     private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
 
@@ -115,32 +114,6 @@ class AddPlantActivity : BaseNavigationActivity() {
             enableSaveButton(it)
         })
     }
-
-    /*private fun showAlertPickerNumberDay() {//TODO refactoring this method
-        val minValuePicker = 1
-        val maxValuePicker = 180
-        val defaultValuePicker = 5
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
-                .from(this@AddPlantActivity), R.layout.alert_dialog_number_picker, null, false)
-        alertBinding.handler = dialogNumberPickerHandler
-        alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
-        alertBinding.pickerNumberNumberPicker.minValue = minValuePicker
-        alertBinding.pickerNumberNumberPicker.maxValue = maxValuePicker
-        if (plant.irrigationPeriod > 0) {
-            alertBinding.pickerNumberNumberPicker.value = CalendarWorker
-                    .convertMillisecondsInDays(plant.irrigationPeriod)
-        } else {
-            alertBinding.pickerNumberNumberPicker.value = defaultValuePicker
-        }
-        builder.setView(alertBinding.root)
-        alertNumberPickerDialog = builder.create()
-        alertNumberPickerDialog?.show()
-    }
-
-    private fun closeAlertDialog() {
-        alertNumberPickerDialog.dismiss()
-    }*/
 
     private fun showAlertCameraPicker() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
