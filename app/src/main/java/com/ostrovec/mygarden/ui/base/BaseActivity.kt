@@ -1,16 +1,25 @@
 package com.ostrovec.mygarden.ui.base
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.ostrovec.mygarden.R
+import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
+import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler
+import com.ostrovec.mygarden.utils.CalendarWorker
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -18,9 +27,13 @@ open class BaseActivity : AppCompatActivity() {
 
     protected val CAMERA_REQUEST_CODE = 0
     protected val GALLERY_REQUEST_CODE = 1
+    private val minValuePicker = 1
+    private val maxValuePicker = 180
+    private val defaultValuePicker = 5
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var alertNumberPickerDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -39,6 +52,29 @@ open class BaseActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    protected fun showAlertPickerNumberDay(handler: DialogNumberPickerHandler, plant: Plant, context: Context) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
+                .from(context), R.layout.alert_dialog_number_picker, null, false)
+        alertBinding.handler = handler
+        alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
+        alertBinding.pickerNumberNumberPicker.minValue = minValuePicker
+        alertBinding.pickerNumberNumberPicker.maxValue = maxValuePicker
+        if (plant.irrigationPeriod > 0) {
+            alertBinding.pickerNumberNumberPicker.value = CalendarWorker
+                    .convertMillisecondsInDays(plant.irrigationPeriod)
+        } else {
+            alertBinding.pickerNumberNumberPicker.value = defaultValuePicker
+        }
+        builder.setView(alertBinding.root)
+        alertNumberPickerDialog = builder.create()
+        alertNumberPickerDialog?.show()
+    }
+
+    protected fun closeAlertDialog() {
+        alertNumberPickerDialog.dismiss()
     }
 
     protected fun <T : ViewModel> getViewModel(cls: Class<T>): T {

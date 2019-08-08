@@ -35,7 +35,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnWatering() {
-            showAlertPickerNumberDay()
+            showAlertPickerNumberDay(dialogNumberPickerHandler, plant, this@AddPlantActivity)
         }
 
         override fun clickOnPhoto() {
@@ -75,7 +75,7 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
-    private lateinit var alertNumberPickerDialog: AlertDialog
+    //private lateinit var alertNumberPickerDialog: AlertDialog
     private lateinit var alertCameraDialog: AlertDialog
     private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
 
@@ -116,7 +116,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         })
     }
 
-    private fun showAlertPickerNumberDay() {//TODO refactoring this method
+    /*private fun showAlertPickerNumberDay() {//TODO refactoring this method
         val minValuePicker = 1
         val maxValuePicker = 180
         val defaultValuePicker = 5
@@ -140,7 +140,7 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private fun closeAlertDialog() {
         alertNumberPickerDialog.dismiss()
-    }
+    }*/
 
     private fun showAlertCameraPicker() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -148,7 +148,6 @@ class AddPlantActivity : BaseNavigationActivity() {
                 .from(this@AddPlantActivity), R.layout.alert_dialog_camera, null, false)
         builder.setView(alertCameraBinding.root)
         alertCameraBinding.handler = dialogCameraHandler
-        alertNumberPickerDialog = builder.create()
         alertCameraDialog = builder.create()
         alertCameraDialog?.show()
     }
