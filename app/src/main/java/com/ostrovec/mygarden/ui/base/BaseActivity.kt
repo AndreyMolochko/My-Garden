@@ -8,13 +8,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
@@ -42,13 +43,14 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        Log.e("ONDATA", "onRequestPermissionsResult")
         when (requestCode) {
             CAMERA_REQUEST_CODE -> {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     takePhotoFromCamera()
                 } else {
-                    Log.e("SNACK", "You need give permission for camera in settings")
+                    showSnackbar(getRootView(), getString(R
+                            .string
+                            .enable_permissions_settings_appliction))
                 }
             }
         }
@@ -102,4 +104,13 @@ open class BaseActivity : AppCompatActivity() {
         }
         return false
     }
+
+    private fun showSnackbar(view: View, text: String) {
+        Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun getRootView():View{
+        return window.decorView.findViewById(android.R.id.content)
+    }
+
 }
