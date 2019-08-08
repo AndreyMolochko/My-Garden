@@ -1,21 +1,15 @@
 package com.ostrovec.mygarden.ui.addplant
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
-import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
-import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.utils.CalendarWorker
@@ -31,15 +25,16 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            plant.name = p0.toString()
             checkSaveButton()
         }
 
         override fun clickOnWatering() {
-            showAlertPickerNumberDay()
+            showPickerNumberDayDialog(dialogNumberPickerHandler, plant, this@AddPlantActivity)
         }
 
         override fun clickOnPhoto() {
-            showAlertCameraPicker()
+            showCameraDialog(dialogCameraHandler, this@AddPlantActivity)
         }
 
         override fun clickOnSave() {
@@ -50,7 +45,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler {
 
         override fun clickOk() {
-            closeAlertDialog()
+            closeNumberPickerDialog()
         }
 
         override fun onNumberPickerValueChange(newValue: Int) {
@@ -62,21 +57,29 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
-            if (requestCameraPermissions()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (requestCameraAndStoragePermissions()) {
+                    takePhotoFromCamera()
+                }
+            } else {
                 takePhotoFromCamera()
             }
         }
 
         override fun clickOnGallery() {
-            choosePhotoFromGallery()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (requestStoragePermissions()) {
+                    choosePhotoFromGallery()
+                }
+            } else {
+                choosePhotoFromGallery()
+            }
         }
 
     }
 
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
-    private lateinit var alertNumberPickerDialog: AlertDialog
-    private lateinit var alertCameraDialog: AlertDialog
     private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,6 +109,7 @@ class AddPlantActivity : BaseNavigationActivity() {
                     applicationContext)
             setImageFromResourses(bitmap)
         }
+        closeCameraDialog()
         checkSaveButton()
     }
 
@@ -114,43 +118,6 @@ class AddPlantActivity : BaseNavigationActivity() {
             Log.e("ONDATA", "saveButton" + it)
             enableSaveButton(it)
         })
-    }
-
-    private fun showAlertPickerNumberDay() {//TODO refactoring this method
-        val minValuePicker = 1
-        val maxValuePicker = 180
-        val defaultValuePicker = 5
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
-                .from(this@AddPlantActivity), R.layout.alert_dialog_number_picker, null, false)
-        alertBinding.handler = dialogNumberPickerHandler
-        alertBinding.pickerNumberTitleTextView.setText(getString(R.string.period_in_days))
-        alertBinding.pickerNumberNumberPicker.minValue = minValuePicker
-        alertBinding.pickerNumberNumberPicker.maxValue = maxValuePicker
-        if (plant.irrigationPeriod > 0) {
-            alertBinding.pickerNumberNumberPicker.value = CalendarWorker
-                    .convertMillisecondsInDays(plant.irrigationPeriod)
-        } else {
-            alertBinding.pickerNumberNumberPicker.value = defaultValuePicker
-        }
-        builder.setView(alertBinding.root)
-        alertNumberPickerDialog = builder.create()
-        alertNumberPickerDialog?.show()
-    }
-
-    private fun closeAlertDialog() {
-        alertNumberPickerDialog.dismiss()
-    }
-
-    private fun showAlertCameraPicker() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        val alertCameraBinding: AlertDialogCameraBinding = DataBindingUtil.inflate(LayoutInflater
-                .from(this@AddPlantActivity), R.layout.alert_dialog_camera, null, false)
-        builder.setView(alertCameraBinding.root)
-        alertCameraBinding.handler = dialogCameraHandler
-        alertNumberPickerDialog = builder.create()
-        alertCameraDialog = builder.create()
-        alertCameraDialog?.show()
     }
 
     private fun setImageFromResourses(bitmap: Bitmap) {

@@ -21,7 +21,7 @@ abstract class BaseViewModel : ViewModel() {
 
     fun extractImageFilePath(contentResolver: ContentResolver, bitmap: Bitmap, context: Context): String {
         val tempUri: Uri = getImageUri(context, bitmap)
-        val file: File = File(getRealPathFromURI(contentResolver, tempUri))
+        val file = File(getRealPathFromURI(contentResolver, tempUri))
 
         return file.path
     }
