@@ -1,21 +1,14 @@
 package com.ostrovec.mygarden.ui.addplant
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
-import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
-import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.utils.CalendarWorker
@@ -31,15 +24,16 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            plant.name = p0.toString()
             checkSaveButton()
         }
 
         override fun clickOnWatering() {
-            showAlertPickerNumberDay(dialogNumberPickerHandler, plant, this@AddPlantActivity)
+            showPickerNumberDayDialog(dialogNumberPickerHandler, plant, this@AddPlantActivity)
         }
 
         override fun clickOnPhoto() {
-            showAlertCameraPicker()
+            showCameraDialog(dialogCameraHandler, this@AddPlantActivity)
         }
 
         override fun clickOnSave() {
@@ -50,7 +44,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler {
 
         override fun clickOk() {
-            closeAlertDialog()
+            closeNumberPickerDialog()
         }
 
         override fun onNumberPickerValueChange(newValue: Int) {
@@ -75,7 +69,6 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var addPlantViewModel: AddPlantViewModel
-    private lateinit var alertCameraDialog: AlertDialog
     private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,6 +98,7 @@ class AddPlantActivity : BaseNavigationActivity() {
                     applicationContext)
             setImageFromResourses(bitmap)
         }
+        closeCameraDialog()
         checkSaveButton()
     }
 
@@ -113,16 +107,6 @@ class AddPlantActivity : BaseNavigationActivity() {
             Log.e("ONDATA", "saveButton" + it)
             enableSaveButton(it)
         })
-    }
-
-    private fun showAlertCameraPicker() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        val alertCameraBinding: AlertDialogCameraBinding = DataBindingUtil.inflate(LayoutInflater
-                .from(this@AddPlantActivity), R.layout.alert_dialog_camera, null, false)
-        builder.setView(alertCameraBinding.root)
-        alertCameraBinding.handler = dialogCameraHandler
-        alertCameraDialog = builder.create()
-        alertCameraDialog?.show()
     }
 
     private fun setImageFromResourses(bitmap: Bitmap) {

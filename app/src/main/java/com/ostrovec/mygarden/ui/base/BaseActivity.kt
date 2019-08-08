@@ -17,8 +17,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ostrovec.mygarden.R
+import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.addplant.DialogCameraHandler
 import com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler
 import com.ostrovec.mygarden.utils.CalendarWorker
 import dagger.android.AndroidInjection
@@ -35,6 +37,7 @@ open class BaseActivity : AppCompatActivity() {
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var alertNumberPickerDialog: AlertDialog
+    private lateinit var alertCameraDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -56,7 +59,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun showAlertPickerNumberDay(handler: DialogNumberPickerHandler, plant: Plant, context: Context) {
+    protected fun showPickerNumberDayDialog(handler: DialogNumberPickerHandler, plant: Plant, context: Context) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         val alertBinding: AlertDialogNumberPickerBinding = DataBindingUtil.inflate(LayoutInflater
                 .from(context), R.layout.alert_dialog_number_picker, null, false)
@@ -75,8 +78,22 @@ open class BaseActivity : AppCompatActivity() {
         alertNumberPickerDialog?.show()
     }
 
-    protected fun closeAlertDialog() {
+    protected fun showCameraDialog(handler: DialogCameraHandler, context: Context) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val alertCameraBinding: AlertDialogCameraBinding = DataBindingUtil.inflate(LayoutInflater
+                .from(context), R.layout.alert_dialog_camera, null, false)
+        builder.setView(alertCameraBinding.root)
+        alertCameraBinding.handler = handler
+        alertCameraDialog = builder.create()
+        alertCameraDialog?.show()
+    }
+
+    protected fun closeNumberPickerDialog() {
         alertNumberPickerDialog.dismiss()
+    }
+
+    protected fun closeCameraDialog(){
+        alertCameraDialog.dismiss()
     }
 
     protected fun <T : ViewModel> getViewModel(cls: Class<T>): T {
@@ -109,7 +126,7 @@ open class BaseActivity : AppCompatActivity() {
         Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
     }
 
-    private fun getRootView():View{
+    private fun getRootView(): View {
         return window.decorView.findViewById(android.R.id.content)
     }
 
