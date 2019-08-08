@@ -58,7 +58,7 @@ class AddPlantActivity : BaseNavigationActivity() {
     val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (requestCameraPermissions()) {
+                if (requestCameraAndStoragePermissions()) {
                     takePhotoFromCamera()
                 }
             } else {
@@ -67,7 +67,13 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnGallery() {
-            choosePhotoFromGallery()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (requestStoragePermissions()) {
+                    choosePhotoFromGallery()
+                }
+            } else {
+                choosePhotoFromGallery()
+            }
         }
 
     }

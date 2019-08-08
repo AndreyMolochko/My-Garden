@@ -30,9 +30,13 @@ open class BaseActivity : AppCompatActivity() {
 
     protected val CAMERA_REQUEST_CODE = 0
     protected val GALLERY_REQUEST_CODE = 1
+    private val CAMERA_AND_STORADE_REQUEST_CODE = 2
+    private val WRITE_STORAGE_REQUEST_CODE = 3
     private val minValuePicker = 1
     private val maxValuePicker = 180
     private val defaultValuePicker = 5
+    private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest
+            .permission.WRITE_EXTERNAL_STORAGE)
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -47,13 +51,18 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
-            CAMERA_REQUEST_CODE -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            CAMERA_AND_STORADE_REQUEST_CODE -> {
+                if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                     takePhotoFromCamera()
                 } else {
-                    showSnackbar(getRootView(), getString(R
-                            .string
-                            .enable_permissions_settings_appliction))
+                    showSnackbar(getRootView(), getString(R.string.enable_permissions_settings_appliction))
+                }
+            }
+            WRITE_STORAGE_REQUEST_CODE -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    choosePhotoFromGallery()
+                } else {
+                    showSnackbar(getRootView(), getString(R.string.enable_permissions_settings_appliction))
                 }
             }
         }
@@ -92,7 +101,7 @@ open class BaseActivity : AppCompatActivity() {
         alertNumberPickerDialog.dismiss()
     }
 
-    protected fun closeCameraDialog(){
+    protected fun closeCameraDialog() {
         alertCameraDialog.dismiss()
     }
 
@@ -110,10 +119,28 @@ open class BaseActivity : AppCompatActivity() {
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
     }
 
-    protected fun requestCameraPermissions(): Boolean {
+    protected fun requestCameraAndStoragePermissions(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
+            return if (!permissions.all {
+                        checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED
+                    }) {
+                requestPermissions(permissions,
+                        CAMERA_AND_STORADE_REQUEST_CODE)
+                false
+            } else {
+                true
+            }
+        }
+        return false
+    }
+
+    protected fun requestStoragePermissions(): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager
+                            .PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission
+                        .WRITE_EXTERNAL_STORAGE),
+                        WRITE_STORAGE_REQUEST_CODE)
                 false
             } else {
                 true
