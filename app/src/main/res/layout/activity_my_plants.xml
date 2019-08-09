@@ -41,6 +41,9 @@
             android:id="@+id/my_plants_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingEnd="@dimen/medium_padding"
+            android:paddingStart="@dimen/medium_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/my_plants_title_text_view" />
 
