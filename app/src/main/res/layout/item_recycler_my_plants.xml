@@ -1,38 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite">
 
-    <ImageView
-        android:id="@+id/item_recycler_my_plants_image_view"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_image_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/item_recycler_my_plants_name_text_view"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_bold"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/colorEasternBlue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_recycler_my_plants_image_view"
-        />
+        android:background="@color/colorWhite">
 
-    <ImageView
-        android:id="@+id/item_recycler_my_plants_watering_can_image_view"
-        android:layout_width="@dimen/size_check_image_view"
-        android:layout_height="@dimen/size_check_image_view"
-        app:layout_constraintBottom_toBottomOf="@+id/item_recycler_my_plants_name_text_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/item_recycler_my_plants_name_text_view"
-        app:srcCompat="@drawable/ic_watering_can" />
+        <ImageView
+            android:id="@+id/item_recycler_my_plants_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/item_recycler_my_plants_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/colorEasternBlue"
+            android:textSize="@dimen/medium_font_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_recycler_my_plants_image_view" />
+
+        <TextView
+            android:id="@+id/item_recycler_my_days_left_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 days"
+            android:fontFamily="@font/raleway_medium"
+            android:textColor="@color/colorEasternBlue"
+            android:layout_marginEnd="@dimen/normal_padding"
+            app:layout_constraintBottom_toBottomOf="@+id/item_recycler_my_plants_name_text_view"
+            app:layout_constraintEnd_toStartOf="@id/item_recycler_my_plants_watering_can_image_view"
+            app:layout_constraintTop_toTopOf="@id/item_recycler_my_plants_name_text_view" />
+
+        <ImageView
+            android:id="@+id/item_recycler_my_plants_watering_can_image_view"
+            android:layout_width="@dimen/size_check_image_view"
+            android:layout_height="@dimen/size_check_image_view"
+            app:layout_constraintBottom_toBottomOf="@+id/item_recycler_my_plants_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_recycler_my_plants_name_text_view"
+            app:srcCompat="@drawable/ic_watering_can" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
