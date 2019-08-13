@@ -15,7 +15,7 @@ class AddPlantViewModel @Inject constructor(var plantRepository: PlantRepository
         saveButtonClickable.onNext(name.isNotEmpty() && irrigation.isNotEmpty() && photo.isNotEmpty())
     }
 
-    fun addPlant(plant: Plant){
+    fun addPlant(plant: Plant) {
         plantRepository.insertPlant(plant).also { compositeDisposable.add(it) }
     }
 }
