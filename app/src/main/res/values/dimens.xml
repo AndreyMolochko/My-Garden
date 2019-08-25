@@ -15,5 +15,6 @@
     <dimen name="border_radius_button">4dp</dimen>
     <dimen name="height_toolbar">56dp</dimen>
     <dimen name="size_check_image_view">24dp</dimen>
+    <dimen name="height_image_view">180dp</dimen>
 
 </resources>
