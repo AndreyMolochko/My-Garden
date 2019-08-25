@@ -9,6 +9,7 @@ import com.ostrovec.mygarden.databinding.ActivityMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import io.reactivex.disposables.Disposable
 
 class MyPlantsActivity : BaseNavigationActivity() {
 
@@ -26,6 +27,7 @@ class MyPlantsActivity : BaseNavigationActivity() {
     }
 
     private lateinit var binding: ActivityMyPlantsBinding
+    private lateinit var myPlantsViewModel: MyPlantsViewModel
     private lateinit var plantsAdapter: PlantsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +35,15 @@ class MyPlantsActivity : BaseNavigationActivity() {
 
         binding = setContainerView(R.layout.activity_my_plants)
         binding.handler = myPlantHandler
-
-        displayRecyclerView()
+        myPlantsViewModel = getViewModel(MyPlantsViewModel::class.java)
+        val myPlants: Disposable = myPlantsViewModel.getPlants().subscribe {
+            displayRecyclerView(it)
+        }
     }
 
-    private fun displayRecyclerView() {
+    private fun displayRecyclerView(plantList: List<Plant>) {
         binding.myPlantsRecyclerView.layoutManager = LinearLayoutManager(this)
-        plantsAdapter = PlantsAdapter(arrayListOf(Plant(0, "Flower", 0, "", "server", 0, 0),
-                Plant(0, "Rose", 0, "", "server", 0, 0)))
+        plantsAdapter = PlantsAdapter(plantList)
         binding.myPlantsRecyclerView.adapter = plantsAdapter
     }
 }
