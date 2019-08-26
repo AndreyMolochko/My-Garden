@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.myplants
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityMyPlantsBinding
@@ -26,6 +27,14 @@ class MyPlantsActivity : BaseNavigationActivity() {
         }
     }
 
+    val myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler = object :
+            MyPlantsItemRecyclerHandler {
+        override fun clickOnUpdate() {
+            Log.e("ONDATA", "click on update")
+        }
+    }
+
+
     private lateinit var binding: ActivityMyPlantsBinding
     private lateinit var myPlantsViewModel: MyPlantsViewModel
     private lateinit var plantsAdapter: PlantsAdapter
@@ -43,7 +52,7 @@ class MyPlantsActivity : BaseNavigationActivity() {
 
     private fun displayRecyclerView(plantList: List<Plant>) {
         binding.myPlantsRecyclerView.layoutManager = LinearLayoutManager(this)
-        plantsAdapter = PlantsAdapter(plantList)
+        plantsAdapter = PlantsAdapter(myPlantsItemRecyclerHandler, plantList)
         binding.myPlantsRecyclerView.adapter = plantsAdapter
     }
 }

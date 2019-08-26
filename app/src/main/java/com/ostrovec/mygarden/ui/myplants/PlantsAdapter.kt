@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
 
-class PlantsAdapter(private var plantsList: List<Plant>) : RecyclerView.Adapter<PlantsAdapter
+class PlantsAdapter(private var myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler, private
+var plantsList: List<Plant>) : RecyclerView
+.Adapter<PlantsAdapter
 .PlantsHolder>() {
 
     private lateinit var binding: ItemRecyclerMyPlantsBinding
@@ -14,6 +16,7 @@ class PlantsAdapter(private var plantsList: List<Plant>) : RecyclerView.Adapter<
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantsHolder {
         val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         binding = ItemRecyclerMyPlantsBinding.inflate(layoutInflater, parent, false)
+        binding.handler = myPlantsItemRecyclerHandler
 
         return PlantsHolder(binding)
     }
