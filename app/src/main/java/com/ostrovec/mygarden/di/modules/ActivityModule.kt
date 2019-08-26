@@ -3,12 +3,13 @@ package com.ostrovec.mygarden.di.modules
 import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.guide.GuideActivity
 import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
+import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ActivityModule{
+abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun contributeWelcomeActivity(): WelcomeActivity
 
@@ -20,4 +21,7 @@ abstract class ActivityModule{
 
     @ContributesAndroidInjector
     abstract fun contributeAddPlantsActivity(): AddPlantActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeUpdatePlantsActivity(): UpdatePlantActivity
 }

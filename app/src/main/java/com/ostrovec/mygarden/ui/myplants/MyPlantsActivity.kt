@@ -10,9 +10,10 @@ import com.ostrovec.mygarden.databinding.ActivityMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import io.reactivex.disposables.Disposable
 
-class MyPlantsActivity : BaseNavigationActivity() {
+class MyPlantsActivity : BaseNavigationActivity(),PlantsAdapter.ListenerClickUpdate {
 
     companion object {
         fun open(context: Context) {
@@ -23,17 +24,9 @@ class MyPlantsActivity : BaseNavigationActivity() {
 
     val myPlantHandler: MyPlantsHandler = object : MyPlantsHandler {
         override fun onClickAdd(context: Context) {
-            AddPlantActivity.open(context)
+
         }
     }
-
-    val myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler = object :
-            MyPlantsItemRecyclerHandler {
-        override fun clickOnUpdate() {
-            Log.e("ONDATA", "click on update")
-        }
-    }
-
 
     private lateinit var binding: ActivityMyPlantsBinding
     private lateinit var myPlantsViewModel: MyPlantsViewModel
@@ -50,9 +43,13 @@ class MyPlantsActivity : BaseNavigationActivity() {
         }
     }
 
+    override fun onClickUpdate(plant:Plant) {
+        UpdatePlantActivity.open(this@MyPlantsActivity,plant)
+    }
+
     private fun displayRecyclerView(plantList: List<Plant>) {
         binding.myPlantsRecyclerView.layoutManager = LinearLayoutManager(this)
-        plantsAdapter = PlantsAdapter(myPlantsItemRecyclerHandler, plantList)
+        plantsAdapter = PlantsAdapter(this, plantList)
         binding.myPlantsRecyclerView.adapter = plantsAdapter
     }
 }

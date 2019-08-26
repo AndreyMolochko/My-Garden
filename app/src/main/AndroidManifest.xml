@@ -30,9 +30,11 @@
         <activity
             android:name=".ui.myplants.MyPlantsActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.addplant.AddPlantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.updateplant.UpdatePlantActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

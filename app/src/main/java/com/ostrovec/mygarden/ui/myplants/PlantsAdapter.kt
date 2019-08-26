@@ -5,11 +5,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 
-class PlantsAdapter(private var myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler, private
+class PlantsAdapter(private var callback: ListenerClickUpdate, private
 var plantsList: List<Plant>) : RecyclerView
 .Adapter<PlantsAdapter
 .PlantsHolder>() {
+
+    interface ListenerClickUpdate {
+        fun onClickUpdate(plant: Plant)
+    }
+
+    val myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler = object :
+            MyPlantsItemRecyclerHandler {
+        override fun clickOnUpdate(plant: Plant) {
+            callback.onClickUpdate(plant)
+        }
+    }
 
     private lateinit var binding: ItemRecyclerMyPlantsBinding
 
@@ -34,6 +46,7 @@ var plantsList: List<Plant>) : RecyclerView
             .root) {
         fun bind(plant: Plant) {
             binging.itemRecyclerMyPlantsNameTextView.text = plant.name
+            binging.model = plant
         }
     }
 }

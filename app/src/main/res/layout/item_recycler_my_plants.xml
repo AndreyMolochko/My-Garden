@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="model"
+            type="com.ostrovec.mygarden.room.model.Plant" />
+
+        <variable
             name="handler"
             type="com.ostrovec.mygarden.ui.myplants.MyPlantsItemRecyclerHandler" />
     </data>
@@ -21,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{(view)->handler.clickOnUpdate()}"/>
+            android:onClick="@{(view)->handler.clickOnUpdate(model)}"/>
 
         <TextView
             android:id="@+id/item_recycler_my_plants_name_text_view"
