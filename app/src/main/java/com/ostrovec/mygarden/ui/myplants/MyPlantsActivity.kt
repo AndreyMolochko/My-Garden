@@ -24,7 +24,7 @@ class MyPlantsActivity : BaseNavigationActivity(),PlantsAdapter.ListenerClickUpd
 
     val myPlantHandler: MyPlantsHandler = object : MyPlantsHandler {
         override fun onClickAdd(context: Context) {
-
+            AddPlantActivity.open(this@MyPlantsActivity)
         }
     }
 

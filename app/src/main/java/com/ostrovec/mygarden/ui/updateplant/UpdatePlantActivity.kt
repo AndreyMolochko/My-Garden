@@ -12,13 +12,16 @@ import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 class UpdatePlantActivity : BaseNavigationActivity() {
 
     companion object {
+        val EXTRA_PLANT_KEY = "extra_plant_key"
+
         fun open(context: Context, plant: Plant) {
             val intent = Intent(context, UpdatePlantActivity::class.java)
+            intent.putExtra(EXTRA_PLANT_KEY,plant)
             context.startActivity(intent)
         }
     }
 
-    val addPLantHandler: AddPlantHandler = object : AddPlantHandler {
+    val updatePlantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
@@ -37,13 +40,14 @@ class UpdatePlantActivity : BaseNavigationActivity() {
     }
 
     private lateinit var binding: ActivityAddPlantBinding
-    private val plant: Plant = Plant(0, "sd", 100, "dsf", "sdf", 100, 100)
+    private lateinit var plant: Plant
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_add_plant)
-        binding.handler = addPLantHandler
+        plant = intent.getParcelableExtra(EXTRA_PLANT_KEY)
+        binding.handler = updatePlantHandler
         binding.model = plant
         initViews()
     }
