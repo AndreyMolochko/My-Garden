@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.updateplant
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
@@ -35,7 +36,9 @@ class UpdatePlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnSave() {
-
+            updatePlantViewModel.updatePlant(plant).subscribe{
+                Log.e("ONDATA","Update plant")
+            }
         }
     }
 
@@ -56,5 +59,6 @@ class UpdatePlantActivity : BaseNavigationActivity() {
 
     private fun initViews(){
         binding.addPlantsTitleTextView.text = "Change plant"
+        binding.addPlantsSaveTextView.text = "Change plant"
     }
 }
