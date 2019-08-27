@@ -11,10 +11,11 @@ import android.view.View
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.base.BaseAddUpdateActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.utils.CalendarWorker
 
-class AddPlantActivity : BaseNavigationActivity() {
+class AddPlantActivity : BaseAddUpdateActivity() {
 
     companion object {
         fun open(context: Context) {
@@ -38,7 +39,7 @@ class AddPlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnSave() {
-            addPlantViewModel.addPlant(plant)
+            (plantViewModel as AddPlantViewModel).addPlant(plant)
         }
     }
 
@@ -78,15 +79,11 @@ class AddPlantActivity : BaseNavigationActivity() {
 
     }
 
-    private lateinit var binding: ActivityAddPlantBinding
-    private lateinit var addPlantViewModel: AddPlantViewModel
-    private val plant: Plant = Plant(0, "", 0, "", "server", 0, 0)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_add_plant)
-        addPlantViewModel = getViewModel(AddPlantViewModel::class.java)
+        plantViewModel = getViewModel(AddPlantViewModel::class.java)
         binding.handler = addPLantHandler
         binding.model = plant
         enableSaveButton(false)
@@ -99,14 +96,18 @@ class AddPlantActivity : BaseNavigationActivity() {
 
         if (requestCode == GALLERY_REQUEST_CODE && data != null) {
             val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data!!.data)
-            plant.setUrlLocalPhoto = addPlantViewModel.extractImageFilePath(contentResolver, bitmap,
-                    applicationContext)
+            plant.setUrlLocalPhoto = plantViewModel.extractImageFilePath(
+                    contentResolver, bitmap,
+                    applicationContext
+            )
             setImageFromResourses(bitmap)
 
         } else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
             val bitmap = data!!.extras!!.get("data") as Bitmap
-            plant.setUrlLocalPhoto = addPlantViewModel.extractImageFilePath(contentResolver, bitmap,
-                    applicationContext)
+            plant.setUrlLocalPhoto = plantViewModel.extractImageFilePath(
+                    contentResolver, bitmap,
+                    applicationContext
+            )
             setImageFromResourses(bitmap)
         }
         closeCameraDialog()
@@ -114,24 +115,9 @@ class AddPlantActivity : BaseNavigationActivity() {
     }
 
     private fun initSubscribers() {
-        addPlantViewModel.saveButtonClickable.subscribe({
+        plantViewModel.saveButtonClickable.subscribe({
             Log.e("ONDATA", "saveButton" + it)
             enableSaveButton(it)
         })
-    }
-
-    private fun setImageFromResourses(bitmap: Bitmap) {
-        binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
-        binding.addPlantsPhotoImageView.visibility = View.VISIBLE
-        binding.addPlantsPhotoEditText.visibility = View.GONE
-    }
-
-    private fun enableSaveButton(enable: Boolean) {
-        binding.addPlantsSaveTextView.isEnabled = enable
-    }
-
-    private fun checkSaveButton() {
-        addPlantViewModel.checkSaveButton(plant.name, plant.irrigationPeriod.toString(), plant
-                .setUrlLocalPhoto)
     }
 }

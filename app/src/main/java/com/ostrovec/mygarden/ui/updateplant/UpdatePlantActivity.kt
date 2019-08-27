@@ -2,8 +2,10 @@ package com.ostrovec.mygarden.ui.updateplant
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
@@ -17,14 +19,15 @@ class UpdatePlantActivity : BaseNavigationActivity() {
 
         fun open(context: Context, plant: Plant) {
             val intent = Intent(context, UpdatePlantActivity::class.java)
-            intent.putExtra(EXTRA_PLANT_KEY,plant)
+            intent.putExtra(EXTRA_PLANT_KEY, plant)
             context.startActivity(intent)
         }
     }
 
     val updatePlantHandler: AddPlantHandler = object : AddPlantHandler {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+            plant.name = p0.toString()
+            checkSaveButton()
         }
 
         override fun clickOnWatering() {
@@ -36,8 +39,8 @@ class UpdatePlantActivity : BaseNavigationActivity() {
         }
 
         override fun clickOnSave() {
-            updatePlantViewModel.updatePlant(plant).subscribe{
-                Log.e("ONDATA","Update plant")
+            updatePlantViewModel.updatePlant(plant).subscribe {
+                Log.e("ONDATA", "Update plant")
             }
         }
     }
@@ -57,8 +60,23 @@ class UpdatePlantActivity : BaseNavigationActivity() {
         initViews()
     }
 
-    private fun initViews(){
+    private fun initViews() {
         binding.addPlantsTitleTextView.text = "Change plant"
         binding.addPlantsSaveTextView.text = "Change plant"
+    }
+
+    private fun setImageFromResourses(bitmap: Bitmap) {
+        binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
+        binding.addPlantsPhotoImageView.visibility = View.VISIBLE
+        binding.addPlantsPhotoEditText.visibility = View.GONE
+    }
+
+    private fun enableSaveButton(enable: Boolean) {
+        binding.addPlantsSaveTextView.isEnabled = enable
+    }
+
+    private fun checkSaveButton() {
+        updatePlantViewModel.checkSaveButton(plant.name, plant.irrigationPeriod.toString(), plant
+                .setUrlLocalPhoto)
     }
 }
