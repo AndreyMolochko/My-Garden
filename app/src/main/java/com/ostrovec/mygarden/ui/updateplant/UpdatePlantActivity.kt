@@ -39,6 +39,7 @@ class UpdatePlantActivity : BaseNavigationActivity() {
         }
     }
 
+    private lateinit var updatePlantViewModel: UpdatePlantViewModel
     private lateinit var binding: ActivityAddPlantBinding
     private lateinit var plant: Plant
 
@@ -46,6 +47,7 @@ class UpdatePlantActivity : BaseNavigationActivity() {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_add_plant)
+        updatePlantViewModel = getViewModel(UpdatePlantViewModel::class.java)
         plant = intent.getParcelableExtra(EXTRA_PLANT_KEY)
         binding.handler = updatePlantHandler
         binding.model = plant
