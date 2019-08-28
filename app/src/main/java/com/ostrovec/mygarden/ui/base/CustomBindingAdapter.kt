@@ -8,9 +8,13 @@ object CustomBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("bind:srcCompat")
-    fun setImage(imageView: ImageView, text: String) {
-        if (text.isNotEmpty()) {
-            imageView.setImageResource(R.drawable.ic_check)
+    fun setImage(imageView: ImageView, text: String?) {
+        if (text != null) {
+            if (text.isNotEmpty()) {
+                imageView.setImageResource(R.drawable.ic_check)
+            } else {
+                imageView.setImageResource(R.drawable.ic_circle)
+            }
         } else {
             imageView.setImageResource(R.drawable.ic_circle)
         }
@@ -19,7 +23,6 @@ object CustomBindingAdapter {
     @JvmStatic
     @BindingAdapter("bind:srcCompat")
     fun setImage(imageView: ImageView, days: Long) {
-        println("period = $days")
         if (days > 0) {
             imageView.setImageResource(R.drawable.ic_check)
         } else {
