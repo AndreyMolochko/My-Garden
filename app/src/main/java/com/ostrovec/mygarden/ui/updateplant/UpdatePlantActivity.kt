@@ -3,8 +3,10 @@ package com.ostrovec.mygarden.ui.updateplant
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import com.ostrovec.mygarden.R
@@ -13,6 +15,7 @@ import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.AddPlantHandler
 import com.ostrovec.mygarden.ui.base.BaseAddUpdateActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import java.io.File
 
 class UpdatePlantActivity : BaseAddUpdateActivity() {
 
@@ -41,5 +44,11 @@ class UpdatePlantActivity : BaseAddUpdateActivity() {
     private fun initViews() {
         binding.addPlantsTitleTextView.text = getString(R.string.change_plant_title)
         binding.addPlantsSaveTextView.text = getString(R.string.change_plant_title)
+        if (plant.urlLocalPhoto.isNotEmpty()) {
+            val bitmap = getBitmapImage(plant.urlLocalPhoto)
+            if (bitmap != null) {
+                setImageFromResourses(bitmap)
+            }
+        }
     }
 }

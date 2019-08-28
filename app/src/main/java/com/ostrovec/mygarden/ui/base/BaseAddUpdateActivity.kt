@@ -128,7 +128,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
                 .setUrlLocalPhoto)
     }
 
-    private fun setImageFromResourses(bitmap: Bitmap) {
+    protected fun setImageFromResourses(bitmap: Bitmap) {
         binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
         binding.addPlantsPhotoImageView.visibility = View.VISIBLE
         binding.addPlantsPhotoEditText.visibility = View.GONE
