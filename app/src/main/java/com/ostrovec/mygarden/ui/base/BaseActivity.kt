@@ -5,11 +5,15 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -24,6 +28,7 @@ import com.ostrovec.mygarden.ui.addplant.DialogCameraHandler
 import com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler
 import com.ostrovec.mygarden.utils.CalendarWorker
 import dagger.android.AndroidInjection
+import java.io.File
 import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity() {
@@ -147,6 +152,15 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
         return false
+    }
+
+    protected fun getBitmapImage(path:String):Bitmap?{
+        val file = File(path)
+        return if (file.exists()) {
+            BitmapFactory.decodeFile(file.absolutePath)
+        }else{
+            null
+        }
     }
 
     private fun showSnackbar(view: View, text: String) {

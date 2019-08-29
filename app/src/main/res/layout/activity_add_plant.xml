@@ -61,6 +61,7 @@
             android:focusable="false"
             android:hint="@string/watering"
             android:onClick="@{(view)->handler.clickOnWatering()}"
+            bind:setPeriod="@{model.setIrrigationPeriod}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_watering_check_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_plants_name_edit_text" />

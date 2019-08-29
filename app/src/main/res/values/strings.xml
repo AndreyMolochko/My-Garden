@@ -24,4 +24,5 @@
     <string name="gallery">Gallery</string>
     <string name="enable_permissions_settings_appliction">Enable permissions for using this
     feature</string>
+    <string name="change_plant_title">Change plant</string>
 </resources>
