@@ -27,7 +27,7 @@ class AddPlantActivity : BaseAddUpdateActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        plant = Plant(0, "hghh", 0, "", "server", 0, 0)
+        plant = Plant(0, "", 0, "", "server", 0, 0)
         binding.model = plant
         binding.handler = addPlantHandler
         plantViewModel = getViewModel(AddPlantViewModel::class.java)
