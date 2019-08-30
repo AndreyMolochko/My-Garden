@@ -39,6 +39,10 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
                 deleteAlertDialog.cancel()
             }
         }
+
+        override fun onClickCancel() {
+            deleteAlertDialog.cancel()
+        }
     }
 
     private lateinit var binding: ActivityMyPlantsBinding

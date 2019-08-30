@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
     <data>
 
         <variable
@@ -34,13 +34,26 @@
             android:id="@+id/delete_plant_content_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_padding"
             android:fontFamily="@font/raleway_medium"
             android:text="@string/do_you_really_want_to_delete_this_plant"
-            android:layout_marginTop="@dimen/normal_padding"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/edit_text_font_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/delete_plant_title_text_view" />
+
+        <TextView
+            android:id="@+id/delete_plant_cancel_text_view"
+            style="@style/BaseButton.SecondaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big_medium_padding"
+            android:onClick="@{(view)->handler.onClickCancel()}"
+            android:paddingEnd="@dimen/big_padding"
+            android:paddingStart="@dimen/big_padding"
+            android:text="@string/cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delete_plant_content_text_view" />
 
         <TextView
             android:id="@+id/delete_plant_yes_text_view"
@@ -48,10 +61,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/big_medium_padding"
+            android:onClick="@{(view)->handler.onClickYes(model)}"
             android:paddingEnd="@dimen/big_padding"
             android:paddingStart="@dimen/big_padding"
             android:text="@string/yes"
-            android:onClick="@{(view)->handler.onClickYes(model)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/delete_plant_content_text_view" />
 
