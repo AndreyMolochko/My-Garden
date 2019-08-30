@@ -32,6 +32,12 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
         }
     }
 
+    val deleteDialogHandler: DeleteDialogHandler = object : DeleteDialogHandler {
+        override fun onClickYes(plant: Plant) {
+            Log.e("ondata", "onClickYes ${plant.name}")
+        }
+    }
+
     private lateinit var binding: ActivityMyPlantsBinding
     private lateinit var myPlantsViewModel: MyPlantsViewModel
     private lateinit var plantsAdapter: PlantsAdapter
@@ -53,16 +59,17 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
     }
 
     override fun onClickGarbage(plant: Plant) {
-        showDialog()
+        showDialog(plant)
     }
 
-    private fun showDialog() {
+    private fun showDialog(plant: Plant) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         val deleteDialogBinding: AlertDialogDeletePlantBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(this@MyPlantsActivity), R.layout.alert_dialog_delete_plant,
                 null, false)
         builder.setView(deleteDialogBinding.root)
-        //deleteDialogBinding.handler = handler
+        deleteDialogBinding.model = plant
+        deleteDialogBinding.handler = deleteDialogHandler
         deleteAlertDialog = builder.create()
         deleteAlertDialog?.show()
     }
