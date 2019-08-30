@@ -44,7 +44,8 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         }
     }
 
-    val dialogNumberPickerHandler: DialogNumberPickerHandler = object : DialogNumberPickerHandler {
+    private val dialogNumberPickerHandler: DialogNumberPickerHandler = object :
+            DialogNumberPickerHandler {
 
         override fun clickOk() {
             closeNumberPickerDialog()
@@ -57,7 +58,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         }
     }
 
-    val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
+    private val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
         override fun clickOnCamera() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (requestCameraAndStoragePermissions()) {
