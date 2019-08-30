@@ -15,11 +15,11 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     override fun insertPlant(plant: Plant): Disposable = Observable.fromCallable {
         database.plantDao().insertPlant(plant)
     }
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-            Log.e("ROOM", "plant was added: subscribe: $it")
-        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.e("ROOM", "plant was added: subscribe: $it")
+            }
 
     override fun loadPlants(): Flowable<List<Plant>> {
         return database.plantDao().getPlants().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -29,8 +29,16 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
         return Completable.fromCallable {
             database.plantDao().updatePlant(plant)
         }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun deletePlant(plant: Plant): Completable {
+        return Completable.fromCallable {
+            database.plantDao().deletePlant(plant)
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
 }
