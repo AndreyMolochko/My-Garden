@@ -154,15 +154,6 @@ open class BaseActivity : AppCompatActivity() {
         return false
     }
 
-    protected fun getBitmapImage(path:String):Bitmap?{
-        val file = File(path)
-        return if (file.exists()) {
-            BitmapFactory.decodeFile(file.absolutePath)
-        }else{
-            null
-        }
-    }
-
     private fun showSnackbar(view: View, text: String) {
         Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
     }

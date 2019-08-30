@@ -37,7 +37,7 @@
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:hint="@string/name"
-            android:onTextChanged="@{handler.onTextChanged}"
+            android:onTextChanged="@{handler::onTextChanged}"
             android:text="@={model.setName}"
             app:layout_constraintEnd_toStartOf="@id/add_plants_name_check_image_view"
             app:layout_constraintStart_toStartOf="parent"

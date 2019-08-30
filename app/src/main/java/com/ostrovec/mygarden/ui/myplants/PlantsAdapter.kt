@@ -1,11 +1,14 @@
 package com.ostrovec.mygarden.ui.myplants
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
+import java.io.File
 
 class PlantsAdapter(private var callback: ListenerClickUpdate, private
 var plantsList: List<Plant>) : RecyclerView
@@ -40,7 +43,6 @@ var plantsList: List<Plant>) : RecyclerView
     override fun onBindViewHolder(holder: PlantsHolder, position: Int) {
         holder.bind(plantsList[position])
     }
-
 
     class PlantsHolder(var binging: ItemRecyclerMyPlantsBinding) : RecyclerView.ViewHolder(binging
             .root) {

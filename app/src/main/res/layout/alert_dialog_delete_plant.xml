@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/medium_padding"
+        android:paddingEnd="@dimen/big_padding"
+        android:paddingStart="@dimen/big_padding"
+        android:paddingTop="@dimen/medium_padding">
+
+        <TextView
+            android:id="@+id/delete_plant_title_text_view"
+            style="@style/HeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_plant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/delete_plant_content_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/do_you_really_want_to_delete_this_plant"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/edit_text_font_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/delete_plant_title_text_view" />
+
+        <TextView
+            android:id="@+id/delete_plant_yes_text_view"
+            style="@style/BaseButton.SecondaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:paddingStart="@dimen/big_padding"
+            android:text="@string/yes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delete_plant_content_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

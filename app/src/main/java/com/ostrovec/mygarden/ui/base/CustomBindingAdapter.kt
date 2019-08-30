@@ -1,8 +1,11 @@
 package com.ostrovec.mygarden.ui.base
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.ostrovec.mygarden.R
+import java.io.File
 
 object CustomBindingAdapter {
 
@@ -27,6 +30,24 @@ object CustomBindingAdapter {
             imageView.setImageResource(R.drawable.ic_check)
         } else {
             imageView.setImageResource(R.drawable.ic_circle)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("bind:setImage")
+    fun setPlantImage(imageView: ImageView, localUrlPhoto: String) {
+        val bitmap = getBitmapImage(localUrlPhoto)
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap)
+        }
+    }
+
+    fun getBitmapImage(path: String): Bitmap? {
+        val file = File(path)
+        return if (file.exists()) {
+            BitmapFactory.decodeFile(file.absolutePath)
+        } else {
+            null
         }
     }
 }
