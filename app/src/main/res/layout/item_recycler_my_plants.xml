@@ -66,6 +66,7 @@
             android:layout_height="@dimen/size_check_image_view"
             app:layout_constraintBottom_toBottomOf="@+id/item_recycler_my_plants_name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{(view)->handler.clickOnGarbage(model)}"
             app:layout_constraintTop_toTopOf="@id/item_recycler_my_plants_name_text_view"
             app:srcCompat="@drawable/ic_garbage" />
 

@@ -1,14 +1,10 @@
 package com.ostrovec.mygarden.ui.myplants
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
-import java.io.File
 
 class PlantsAdapter(private var callback: ListenerClickUpdate, private
 var plantsList: List<Plant>) : RecyclerView
@@ -17,12 +13,18 @@ var plantsList: List<Plant>) : RecyclerView
 
     interface ListenerClickUpdate {
         fun onClickUpdate(plant: Plant)
+
+        fun onClickGarbage(plant:Plant)
     }
 
     val myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler = object :
             MyPlantsItemRecyclerHandler {
         override fun clickOnUpdate(plant: Plant) {
             callback.onClickUpdate(plant)
+        }
+
+        override fun clickOnGarbage(plant: Plant) {
+            callback.onClickGarbage(plant)
         }
     }
 
