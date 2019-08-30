@@ -30,4 +30,6 @@
     <string name="do_you_really_want_to_delete_this_plant">Do you really want to delete this plant?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

@@ -7,7 +7,8 @@ import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
-import com.ostrovec.mygarden.ui.signin.SignInActivity
+import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
+import com.ostrovec.mygarden.ui.signup.SignUpActivity
 
 class WelcomeActivity : BaseActivity() {
 
@@ -18,13 +19,13 @@ class WelcomeActivity : BaseActivity() {
         }
     }
 
-    private val welcomeHandler: WelcomeHandler = object: WelcomeHandler{
+    private val welcomeHandler: WelcomeHandler = object : WelcomeHandler {
         override fun onClickSignIn() {
-            SignInActivity.open(this@WelcomeActivity)
+            MyPlantsActivity.open(this@WelcomeActivity)
         }
 
         override fun onClickSignUp() {
-
+            SignUpActivity.open(this@WelcomeActivity)
         }
     }
 

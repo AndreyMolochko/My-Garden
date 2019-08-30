@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.signup.SignUpHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:paddingEnd="@dimen/medium_padding"
+        android:paddingStart="@dimen/medium_padding"
+        tools:context=".ui.signup.SignUpActivity">
+
+        <TextView
+            android:id="@+id/sign_up_title_text_view"
+            style="@style/HeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/sign_up_name_edit_text"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:hint="@string/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_title_text_view" />
+
+        <EditText
+            android:id="@+id/sign_up_email_edit_text"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_name_edit_text" />
+
+        <EditText
+            android:id="@+id/sign_up_password_edit_text"
+            style="@style/EditText"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/medium_padding"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_email_edit_text" />
+
+        <TextView
+            android:id="@+id/sign_up_sign_up_text_view"
+            style="@style/BaseButton.SecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big_medium_padding"
+            android:text="@string/sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_password_edit_text" />
+
+        <TextView
+            android:id="@+id/sign_in_sign_in_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:text="@string/sign_in"
+            android:textColor="@color/colorEasternBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_sign_up_text_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
