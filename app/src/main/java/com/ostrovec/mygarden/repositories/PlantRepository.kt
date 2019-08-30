@@ -12,4 +12,6 @@ interface PlantRepository{
     fun loadPlants(): Flowable<List<Plant>>
 
     fun updatePlant(plant: Plant): Completable
+
+    fun deletePlant(plant:Plant): Completable
 }

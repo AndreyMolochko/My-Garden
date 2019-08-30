@@ -1,10 +1,7 @@
 package com.ostrovec.mygarden.room.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
-import androidx.room.Update
 import com.ostrovec.mygarden.room.model.Plant
 import io.reactivex.Flowable
 
@@ -19,4 +16,7 @@ interface PlantDao {
 
     @Update(onConflict = REPLACE)
     fun updatePlant(plant:Plant)
+
+    @Delete
+    fun deletePlant(plant: Plant)
 }

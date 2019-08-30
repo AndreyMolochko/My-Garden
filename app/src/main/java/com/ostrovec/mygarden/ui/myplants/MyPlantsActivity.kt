@@ -34,7 +34,10 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
 
     val deleteDialogHandler: DeleteDialogHandler = object : DeleteDialogHandler {
         override fun onClickYes(plant: Plant) {
-            Log.e("ondata", "onClickYes ${plant.name}")
+            myPlantsViewModel.deletePlant(plant).subscribe {
+                Log.e("ondata","plant was deleted")
+                deleteAlertDialog.cancel()
+            }
         }
     }
 
