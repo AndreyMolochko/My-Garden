@@ -32,4 +32,6 @@
     <string name="cancel">Cancel</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="remember_email_and_password">Remember email and password</string>
+    <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up</string>
 </resources>

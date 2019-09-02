@@ -7,6 +7,7 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignUpBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.sign.model.User
+import com.ostrovec.mygarden.ui.sign.signin.SignInActivity
 
 class SignUpActivity : BaseNavigationActivity() {
 
@@ -37,7 +38,7 @@ class SignUpActivity : BaseNavigationActivity() {
         }
 
         override fun onClickSignIn() {
-
+            SignInActivity.open(this@SignUpActivity)
         }
 
     }

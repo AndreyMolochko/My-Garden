@@ -57,17 +57,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sign_in_email_edit_text" />
 
+        <CheckBox
+            android:id="@+id/sign_in_remember_creds_check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_padding"
+            android:buttonTint="@color/colorEasternBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_in_password_edit_text" />
+
+        <TextView
+            android:id="@+id/sign_in_remember_creds_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/sign_in_remember_creds_check_box"
+            app:layout_constraintBottom_toBottomOf="@id/sign_in_remember_creds_check_box"
+            app:layout_constraintStart_toEndOf="@id/sign_in_remember_creds_check_box"
+            android:fontFamily="@font/raleway_medium"
+            android:text="@string/remember_email_and_password"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/tiny_font_size"/>
+
         <TextView
             android:id="@+id/sign_in_sign_in_text_view"
             style="@style/BaseButton.SecondaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/big_medium_padding"
+            android:layout_marginTop="@dimen/medium_padding"
             android:onClick="@{(view)->handler.onClickSignIn()}"
             android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_in_password_edit_text" />
+            app:layout_constraintTop_toBottomOf="@id/sign_in_remember_creds_check_box" />
 
         <TextView
             android:id="@+id/sign_in_sign_up_text_view"
@@ -75,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_padding"
             android:onClick="@{(view)->handler.onClickSignUp()}"
-            android:text="Don't have an account? Sign up"
+            android:text="@string/don_t_have_an_account_sign_up"
             android:textColor="@color/colorEasternBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
