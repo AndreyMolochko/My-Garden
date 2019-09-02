@@ -6,6 +6,7 @@ import com.ostrovec.mygarden.di.ViewModelFactory
 import com.ostrovec.mygarden.di.ViewModelKey
 import com.ostrovec.mygarden.ui.addplant.AddPlantViewModel
 import com.ostrovec.mygarden.ui.myplants.MyPlantsViewModel
+import com.ostrovec.mygarden.ui.sign.signin.SignInViewModel
 import com.ostrovec.mygarden.ui.sign.signup.SignUpViewModel
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantViewModel
 import dagger.Binds
@@ -37,5 +38,10 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SignUpViewModel::class)
     protected abstract fun signUpViewModel(signUpViewModel: SignUpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SignInViewModel::class)
+    protected abstract fun signInViewModel(signInViewModel: SignInViewModel): ViewModel
 
 }

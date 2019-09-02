@@ -7,7 +7,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(): BaseViewModel(){
     val signUpButtonClickable = BehaviorSubject.create<Boolean>()
 
-    fun checkSaveButton(name: String, email: String, password: String) {
+    fun checkSignUpButton(name: String, email: String, password: String) {
         signUpButtonClickable.onNext(name.isNotEmpty() && email.isNotEmpty() && password
                 .isNotEmpty())
     }

@@ -58,7 +58,7 @@ class SignUpActivity : BaseNavigationActivity() {
     }
 
     private fun checkSaveButton() {
-        signUpViewModel.checkSaveButton(user.name, user.email, user.password)
+        signUpViewModel.checkSignUpButton(user.name, user.email, user.password)
     }
 
     private fun initSubscribers() {

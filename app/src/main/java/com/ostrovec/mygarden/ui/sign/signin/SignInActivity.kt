@@ -6,7 +6,9 @@ import android.os.Bundle
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignInBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
 import com.ostrovec.mygarden.ui.sign.model.User
+import com.ostrovec.mygarden.ui.sign.signup.SignUpActivity
 
 class SignInActivity : BaseNavigationActivity() {
 
@@ -16,33 +18,53 @@ class SignInActivity : BaseNavigationActivity() {
         }
     }
 
-    private val signInHandler: SignInHandler = object : SignInHandler{
-        override fun onNameChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private val signInHandler: SignInHandler = object : SignInHandler {
+        override fun onEmailChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            user.email = p0.toString()
+            checkSaveButton()
         }
 
-        override fun onEmailChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun onPasswordChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            user.password = p0.toString()
+            checkSaveButton()
         }
 
         override fun onClickSignIn() {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            MyPlantsActivity.open(this@SignInActivity)
         }
 
         override fun onClickSignUp() {
-            
+            SignUpActivity.open(this@SignInActivity)
         }
 
     }
 
     private lateinit var binding: ActivitySignInBinding
+    private lateinit var signInViewModel: SignInViewModel
     private var user: User = User("", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_sign_in)
+        signInViewModel = getViewModel(SignInViewModel::class.java)
         binding.model = user
         binding.handler = signInHandler
+        enableSaveButton(false)
+        initSubscribers()
+    }
+
+    private fun checkSaveButton() {
+        signInViewModel.checkSignInButton(user.email, user.password)
+    }
+
+    private fun initSubscribers() {
+        signInViewModel.signInButtonClickable.subscribe {
+            enableSaveButton(it)
+        }
+    }
+
+    private fun enableSaveButton(enable: Boolean) {
+        binding.signInSignInTextView.isEnabled = enable
     }
 }
