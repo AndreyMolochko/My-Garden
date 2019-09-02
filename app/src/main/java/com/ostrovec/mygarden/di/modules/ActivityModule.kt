@@ -3,7 +3,7 @@ package com.ostrovec.mygarden.di.modules
 import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.guide.GuideActivity
 import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
-import com.ostrovec.mygarden.ui.signup.SignUpActivity
+import com.ostrovec.mygarden.ui.sign.signup.SignUpActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import dagger.Module

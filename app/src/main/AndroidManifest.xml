@@ -37,7 +37,7 @@
             android:name=".ui.updateplant.UpdatePlantActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.signup.SignUpActivity"
+            android:name="com.ostrovec.mygarden.ui.sign.signup.SignUpActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
