@@ -3,7 +3,6 @@ package com.ostrovec.mygarden.ui.sign.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignUpBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
@@ -20,17 +19,17 @@ class SignUpActivity : BaseNavigationActivity() {
     private val signUpHandler: SignUpHandler = object : SignUpHandler {
         override fun onNameChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             user.name = p0.toString()
-            Log.e("ondata", "setname = ${user.setName}")
+            checkSaveButton()
         }
 
         override fun onEmailChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             user.email = p0.toString()
-            Log.e("ondata", "setemail = ${user.setEmail}")
+            checkSaveButton()
         }
 
         override fun onPasswordChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             user.password = p0.toString()
-            Log.e("ondata", "setpassword = ${user.setPassword}")
+            checkSaveButton()
         }
 
         override fun onClickSignUp() {
@@ -44,13 +43,31 @@ class SignUpActivity : BaseNavigationActivity() {
     }
 
     private lateinit var binding: ActivitySignUpBinding
+    private lateinit var signUpViewModel: SignUpViewModel
     private var user: User = User("", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_sign_up)
+        signUpViewModel = getViewModel(SignUpViewModel::class.java)
         binding.handler = signUpHandler
         binding.model = user
+        enableSaveButton(false)
+        initSubscribers()
+    }
+
+    private fun checkSaveButton() {
+        signUpViewModel.checkSaveButton(user.name, user.email, user.password)
+    }
+
+    private fun initSubscribers() {
+        signUpViewModel.signUpButtonClickable.subscribe {
+            enableSaveButton(it)
+        }
+    }
+
+    private fun enableSaveButton(enable: Boolean) {
+        binding.signUpSignUpTextView.isEnabled = enable
     }
 }
