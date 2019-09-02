@@ -23,10 +23,13 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="enable_permissions_settings_appliction">Enable permissions for using this
-    feature</string>
+        feature
+    </string>
     <string name="change_plant_title">Change plant</string>
     <string name="delete_plant">Delete plant</string>
     <string name="do_you_really_want_to_delete_this_plant">Do you really want to delete this plant?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
