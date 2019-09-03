@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.sign.signup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignUpBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
@@ -34,7 +35,13 @@ class SignUpActivity : BaseNavigationActivity() {
         }
 
         override fun onClickSignUp() {
-
+            signUpViewModel.signUp(user.email,user.password).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Log.e("authdata", "add user is succesful")
+                }else{
+                    Log.e("authdata", "add user is failure")
+                }
+            }
         }
 
         override fun onClickSignIn() {
