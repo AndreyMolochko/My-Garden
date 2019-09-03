@@ -154,7 +154,7 @@ open class BaseActivity : AppCompatActivity() {
         return false
     }
 
-    private fun showSnackbar(view: View, text: String) {
+    protected fun showSnackbar(view: View, text: String) {
         Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
     }
 

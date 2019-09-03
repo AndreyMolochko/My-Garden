@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.sign.signin
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignInBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
@@ -30,7 +31,15 @@ class SignInActivity : BaseNavigationActivity() {
         }
 
         override fun onClickSignIn() {
-            MyPlantsActivity.open(this@SignInActivity)
+            signInViewModel.signIn(user.email, user.password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    MyPlantsActivity.open(this@SignInActivity)
+                } else {
+                    if (it.exception != null) {
+                        showSnackbar(binding.root,it.exception!!.message.toString())
+                    }
+                }
+            }
         }
 
         override fun onClickSignUp() {
