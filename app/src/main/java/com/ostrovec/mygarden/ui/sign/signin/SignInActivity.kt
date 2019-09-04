@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignInBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
@@ -35,6 +37,7 @@ class SignInActivity : BaseNavigationActivity() {
                 if (it.isSuccessful) {
                     MyPlantsActivity.open(this@SignInActivity)
                 } else {
+                    binding.root.hideKeyboard()
                     if (it.exception != null) {
                         showSnackbar(binding.root,it.exception!!.message.toString())
                     }

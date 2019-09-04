@@ -40,6 +40,7 @@ class SignUpActivity : BaseNavigationActivity() {
                 if(it.isSuccessful){
                     MyPlantsActivity.open(this@SignUpActivity)
                 }else{
+                    binding.root.hideKeyboard()
                     if (it.exception != null) {
                         showSnackbar(binding.root,it.exception!!.message.toString())
                     }
