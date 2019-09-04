@@ -24,6 +24,7 @@
             bind:setImage="@{model.urlLocalPhoto}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_image_view"
+            android:layout_marginTop="@dimen/medium_padding"
             android:onClick="@{(view)->handler.clickOnUpdate(model)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +34,7 @@
             android:id="@+id/item_recycler_my_plants_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
             android:fontFamily="@font/raleway_bold"
             android:textColor="@color/colorEasternBlue"
             android:textSize="@dimen/medium_font_size"
@@ -64,9 +66,9 @@
             android:id="@+id/item_recycler_my_plants_garbage_image_view"
             android:layout_width="@dimen/size_check_image_view"
             android:layout_height="@dimen/size_check_image_view"
+            android:onClick="@{(view)->handler.clickOnGarbage(model)}"
             app:layout_constraintBottom_toBottomOf="@+id/item_recycler_my_plants_name_text_view"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{(view)->handler.clickOnGarbage(model)}"
             app:layout_constraintTop_toTopOf="@id/item_recycler_my_plants_name_text_view"
             app:srcCompat="@drawable/ic_garbage" />
 
