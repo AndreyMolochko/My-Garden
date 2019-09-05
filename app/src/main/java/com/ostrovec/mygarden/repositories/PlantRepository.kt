@@ -5,7 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 
-interface PlantRepository{
+interface PlantRepository {
 
     fun insertPlant(plant: Plant): Disposable
 
@@ -13,5 +13,13 @@ interface PlantRepository{
 
     fun updatePlant(plant: Plant): Completable
 
-    fun deletePlant(plant:Plant): Completable
+    fun deletePlant(plant: Plant): Completable
+
+    fun addRemotePlant(plant: Plant): Completable
+
+    fun deleteRemotePlant(plant: Plant): Completable
+
+    fun updateRemotePlant(plant: Plant): Completable
+
+    fun loadRemotePlants(): Flowable<List<Plant>>
 }
