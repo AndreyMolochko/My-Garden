@@ -7,7 +7,7 @@ import io.reactivex.disposables.Disposable
 
 interface PlantRepository {
 
-    fun insertPlant(plant: Plant): Disposable
+    fun insertPlant(plant: Plant): Flowable<Long>
 
     fun loadPlants(): Flowable<List<Plant>>
 

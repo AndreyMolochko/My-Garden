@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 interface PlantDao {
 
     @Insert(onConflict = REPLACE)
-    fun insertPlant(plant: Plant)
+    fun insertPlant(plant: Plant): Long
 
     @Query("SELECT * FROM Plants")
     fun getPlants(): Flowable<List<Plant>>
