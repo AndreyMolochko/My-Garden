@@ -13,10 +13,7 @@ import io.reactivex.schedulers.Schedulers
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
     companion object {
-        const val PLANT_NAME = "name"
-        const val PLANT_ID = "id"
-        const val PLANT_IRRIGATION_PERIOD = "irrigation period"
-        const val PLANT_LOCAL_URL_PHOTO = "local url photo"
+
     }
 
     private val remoteDB = FirebaseFirestore.getInstance()
@@ -52,14 +49,9 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     override fun addRemotePlant(plant: Plant): Completable {
         return Completable.fromCallable {
 
-            val plantData = HashMap<String, Any>()
-            plantData[PLANT_NAME] = plant.name
-            plantData[PLANT_ID] = plant.id
-            plantData[PLANT_IRRIGATION_PERIOD] = plant.irrigationPeriod
-            plantData[PLANT_LOCAL_URL_PHOTO] = plant.urlLocalPhoto
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             remoteDB.document("MyGarden/${uid}/plants/${plant.id}/")
-                    .set(plantData)
+                    .set(Plant.plantToHashMap(plant))
                     .addOnSuccessListener {
                         Log.e("FIREBASREMOTE", "onSuccess")
                     }.addOnFailureListener {
