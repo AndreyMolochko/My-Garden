@@ -14,7 +14,7 @@ import com.ostrovec.mygarden.BR
 data class Plant(
 
         @PrimaryKey(autoGenerate = true)
-        val id: Int,
+        var id: Long,
 
         var name: String,
 
@@ -39,7 +39,7 @@ data class Plant(
         var endIrrigation: Long) : BaseObservable(), Parcelable {
 
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
+            parcel.readLong(),
             parcel.readString(),
             parcel.readLong(),
             parcel.readString(),
@@ -74,7 +74,7 @@ data class Plant(
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
+        parcel.writeLong(id)
         parcel.writeString(name)
         parcel.writeLong(irrigationPeriod)
         parcel.writeString(urlLocalPhoto)

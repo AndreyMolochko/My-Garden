@@ -35,10 +35,15 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
 
         override fun clickOnSave() {
             if (plantViewModel is AddPlantViewModel) {
-                (plantViewModel as AddPlantViewModel).addPlant(plant)
+                (plantViewModel as AddPlantViewModel).addPlant(plant).subscribe {
+                    plant.id = it
+                    (plantViewModel as AddPlantViewModel).addRemotePlant(plant).subscribe {
+                        finish()
+                    }
+                }
             } else if (plantViewModel is UpdatePlantViewModel) {
                 (plantViewModel as UpdatePlantViewModel).updatePlant(plant).subscribe {
-                    Log.e("ondata","plant was updated")
+                    finish()
                 }
             }
         }
