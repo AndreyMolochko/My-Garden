@@ -16,4 +16,8 @@ class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepositor
     fun deletePlant(plant: Plant): Completable {
         return plantsRepository.deletePlant(plant)
     }
+
+    fun deleteRemotePlant(taskId: Int): Completable {
+        return plantsRepository.deleteRemotePlant(taskId)
+    }
 }

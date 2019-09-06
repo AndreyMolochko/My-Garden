@@ -1,6 +1,7 @@
 package com.ostrovec.mygarden.repositories
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.ostrovec.mygarden.room.database.AppDatabase
@@ -15,15 +16,13 @@ import io.reactivex.schedulers.Schedulers
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
     companion object {
-        const val PLANTS_COLLECTION = "MyGarden/plants"
         const val PLANT_NAME = "name"
         const val PLANT_ID = "id"
         const val PLANT_IRRIGATION_PERIOD = "irrigation period"
         const val PLANT_LOCAL_URL_PHOTO = "local url photo"
     }
 
-    private val remoteDB = FirebaseFirestore.getInstance().document(PLANTS_COLLECTION)
-
+    private val remoteDB = FirebaseFirestore.getInstance()
     override fun insertPlant(plant: Plant): Disposable = Observable.fromCallable {
         database.plantDao().insertPlant(plant)
     }
@@ -62,7 +61,10 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
             plantData[PLANT_ID] = plant.id
             plantData[PLANT_IRRIGATION_PERIOD] = plant.irrigationPeriod
             plantData[PLANT_LOCAL_URL_PHOTO] = plant.urlLocalPhoto
-            remoteDB.set(plantData).addOnSuccessListener {
+            val uid = FirebaseAuth.getInstance().currentUser!!.uid
+            remoteDB.document("MyGarden/${uid}/plants/${plant.id}/")
+                    .set(plantData)
+                    .addOnSuccessListener {
                 Log.e("FIREBASREMOTE", "onSuccess")
             }.addOnFailureListener {
                 Log.e("FIREBASREMOTE", "onError = ${it.message}")
@@ -71,8 +73,14 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun deleteRemotePlant(plant: Plant): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun deleteRemotePlant(plantId: Int): Completable {
+        return Completable.fromCallable {
+            remoteDB.collection("plants").document(plantId.toString()).delete().addOnSuccessListener {
+                Log.e("FIREBASREMOTE", "DELETEonSuccess")
+            }.addOnFailureListener {
+                Log.e("FIREBASREMOTE", "DELETEonError = ${it.message}")
+            }
+        }
     }
 
     override fun updateRemotePlant(plant: Plant): Completable {

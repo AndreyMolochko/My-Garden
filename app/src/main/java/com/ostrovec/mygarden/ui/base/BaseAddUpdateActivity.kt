@@ -36,6 +36,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         override fun clickOnSave() {
             if (plantViewModel is AddPlantViewModel) {
                 (plantViewModel as AddPlantViewModel).addPlant(plant)
+                plant.id = 1
                 (plantViewModel as AddPlantViewModel).addRemotePlant(plant).subscribe {
                     finish()
                 }

@@ -14,7 +14,7 @@ import com.ostrovec.mygarden.BR
 data class Plant(
 
         @PrimaryKey(autoGenerate = true)
-        val id: Int,
+        var id: Int,
 
         var name: String,
 
