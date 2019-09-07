@@ -17,7 +17,7 @@ interface PlantRepository {
 
     fun addRemotePlant(plant: Plant): Completable
 
-    fun deleteRemotePlant(plantId: Int): Completable
+    fun deleteRemotePlant(plantId: Long): Completable
 
     fun updateRemotePlant(plant: Plant): Completable
 

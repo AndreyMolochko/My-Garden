@@ -12,11 +12,15 @@ import io.reactivex.schedulers.Schedulers
 
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
-    companion object {
+    private val remoteDB = FirebaseFirestore.getInstance()
+    private lateinit var uid: String
 
+    init {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            uid = FirebaseAuth.getInstance().currentUser!!.uid
+        }
     }
 
-    private val remoteDB = FirebaseFirestore.getInstance()
     override fun insertPlant(plant: Plant): Flowable<Long> {
         return Flowable.fromCallable<Long> {
             database.plantDao().insertPlant(plant)
@@ -49,7 +53,6 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     override fun addRemotePlant(plant: Plant): Completable {
         return Completable.fromCallable {
 
-            val uid = FirebaseAuth.getInstance().currentUser!!.uid
             remoteDB.document("MyGarden/${uid}/plants/${plant.id}/")
                     .set(Plant.plantToHashMap(plant))
                     .addOnSuccessListener {
@@ -61,9 +64,9 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun deleteRemotePlant(plantId: Int): Completable {
+    override fun deleteRemotePlant(plantId: Long): Completable {
         return Completable.fromCallable {
-            remoteDB.collection("plants").document(plantId.toString()).delete().addOnSuccessListener {
+            remoteDB.document("MyGarden/${uid}/plants/${plantId}/").delete().addOnSuccessListener {
                 Log.e("FIREBASREMOTE", "DELETEonSuccess")
             }.addOnFailureListener {
                 Log.e("FIREBASREMOTE", "DELETEonError = ${it.message}")
