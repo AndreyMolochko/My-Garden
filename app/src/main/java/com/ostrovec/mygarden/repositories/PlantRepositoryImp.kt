@@ -12,14 +12,15 @@ import io.reactivex.schedulers.Schedulers
 
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
-    companion object {
-        const val PLANT_NAME = "name"
-        const val PLANT_ID = "id"
-        const val PLANT_IRRIGATION_PERIOD = "irrigation period"
-        const val PLANT_LOCAL_URL_PHOTO = "local url photo"
+    private val remoteDB = FirebaseFirestore.getInstance()
+    private lateinit var uid: String
+
+    init {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            uid = FirebaseAuth.getInstance().currentUser!!.uid
+        }
     }
 
-    private val remoteDB = FirebaseFirestore.getInstance()
     override fun insertPlant(plant: Plant): Flowable<Long> {
         return Flowable.fromCallable<Long> {
             database.plantDao().insertPlant(plant)
@@ -52,14 +53,8 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     override fun addRemotePlant(plant: Plant): Completable {
         return Completable.fromCallable {
 
-            val plantData = HashMap<String, Any>()
-            plantData[PLANT_NAME] = plant.name
-            plantData[PLANT_ID] = plant.id
-            plantData[PLANT_IRRIGATION_PERIOD] = plant.irrigationPeriod
-            plantData[PLANT_LOCAL_URL_PHOTO] = plant.urlLocalPhoto
-            val uid = FirebaseAuth.getInstance().currentUser!!.uid
             remoteDB.document("MyGarden/${uid}/plants/${plant.id}/")
-                    .set(plantData)
+                    .set(Plant.plantToHashMap(plant))
                     .addOnSuccessListener {
                         Log.e("FIREBASREMOTE", "onSuccess")
                     }.addOnFailureListener {
@@ -69,9 +64,9 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun deleteRemotePlant(plantId: Int): Completable {
+    override fun deleteRemotePlant(plantId: Long): Completable {
         return Completable.fromCallable {
-            remoteDB.collection("plants").document(plantId.toString()).delete().addOnSuccessListener {
+            remoteDB.document("MyGarden/${uid}/plants/${plantId}/").delete().addOnSuccessListener {
                 Log.e("FIREBASREMOTE", "DELETEonSuccess")
             }.addOnFailureListener {
                 Log.e("FIREBASREMOTE", "DELETEonError = ${it.message}")
@@ -80,7 +75,20 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     }
 
     override fun updateRemotePlant(plant: Plant): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return Completable.fromCallable {
+            remoteDB.document("MyGarden/${uid}/plants/${plant.id}/").update(
+                    Plant.PLANT_NAME, plant.name,
+                    Plant.PLANT_LOCAL_URL_PHOTO, plant.urlLocalPhoto,
+                    Plant.PLANT_SERVER_URL_PHOTO, plant.urlServerPhoto,
+                    Plant.PLANT_IRRIGATION_PERIOD, plant.irrigationPeriod,
+                    Plant.PLANT_START_IRRIGATION, plant.startIrrigation,
+                    Plant.PLANT_END_IRRIGATION, plant.endIrrigation)
+                    .addOnSuccessListener {
+                        Log.e("FIREBASREMOTE", "UpdateOnSuccess")
+                    }.addOnFailureListener {
+                        Log.e("FIREBASREMOTE", "UpdateOnError = ${it.message}")
+                    }
+        }
     }
 
     override fun loadRemotePlants(): Flowable<List<Plant>> {

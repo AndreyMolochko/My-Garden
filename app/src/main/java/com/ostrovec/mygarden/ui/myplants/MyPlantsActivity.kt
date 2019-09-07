@@ -38,7 +38,7 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
                 Log.e("ondata","plant was deleted")
                 deleteAlertDialog.cancel()
             }
-            myPlantsViewModel.deleteRemotePlant(20).subscribe {
+            myPlantsViewModel.deleteRemotePlant(plant.id).subscribe {
                 Log.e("firebase","plant was deleted")
             }
         }

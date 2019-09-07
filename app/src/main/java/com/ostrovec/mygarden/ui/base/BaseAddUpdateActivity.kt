@@ -43,7 +43,9 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
                 }
             } else if (plantViewModel is UpdatePlantViewModel) {
                 (plantViewModel as UpdatePlantViewModel).updatePlant(plant).subscribe {
-                    finish()
+                    (plantViewModel as UpdatePlantViewModel).updateRemotePlant(plant).subscribe {
+                        finish()
+                    }
                 }
             }
         }

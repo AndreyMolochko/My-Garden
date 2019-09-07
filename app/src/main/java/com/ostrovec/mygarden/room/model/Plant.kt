@@ -86,6 +86,28 @@ data class Plant(
     override fun describeContents(): Int = 0
 
     companion object CREATOR : Parcelable.Creator<Plant> {
+
+        const val PLANT_NAME = "name"
+        const val PLANT_ID = "id"
+        const val PLANT_IRRIGATION_PERIOD = "irrigation period"
+        const val PLANT_LOCAL_URL_PHOTO = "local url photo"
+        const val PLANT_SERVER_URL_PHOTO = "server url photo"
+        const val PLANT_START_IRRIGATION = "start irrigation period"
+        const val PLANT_END_IRRIGATION = "end irrigation period"
+
+        fun plantToHashMap(plant: Plant): HashMap<String, Any?> {
+            val plantData = HashMap<String, Any?>()
+            plantData[PLANT_NAME] = plant.name
+            plantData[PLANT_ID] = plant.id
+            plantData[PLANT_IRRIGATION_PERIOD] = plant.irrigationPeriod
+            plantData[PLANT_LOCAL_URL_PHOTO] = plant.urlLocalPhoto
+            plantData[PLANT_SERVER_URL_PHOTO] = plant.urlServerPhoto
+            plantData[PLANT_START_IRRIGATION] = plant.startIrrigation
+            plantData[PLANT_END_IRRIGATION] = plant.endIrrigation
+
+            return plantData
+        }
+
         override fun createFromParcel(parcel: Parcel): Plant = Plant(parcel)
 
         override fun newArray(size: Int): Array<Plant?> = arrayOfNulls(size)
