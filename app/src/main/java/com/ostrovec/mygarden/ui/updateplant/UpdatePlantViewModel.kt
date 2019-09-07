@@ -10,4 +10,8 @@ class UpdatePlantViewModel @Inject constructor(val plantRepository: PlantReposit
     fun updatePlant(plant: Plant): Completable {
         return plantRepository.updatePlant(plant)
     }
+
+    fun updateRemotePlant(plant: Plant): Completable {
+        return plantRepository.updateRemotePlant(plant)
+    }
 }

@@ -75,7 +75,20 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
     }
 
     override fun updateRemotePlant(plant: Plant): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return Completable.fromCallable {
+            remoteDB.document("MyGarden/${uid}/plants/${plant.id}/").update(
+                    Plant.PLANT_NAME, plant.name,
+                    Plant.PLANT_LOCAL_URL_PHOTO, plant.urlLocalPhoto,
+                    Plant.PLANT_SERVER_URL_PHOTO, plant.urlServerPhoto,
+                    Plant.PLANT_IRRIGATION_PERIOD, plant.irrigationPeriod,
+                    Plant.PLANT_START_IRRIGATION, plant.startIrrigation,
+                    Plant.PLANT_END_IRRIGATION, plant.endIrrigation)
+                    .addOnSuccessListener {
+                        Log.e("FIREBASREMOTE", "UpdateOnSuccess")
+                    }.addOnFailureListener {
+                        Log.e("FIREBASREMOTE", "UpdateOnError = ${it.message}")
+                    }
+        }
     }
 
     override fun loadRemotePlants(): Flowable<List<Plant>> {
