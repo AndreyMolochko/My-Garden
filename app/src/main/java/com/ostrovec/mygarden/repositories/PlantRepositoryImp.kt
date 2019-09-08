@@ -1,12 +1,20 @@
 package com.ostrovec.mygarden.repositories
 
 import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.core.Query
 import com.ostrovec.mygarden.room.database.AppDatabase
 import com.ostrovec.mygarden.room.model.Plant
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -72,6 +80,8 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 Log.e("FIREBASREMOTE", "DELETEonError = ${it.message}")
             }
         }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun updateRemotePlant(plant: Plant): Completable {
@@ -91,8 +101,37 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
         }
     }
 
-    override fun loadRemotePlants(): Flowable<List<Plant>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun loadRemotePlants() {
+
+
+            remoteDB.collection("MyGarden/${uid}/plants").get()
+                    .addOnFailureListener {
+                        Log.e("FIRESTORELOAD", it.message)
+                    }.addOnSuccessListener { result ->
+                        for (document in result) {
+                            /*val plant = Plant(document.data[Plant.PLANT_ID],
+                            document.data[Plant.PLANT_NAME],
+                            document.data[Plant.PLANT_IRRIGATION_PERIOD],
+                            document.data[Plant.PLANT_LOCAL_URL_PHOTO],
+                            document.data[Plant.PLANT_SERVER_URL_PHOTO],
+                            document.data[Plant.PLANT_START_IRRIGATION],
+                            document.data[Plant.PLANT_END_IRRIGATION]
+                            )
+
+                            Log.e("firestore",plant.name)
+                            Log.e("firestore",plant.id.toString())
+                            Log.e("firestore",plant.irrigationPeriod.toString())
+                            Log.e("firestore",plant.startIrrigation.toString())
+                            Log.e("firestore",plant.endIrrigation.toString())
+                            Log.e("firestore",plant.urlLocalPhoto.toString())
+                            Log.e("firestore",plant.urlServerPhoto.toString())*/
+                        }
+
+                    }.addOnCanceledListener {
+                        Log.e("FIRESTORELOAD", "canceled")
+                    }
+
     }
+
 
 }

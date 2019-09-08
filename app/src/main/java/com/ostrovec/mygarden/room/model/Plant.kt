@@ -108,6 +108,19 @@ data class Plant(
             return plantData
         }
 
+        fun hashMapToPlant(data: HashMap<String,Any?>):Plant{
+            hashMapOf<String,Any?>()
+            return Plant(
+                    data[PLANT_ID] as Long,
+                    data[PLANT_NAME] as String,
+                    data[PLANT_IRRIGATION_PERIOD] as Long,
+                    data[PLANT_LOCAL_URL_PHOTO] as String,
+                    data[PLANT_SERVER_URL_PHOTO] as String?,
+                    data[PLANT_START_IRRIGATION] as Long,
+                    data[PLANT_END_IRRIGATION] as Long
+            )
+        }
+
         override fun createFromParcel(parcel: Parcel): Plant = Plant(parcel)
 
         override fun newArray(size: Int): Array<Plant?> = arrayOfNulls(size)

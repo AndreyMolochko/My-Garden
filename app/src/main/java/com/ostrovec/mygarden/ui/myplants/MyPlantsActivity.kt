@@ -62,6 +62,7 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
         val myPlants: Disposable = myPlantsViewModel.getPlants().subscribe {
             displayRecyclerView(it)
         }
+        myPlantsViewModel.getRemotePlants()
     }
 
     override fun onClickUpdate(plant: Plant) {

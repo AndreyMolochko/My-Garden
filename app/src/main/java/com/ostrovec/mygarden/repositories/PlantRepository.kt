@@ -3,7 +3,7 @@ package com.ostrovec.mygarden.repositories
 import com.ostrovec.mygarden.room.model.Plant
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import io.reactivex.disposables.Disposable
+import io.reactivex.Observable
 
 interface PlantRepository {
 
@@ -21,5 +21,5 @@ interface PlantRepository {
 
     fun updateRemotePlant(plant: Plant): Completable
 
-    fun loadRemotePlants(): Flowable<List<Plant>>
+    fun loadRemotePlants()
 }
