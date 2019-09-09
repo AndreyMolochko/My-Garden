@@ -13,6 +13,11 @@ import javax.inject.Inject
 
 class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepository) : BaseViewModel() {
 
+    init {
+        plantsRepository.getChangeObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun getPlants(): Flowable<List<Plant>> {
         return plantsRepository.loadPlants()
     }

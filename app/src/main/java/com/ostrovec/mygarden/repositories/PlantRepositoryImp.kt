@@ -8,12 +8,10 @@ import com.ostrovec.mygarden.room.database.AppDatabase
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.room.model.Plant.CREATOR.remotePlantToPlant
 import com.ostrovec.mygarden.ui.sign.model.RemotePlant
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
@@ -125,6 +123,30 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 .toList()
 
     }
+
+    private val changeObservable = BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
+        val listeningRegistration = remoteDB.collection("MyGarden/${uid}/plants")
+                .addSnapshotListener { value, error ->
+                    if (value == null || error != null) {
+                        return@addSnapshotListener
+                    }
+
+                    if (!emitter.isDisposed) {
+                        emitter.onNext(value.documents)
+                    }
+
+                    value.documentChanges.forEach {
+                        Log.d("FirestoreTaskRepository", "Data changed type ${it.type} document ${it.document.id}")
+                    }
+                }
+
+        emitter.setCancellable { listeningRegistration.remove() }
+    }
+
+    override fun getChangeObservable(): Observable<List<Plant>> =
+            changeObservable.hide()
+                    .observeOn(Schedulers.io())
+                    .map { list -> list.map(::mapDocumentToRemotePlant).map(::remotePlantToPlant) }
 
     private fun mapDocumentToRemotePlant(document: DocumentSnapshot) = document.toObject(RemotePlant::class.java)!!.apply {}
 
