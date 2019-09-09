@@ -9,6 +9,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.ostrovec.mygarden.BR
+import com.ostrovec.mygarden.ui.sign.model.RemotePlant
 
 @Entity(tableName = "Plants")
 data class Plant(
@@ -108,16 +109,15 @@ data class Plant(
             return plantData
         }
 
-        fun hashMapToPlant(data: HashMap<String,Any?>):Plant{
-            hashMapOf<String,Any?>()
+        fun remotePlantToPlant(remotePlant: RemotePlant):Plant{
             return Plant(
-                    data[PLANT_ID] as Long,
-                    data[PLANT_NAME] as String,
-                    data[PLANT_IRRIGATION_PERIOD] as Long,
-                    data[PLANT_LOCAL_URL_PHOTO] as String,
-                    data[PLANT_SERVER_URL_PHOTO] as String?,
-                    data[PLANT_START_IRRIGATION] as Long,
-                    data[PLANT_END_IRRIGATION] as Long
+                    remotePlant.id,
+                    remotePlant.name,
+                    remotePlant.irrigationPeriod,
+                    remotePlant.localUrlPhoto,
+                    remotePlant.serverUrlPhoto,
+                    remotePlant.startIrrigationPeriod,
+                    remotePlant.endIrrigationPeriod
             )
         }
 

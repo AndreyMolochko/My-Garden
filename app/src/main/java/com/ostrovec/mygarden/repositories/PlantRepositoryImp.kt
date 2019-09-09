@@ -111,23 +111,6 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                     }.addOnSuccessListener { result ->
                         for (document in result) {
                             val remotePlant = document.toObject(RemotePlant::class.java)
-                            /*val plant = Plant(document.data[Plant.PLANT_ID],
-                            document.data[Plant.PLANT_NAME],
-                            document.data[Plant.PLANT_IRRIGATION_PERIOD],
-                            document.data[Plant.PLANT_LOCAL_URL_PHOTO],
-                            document.data[Plant.PLANT_SERVER_URL_PHOTO],
-                            document.data[Plant.PLANT_START_IRRIGATION],
-                            document.data[Plant.PLANT_END_IRRIGATION]
-                            )*/
-
-                            Log.e("firestore",document.data.toString())
-                            Log.e("firestore",remotePlant.name)
-                            Log.e("firestore",remotePlant.id.toString())
-                            Log.e("firestorePeriod",remotePlant.irrigationPeriod.toString())
-                            Log.e("firestoreStart",remotePlant.startIrrigationPeriod.toString())
-                            Log.e("firestoreEnd",remotePlant.endIrrigationPeriod.toString())
-                            Log.e("firestoreLocal",remotePlant.localUrlPhoto.toString())
-                            Log.e("firestoreServer",remotePlant.serverUrlPhoto.toString())
                         }
 
                     }.addOnCanceledListener {
