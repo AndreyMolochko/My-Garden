@@ -1,16 +1,12 @@
 package com.ostrovec.mygarden.repositories
 
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.core.Query
 import com.ostrovec.mygarden.room.database.AppDatabase
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.room.model.Plant.CREATOR.remotePlantToPlant
 import com.ostrovec.mygarden.ui.sign.model.RemotePlant
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -102,22 +98,35 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
         }
     }
 
-    override fun loadRemotePlants() {
+    override fun loadRemotePlants(): Single<List<Plant>> {
 
-
+        return Single.create<List<DocumentSnapshot>> { emitter ->
             remoteDB.collection("MyGarden/${uid}/plants").get()
                     .addOnFailureListener {
                         Log.e("FIRESTORELOAD", it.message)
                     }.addOnSuccessListener { result ->
-                        for (document in result) {
-                            val remotePlant = document.toObject(RemotePlant::class.java)
+                        //val remotePlant = document.toObject(RemotePlant::class.java)
+                        Log.e("firestore","before1 on success")
+                        if (!emitter.isDisposed) {
+                            Log.e("firestore","before2 on success")
+                            emitter.onSuccess(result.documents)
                         }
-
+                    }.addOnCompleteListener {
+                        Log.e("firestore","on complete")
                     }.addOnCanceledListener {
-                        Log.e("FIRESTORELOAD", "canceled")
+                        Log.e("firestore","on canceled")
                     }
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMapObservable { Observable.fromIterable(it) }
+                .map(::mapDocumentToRemotePlant)
+                .map(::remotePlantToPlant)
+                .toList()
 
     }
+
+    private fun mapDocumentToRemotePlant(document: DocumentSnapshot) = document.toObject(RemotePlant::class.java)!!.apply {}
 
 
 }
