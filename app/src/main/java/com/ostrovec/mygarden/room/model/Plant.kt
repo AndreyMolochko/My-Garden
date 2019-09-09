@@ -9,6 +9,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.ostrovec.mygarden.BR
+import com.ostrovec.mygarden.ui.sign.model.RemotePlant
 
 @Entity(tableName = "Plants")
 data class Plant(
@@ -106,6 +107,18 @@ data class Plant(
             plantData[PLANT_END_IRRIGATION] = plant.endIrrigation
 
             return plantData
+        }
+
+        fun remotePlantToPlant(remotePlant: RemotePlant):Plant{
+            return Plant(
+                    remotePlant.id,
+                    remotePlant.name,
+                    remotePlant.irrigationPeriod,
+                    remotePlant.localUrlPhoto,
+                    remotePlant.serverUrlPhoto,
+                    remotePlant.startIrrigationPeriod,
+                    remotePlant.endIrrigationPeriod
+            )
         }
 
         override fun createFromParcel(parcel: Parcel): Plant = Plant(parcel)

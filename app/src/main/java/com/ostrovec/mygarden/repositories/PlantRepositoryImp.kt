@@ -2,13 +2,16 @@ package com.ostrovec.mygarden.repositories
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ostrovec.mygarden.room.database.AppDatabase
 import com.ostrovec.mygarden.room.model.Plant
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import com.ostrovec.mygarden.room.model.Plant.CREATOR.remotePlantToPlant
+import com.ostrovec.mygarden.ui.sign.model.RemotePlant
+import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 
 class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
 
@@ -72,6 +75,8 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                 Log.e("FIREBASREMOTE", "DELETEonError = ${it.message}")
             }
         }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun updateRemotePlant(plant: Plant): Completable {
@@ -91,8 +96,59 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
         }
     }
 
-    override fun loadRemotePlants(): Flowable<List<Plant>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun loadRemotePlants(): Single<List<Plant>> {
+
+        return Single.create<List<DocumentSnapshot>> { emitter ->
+            remoteDB.collection("MyGarden/${uid}/plants").get()
+                    .addOnFailureListener {
+                        Log.e("FIRESTORELOAD", it.message)
+                    }.addOnSuccessListener { result ->
+                        //val remotePlant = document.toObject(RemotePlant::class.java)
+                        Log.e("firestore","before1 on success")
+                        if (!emitter.isDisposed) {
+                            Log.e("firestore","before2 on success")
+                            emitter.onSuccess(result.documents)
+                        }
+                    }.addOnCompleteListener {
+                        Log.e("firestore","on complete")
+                    }.addOnCanceledListener {
+                        Log.e("firestore","on canceled")
+                    }
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMapObservable { Observable.fromIterable(it) }
+                .map(::mapDocumentToRemotePlant)
+                .map(::remotePlantToPlant)
+                .toList()
+
     }
+
+    private val changeObservable = BehaviorSubject.create<List<DocumentSnapshot>> { emitter: ObservableEmitter<List<DocumentSnapshot>> ->
+        val listeningRegistration = remoteDB.collection("MyGarden/${uid}/plants")
+                .addSnapshotListener { value, error ->
+                    if (value == null || error != null) {
+                        return@addSnapshotListener
+                    }
+
+                    if (!emitter.isDisposed) {
+                        emitter.onNext(value.documents)
+                    }
+
+                    value.documentChanges.forEach {
+                        Log.d("FirestoreTaskRepository", "Data changed type ${it.type} document ${it.document.id}")
+                    }
+                }
+
+        emitter.setCancellable { listeningRegistration.remove() }
+    }
+
+    override fun getChangeObservable(): Observable<List<Plant>> =
+            changeObservable.hide()
+                    .observeOn(Schedulers.io())
+                    .map { list -> list.map(::mapDocumentToRemotePlant).map(::remotePlantToPlant) }
+
+    private fun mapDocumentToRemotePlant(document: DocumentSnapshot) = document.toObject(RemotePlant::class.java)!!.apply {}
+
 
 }
