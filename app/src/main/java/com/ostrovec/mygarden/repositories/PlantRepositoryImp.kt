@@ -11,6 +11,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.core.Query
 import com.ostrovec.mygarden.room.database.AppDatabase
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.sign.model.RemotePlant
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -109,6 +110,7 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                         Log.e("FIRESTORELOAD", it.message)
                     }.addOnSuccessListener { result ->
                         for (document in result) {
+                            val remotePlant = document.toObject(RemotePlant::class.java)
                             /*val plant = Plant(document.data[Plant.PLANT_ID],
                             document.data[Plant.PLANT_NAME],
                             document.data[Plant.PLANT_IRRIGATION_PERIOD],
@@ -116,15 +118,16 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                             document.data[Plant.PLANT_SERVER_URL_PHOTO],
                             document.data[Plant.PLANT_START_IRRIGATION],
                             document.data[Plant.PLANT_END_IRRIGATION]
-                            )
+                            )*/
 
-                            Log.e("firestore",plant.name)
-                            Log.e("firestore",plant.id.toString())
-                            Log.e("firestore",plant.irrigationPeriod.toString())
-                            Log.e("firestore",plant.startIrrigation.toString())
-                            Log.e("firestore",plant.endIrrigation.toString())
-                            Log.e("firestore",plant.urlLocalPhoto.toString())
-                            Log.e("firestore",plant.urlServerPhoto.toString())*/
+                            Log.e("firestore",document.data.toString())
+                            Log.e("firestore",remotePlant.name)
+                            Log.e("firestore",remotePlant.id.toString())
+                            Log.e("firestorePeriod",remotePlant.irrigationPeriod.toString())
+                            Log.e("firestoreStart",remotePlant.startIrrigationPeriod.toString())
+                            Log.e("firestoreEnd",remotePlant.endIrrigationPeriod.toString())
+                            Log.e("firestoreLocal",remotePlant.localUrlPhoto.toString())
+                            Log.e("firestoreServer",remotePlant.serverUrlPhoto.toString())
                         }
 
                     }.addOnCanceledListener {
