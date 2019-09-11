@@ -17,8 +17,6 @@
         <TextView
             android:id="@+id/my_plants_title_text_view"
             style="@style/HeaderTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
             android:text="@string/my_plants"
