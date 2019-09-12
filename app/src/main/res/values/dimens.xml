@@ -18,5 +18,6 @@
     <dimen name="height_toolbar">56dp</dimen>
     <dimen name="size_check_image_view">24dp</dimen>
     <dimen name="height_image_view">180dp</dimen>
+    <dimen name="size_little_dot">3dp</dimen>
 
 </resources>
