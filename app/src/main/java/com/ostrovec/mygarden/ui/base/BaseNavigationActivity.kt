@@ -27,6 +27,11 @@ open class BaseNavigationActivity : BaseActivity() {
         return DataBindingUtil.bind(inflatedView)!!
     }
 
+    protected fun initSettingsButton(clickListener: View.OnClickListener?){
+        binding.baseNavigationToolbar.setVisibleSettingsButton()
+        binding.baseNavigationToolbar.setSettingsButtonListener(clickListener)
+    }
+
     private fun initToolbar() {
         binding.baseNavigationToolbar.setBackButtonClickListener(backButtonListener())
     }

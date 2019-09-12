@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
@@ -21,5 +22,12 @@ class SettingsActivity : BaseNavigationActivity() {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_settings)
+        getLanguages()
+    }
+
+    private fun getLanguages(){
+        for(language in Languages.values()){
+            Log.e("language",language.name)
+        }
     }
 }
