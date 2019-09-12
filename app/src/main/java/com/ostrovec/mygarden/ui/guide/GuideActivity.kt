@@ -8,14 +8,14 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
-import com.ostrovec.mygarden.utils.SharedPrefsWoker
+import com.ostrovec.mygarden.utils.SharedPrefsWorker
 
 class GuideActivity : BaseActivity() {
 
     val guideHandler: GuideHandler = object : GuideHandler{
         override fun onClickOK(context: Context) {
                 WelcomeActivity.open(context)
-                SharedPrefsWoker(context).setShownGuideActivity(false)
+                SharedPrefsWorker(context).setShownGuideActivity(false)
         }
 
     }
@@ -24,7 +24,7 @@ class GuideActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!SharedPrefsWoker(this).shownGuide()) {
+        if (!SharedPrefsWorker(this).shownGuide()) {
             WelcomeActivity.open(this@GuideActivity)
         }
 
