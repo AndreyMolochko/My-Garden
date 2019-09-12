@@ -10,24 +10,40 @@ import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 
 class SettingsActivity : BaseNavigationActivity() {
 
-    companion object{
-        fun open(context: Context){
-            context.startActivity(Intent(context,SettingsActivity::class.java))
+    companion object {
+        val TITLE_LANGUAGES_ITEM = "Languages"
+        val TITLE_NOTIFICATION_ITEM = "Notifications"
+        fun open(context: Context) {
+            context.startActivity(Intent(context, SettingsActivity::class.java))
         }
     }
 
     private lateinit var binding: ActivitySettingsBinding
+    private lateinit var settingsData: HashMap<String, Set<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_settings)
-        getLanguages()
+        initLanguages()
+        initNotifications()
     }
 
-    private fun getLanguages(){
-        for(language in Languages.values()){
-            Log.e("language",language.name)
+    private fun initLanguages() {
+        var languagesSet = mutableSetOf<String>()
+
+        for (language in Languages.values()) {
+            languagesSet.add(language.name)
         }
+        settingsData[TITLE_LANGUAGES_ITEM] = languagesSet
+    }
+
+    private fun initNotifications() {
+        var notificationsSet = mutableSetOf<String>()
+
+        for (notification in Notifications.values()) {
+            notificationsSet.add(notification.name)
+        }
+        settingsData[TITLE_NOTIFICATION_ITEM] = notificationsSet
     }
 }
