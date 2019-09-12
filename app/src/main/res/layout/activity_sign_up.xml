@@ -24,8 +24,6 @@
         <TextView
             android:id="@+id/sign_up_title_text_view"
             style="@style/HeaderTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/sign_up"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

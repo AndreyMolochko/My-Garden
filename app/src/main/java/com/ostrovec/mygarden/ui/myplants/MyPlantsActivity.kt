@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
@@ -14,6 +15,7 @@ import com.ostrovec.mygarden.databinding.AlertDialogDeletePlantBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.settings.SettingsActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import io.reactivex.disposables.Disposable
 
@@ -58,6 +60,7 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
 
         binding = setContainerView(R.layout.activity_my_plants)
         binding.handler = myPlantHandler
+        initSettingsButton(settingsButtonListener())
         myPlantsViewModel = getViewModel(MyPlantsViewModel::class.java)
         val myPlants: Disposable = myPlantsViewModel.getPlants().subscribe {
             displayRecyclerView(it)
@@ -89,5 +92,11 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUp
         binding.myPlantsRecyclerView.layoutManager = LinearLayoutManager(this)
         plantsAdapter = PlantsAdapter(this, plantList)
         binding.myPlantsRecyclerView.adapter = plantsAdapter
+    }
+
+    private fun settingsButtonListener(): View.OnClickListener{
+        return View.OnClickListener {
+            SettingsActivity.open(this@MyPlantsActivity)
+        }
     }
 }

@@ -3,7 +3,7 @@ package com.ostrovec.mygarden.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPrefsWoker (private val context: Context){
+class SharedPrefsWorker (private val context: Context){
 
     private val PREFS_FILENAME = "MyGarden.data"
     private val KEY_SHOW_GUIDE = "show guide"
