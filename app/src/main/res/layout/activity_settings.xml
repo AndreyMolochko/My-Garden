@@ -17,5 +17,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/settings_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:layout_marginTop="@dimen/small_padding"
+            android:paddingEnd="@dimen/medium_padding"
+            android:paddingStart="@dimen/medium_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/settings_title_text_view" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
