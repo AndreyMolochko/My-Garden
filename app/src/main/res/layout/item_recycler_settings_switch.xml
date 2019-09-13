@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:background="@color/colorWhite">
+
+        <Switch
+            android:id="@+id/item_recycler_switch_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{model.checked}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_recycler_switch_text_view"
+            style="@style/DescriptionText"
+            android:text="@{model.text}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ostrovec.mygarden.ui.settings.model.SwitchItem" />
+    </data>
+</layout>

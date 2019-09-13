@@ -2,7 +2,11 @@ package com.ostrovec.mygarden.ui.base
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.ostrovec.mygarden.R
 import java.io.File
@@ -40,6 +44,12 @@ object CustomBindingAdapter {
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("bind:setDrawableImage")
+    fun setDrawableImage(imageView: ImageView, drawablePath: Int) {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, drawablePath))
     }
 
     fun getBitmapImage(path: String): Bitmap? {
