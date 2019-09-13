@@ -6,14 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:paddingEnd="@dimen/medium_padding"
-        android:paddingStart="@dimen/medium_padding"
         tools:context=".ui.settings.SettingsActivity">
 
         <TextView
             android:id="@+id/settings_title_text_view"
             style="@style/HeaderTitle"
             android:text="@string/settings"
+            android:layout_marginStart="@dimen/medium_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +22,8 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:layout_marginTop="@dimen/small_padding"
-            android:paddingEnd="@dimen/medium_padding"
-            android:paddingStart="@dimen/medium_padding"
+            android:paddingEnd="@dimen/big_medium_padding"
+            android:paddingStart="@dimen/big_medium_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/settings_title_text_view" />
 

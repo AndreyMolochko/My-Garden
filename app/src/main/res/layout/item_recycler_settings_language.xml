@@ -5,16 +5,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_padding"
         android:background="@color/colorWhite">
 
-        <ImageView
+        <RadioButton
             android:id="@+id/item_recycler_language_dot_image_view"
-            android:layout_width="@dimen/size_little_dot"
-            android:layout_height="@dimen/size_little_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorEasternBlue"
             app:layout_constraintBottom_toBottomOf="@id/item_recycler_language_text_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/item_recycler_language_text_text_view"
-            app:srcCompat="@drawable/ic_circle" />
+            app:srcCompat="@drawable/ic_fill_circle" />
 
         <TextView
             android:id="@+id/item_recycler_language_text_text_view"

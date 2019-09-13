@@ -51,7 +51,7 @@ class SettingsActivity : BaseNavigationActivity() {
     }
 
     private fun initNotifications() {
-        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_worlwide))
+        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification))
 
         for (notification in Notifications.values()) {
             settingsList.add(SwitchItem(0, notification.name, true))
