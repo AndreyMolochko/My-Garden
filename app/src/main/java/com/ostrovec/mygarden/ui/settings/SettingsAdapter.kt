@@ -30,8 +30,11 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
     }
 
     override fun getItemViewType(position: Int): Int {
-        //val item = settingsList[position]
-        return -1
+        return when (settingsList[position]) {
+            is TitleItem -> TYPE_HEADER_ITEM
+            is LanguageItem -> TYPE_LANGUAGE_ITEM
+            else -> TYPE_SWITCH_ITEM
+        }
     }
 
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
