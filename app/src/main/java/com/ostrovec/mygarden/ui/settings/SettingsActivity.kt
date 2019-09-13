@@ -4,9 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.settings.model.LanguageItem
+import com.ostrovec.mygarden.ui.settings.model.ListItem
+import com.ostrovec.mygarden.ui.settings.model.SwitchItem
+import com.ostrovec.mygarden.ui.settings.model.TitleItem
 
 class SettingsActivity : BaseNavigationActivity() {
 
@@ -19,7 +24,8 @@ class SettingsActivity : BaseNavigationActivity() {
     }
 
     private lateinit var binding: ActivitySettingsBinding
-    private lateinit var settingsData: HashMap<String, Set<String>>
+    private lateinit var settingsAdapter: SettingsAdapter
+    private var settingsList: MutableList<ListItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,23 +33,28 @@ class SettingsActivity : BaseNavigationActivity() {
         binding = setContainerView(R.layout.activity_settings)
         initLanguages()
         initNotifications()
+        displayRecyclerView()
+    }
+
+    private fun displayRecyclerView() {
+        binding.settingsRecyclerView.layoutManager = LinearLayoutManager(this)
+        settingsAdapter = SettingsAdapter(settingsList)
+        binding.settingsRecyclerView.adapter = settingsAdapter
     }
 
     private fun initLanguages() {
-        var languagesSet = mutableSetOf<String>()
+        settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide))
 
         for (language in Languages.values()) {
-            languagesSet.add(language.name)
+            settingsList.add(LanguageItem(0, language.name))
         }
-        settingsData[TITLE_LANGUAGES_ITEM] = languagesSet
     }
 
     private fun initNotifications() {
-        var notificationsSet = mutableSetOf<String>()
+        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_worlwide))
 
         for (notification in Notifications.values()) {
-            notificationsSet.add(notification.name)
+            settingsList.add(SwitchItem(0, notification.name, true))
         }
-        settingsData[TITLE_NOTIFICATION_ITEM] = notificationsSet
     }
 }
