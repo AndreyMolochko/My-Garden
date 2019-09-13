@@ -3,9 +3,11 @@ package com.ostrovec.mygarden.ui.settings
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsLanguageBinding
+import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsSwitchBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsTitleBinding
 import com.ostrovec.mygarden.ui.settings.model.LanguageItem
 import com.ostrovec.mygarden.ui.settings.model.ListItem
+import com.ostrovec.mygarden.ui.settings.model.SwitchItem
 import com.ostrovec.mygarden.ui.settings.model.TitleItem
 
 class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
@@ -43,6 +45,13 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
             RecyclerView.ViewHolder(binding.root){
         fun bind(languageItem:LanguageItem){
             binding.model = languageItem
+        }
+    }
+
+    inner class SwitchItemViewHolder(private var binding: ItemRecyclerSettingsSwitchBinding)
+        :RecyclerView.ViewHolder(binding.root){
+        fun bing(switchItem: SwitchItem){
+            binding.model = switchItem
         }
     }
 
