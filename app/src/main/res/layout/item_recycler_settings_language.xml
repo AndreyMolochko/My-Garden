@@ -18,13 +18,9 @@
 
         <TextView
             android:id="@+id/item_recycler_language_text_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/DescriptionText"
             android:layout_marginStart="@dimen/medium_padding"
-            android:fontFamily="@font/raleway_medium"
             android:text="@{model.text}"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/normal_font_size"
             app:layout_constraintStart_toEndOf="@id/item_recycler_language_dot_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
