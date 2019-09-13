@@ -1,7 +1,10 @@
 package com.ostrovec.mygarden.ui.settings
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsLanguageBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsSwitchBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsTitleBinding
@@ -18,7 +21,27 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
     private val TYPE_SWITCH_ITEM = 2
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val inflater: LayoutInflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
+            TYPE_HEADER_ITEM -> {
+                val binding: ItemRecyclerSettingsTitleBinding = DataBindingUtil.inflate(
+                        inflater, R.layout.item_recycler_settings_title, parent, false
+                )
+                HeaderItemViewHolder(binding)
+            }
+            TYPE_LANGUAGE_ITEM -> {
+                val binding: ItemRecyclerSettingsLanguageBinding = DataBindingUtil.inflate(
+                        inflater, R.layout.item_recycler_settings_language, parent, false
+                )
+                LanguageItemViewHolder(binding)
+            }
+            else -> {
+                val binding: ItemRecyclerSettingsSwitchBinding = DataBindingUtil.inflate(
+                        inflater, R.layout.item_recycler_settings_switch, parent, false
+                )
+                SwitchItemViewHolder(binding)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
