@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_padding"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}">
 
         <RadioButton
             android:id="@+id/item_recycler_language_dot_image_view"
@@ -29,6 +30,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="model"

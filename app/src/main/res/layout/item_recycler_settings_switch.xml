@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_padding"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}">
 
         <Switch
             android:id="@+id/item_recycler_switch_switch"
@@ -25,6 +26,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="model"
