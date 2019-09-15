@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/item_recycler_settings_language_constraint_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_padding"
         android:background="@color/colorWhite"
         android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}">
 
@@ -12,14 +12,18 @@
             android:id="@+id/item_recycler_switch_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_padding"
             android:checked="@{model.checked}"
+            android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_recycler_switch_text_view"
             style="@style/DescriptionText"
+            android:layout_marginTop="@dimen/normal_padding"
             android:text="@{model.text}"
+            android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -46,7 +46,7 @@ class SettingsActivity : BaseNavigationActivity() {
         settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide))
 
         for (language in Languages.values()) {
-            settingsList.add(LanguageItem(0, language.name))
+            settingsList.add(LanguageItem(0, language.name, false))
         }
     }
 
@@ -54,7 +54,7 @@ class SettingsActivity : BaseNavigationActivity() {
         settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification))
 
         for (notification in Notifications.values()) {
-            settingsList.add(SwitchItem(0, notification.name, true))
+            settingsList.add(SwitchItem(0, notification.name, true, false))
         }
     }
 }
