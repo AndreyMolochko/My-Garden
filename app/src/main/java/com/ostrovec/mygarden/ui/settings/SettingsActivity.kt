@@ -43,7 +43,7 @@ class SettingsActivity : BaseNavigationActivity() {
     }
 
     private fun initLanguages() {
-        settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide))
+        settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
 
         for (language in Languages.values()) {
             settingsList.add(LanguageItem(0, language.name, false))
@@ -51,7 +51,7 @@ class SettingsActivity : BaseNavigationActivity() {
     }
 
     private fun initNotifications() {
-        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification))
+        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification,false,-1))
 
         for (notification in Notifications.values()) {
             settingsList.add(SwitchItem(0, notification.name, true, false))

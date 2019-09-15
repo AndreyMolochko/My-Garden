@@ -22,11 +22,10 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
     private val TYPE_SWITCH_ITEM = 2
 
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
-            SettingsTitleItemRecyclerHandler{
+            SettingsTitleItemRecyclerHandler {
         override fun onClickItem(titleItem: TitleItem) {
-            Log.e("SETTINGS","on click item")
             titleItem.setDroppedDown = !titleItem.setDroppedDown
-            Log.e("SETTINGS",titleItem.setDroppedDown.toString())
+            dropDownItems(titleItem.position)
         }
 
     }
@@ -84,9 +83,30 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         }
     }
 
+    private fun dropDownItems(position: Int) {
+        var counter: Int = position
+
+        if (settingsList.get(counter) is TitleItem) {
+            counter++
+            while (counter < settingsList.size) {
+                if (settingsList.get(counter) is TitleItem) {
+                    break
+                }
+                if (settingsList.get(counter) is LanguageItem) {
+                    (settingsList.get(counter) as LanguageItem).setVisible = !(settingsList
+                            .get(counter) as LanguageItem).setVisible
+                } else if (settingsList.get(counter) is SwitchItem) {
+                    (settingsList.get(counter) as SwitchItem).setVisible = !(settingsList.get(counter) as SwitchItem).setVisible
+                }
+                counter++
+            }
+        }
+    }
+
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(titleItem: TitleItem) {
+            titleItem.position = layoutPosition
             binding.model = titleItem
             binding.handler = settingsTitleItemRecyclerHandler
         }

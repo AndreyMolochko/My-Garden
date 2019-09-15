@@ -7,7 +7,8 @@ import com.ostrovec.mygarden.BR
 class TitleItem(var id: Int = -1,
                 var title: String = "",
                 var iconId: Int = -1,
-                var isDroppedDown: Boolean = false) : ListItem, BaseObservable() {
+                var isDroppedDown: Boolean = false,
+                var position: Int) : ListItem, BaseObservable() {
 
     var setDroppedDown: Boolean
         @Bindable
