@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
 
-class PlantsAdapter(private var callback: ListenerClickUpdate, private
+class PlantsAdapter(private var callback: PlantsListener, private
 var plantsList: List<Plant>) : RecyclerView
 .Adapter<PlantsAdapter
 .PlantsHolder>() {
 
-    interface ListenerClickUpdate {
+    interface PlantsListener {
         fun onClickUpdate(plant: Plant)
 
         fun onClickGarbage(plant:Plant)
