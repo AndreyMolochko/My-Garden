@@ -6,14 +6,14 @@ import com.ostrovec.mygarden.BR
 
 class LanguageItem(var id: Int = -1,
                    var text: String = "",
-                   var isVisible: Boolean = false) : ListItem,BaseObservable() {
+                   var isVisible: Boolean = false) : ListItem, BaseObservable() {
 
-    var setVisible:Boolean
-    @Bindable
-    get() = isVisible
-    set(value){
-        isVisible = value
-        notifyPropertyChanged(BR.setVisible)
-    }
+    var setVisible: Boolean
+        @Bindable
+        get() = isVisible
+        set(value) {
+            isVisible = value
+            notifyPropertyChanged(BR.setVisible)
+        }
 
 }

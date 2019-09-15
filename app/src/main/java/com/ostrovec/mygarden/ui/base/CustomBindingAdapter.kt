@@ -52,6 +52,16 @@ object CustomBindingAdapter {
         imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, drawablePath))
     }
 
+    @JvmStatic
+    @BindingAdapter("bind:setDropDownIcon")
+    fun setDropDownImage(imageView: ImageView, isDropped: Boolean) {
+        if (isDropped) {
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_up_arrow))
+        } else {
+            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_drop_down_arrow))
+        }
+    }
+
     fun getBitmapImage(path: String): Bitmap? {
         val file = File(path)
         return if (file.exists()) {

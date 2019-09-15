@@ -1,7 +1,7 @@
 package com.ostrovec.mygarden.ui.settings
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +20,16 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
     private val TYPE_HEADER_ITEM = 0
     private val TYPE_LANGUAGE_ITEM = 1
     private val TYPE_SWITCH_ITEM = 2
+
+    val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
+            SettingsTitleItemRecyclerHandler{
+        override fun onClickItem(titleItem: TitleItem) {
+            Log.e("SETTINGS","on click item")
+            titleItem.setDroppedDown = !titleItem.setDroppedDown
+            Log.e("SETTINGS",titleItem.setDroppedDown.toString())
+        }
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -78,6 +88,7 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(titleItem: TitleItem) {
             binding.model = titleItem
+            binding.handler = settingsTitleItemRecyclerHandler
         }
     }
 
