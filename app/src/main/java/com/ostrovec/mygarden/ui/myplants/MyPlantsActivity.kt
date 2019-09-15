@@ -19,7 +19,7 @@ import com.ostrovec.mygarden.ui.settings.SettingsActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import io.reactivex.disposables.Disposable
 
-class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.ListenerClickUpdate {
+class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener {
 
     companion object {
         fun open(context: Context) {
