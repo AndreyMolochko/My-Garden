@@ -14,18 +14,31 @@ import com.ostrovec.mygarden.ui.settings.model.ListItem
 import com.ostrovec.mygarden.ui.settings.model.SwitchItem
 import com.ostrovec.mygarden.ui.settings.model.TitleItem
 
-class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
+class SettingsAdapter(var settingsList: List<ListItem>) :
+        RecyclerView
 .Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER_ITEM = 0
     private val TYPE_LANGUAGE_ITEM = 1
     private val TYPE_SWITCH_ITEM = 2
 
+    private val UNDEFINED_POSITION = -1
+
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
             SettingsTitleItemRecyclerHandler {
         override fun onClickItem(titleItem: TitleItem) {
             titleItem.setDroppedDown = !titleItem.setDroppedDown
             dropDownItems(titleItem.position)
+        }
+
+    }
+
+    val settingsLanguageItemRecyclerHandler: SettingsLanguageItemRecyclerHandler = object :
+            SettingsLanguageItemRecyclerHandler{
+        override fun onClickLanguageItem(languageItem: LanguageItem) {
+            removeOldLanguage()
+            languageItem.setCurrentLanguage = true
+            notifyDataSetChanged()
         }
 
     }
@@ -67,6 +80,8 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
             is LanguageItem -> {
                 val viewHolder = holder as LanguageItemViewHolder
                 viewHolder.bind(settingsList[position] as LanguageItem)
+                viewHolder.binding.itemRecyclerLanguageRadioButton.isChecked =
+                        (settingsList[position] as LanguageItem).isCurrentLanguage
             }
             else -> {
                 val viewHolder = holder as SwitchItemViewHolder
@@ -103,6 +118,14 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         }
     }
 
+    private fun removeOldLanguage(){
+        for(language in settingsList){
+            if(language is LanguageItem){
+                language.isCurrentLanguage = false
+            }
+        }
+    }
+
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(titleItem: TitleItem) {
@@ -112,10 +135,11 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         }
     }
 
-    inner class LanguageItemViewHolder(private var binding: ItemRecyclerSettingsLanguageBinding) :
+    inner class LanguageItemViewHolder(var binding: ItemRecyclerSettingsLanguageBinding) :
             RecyclerView.ViewHolder(binding.root) {
         fun bind(languageItem: LanguageItem) {
             binding.model = languageItem
+            binding.handler = settingsLanguageItemRecyclerHandler
         }
     }
 

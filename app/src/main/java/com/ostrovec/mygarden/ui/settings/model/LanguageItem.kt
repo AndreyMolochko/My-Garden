@@ -6,7 +6,8 @@ import com.ostrovec.mygarden.BR
 
 class LanguageItem(var id: Int = -1,
                    var text: String = "",
-                   var isVisible: Boolean = false) : ListItem, BaseObservable() {
+                   var isVisible: Boolean = false,
+                   var isCurrentLanguage: Boolean = false) : ListItem, BaseObservable() {
 
     var setVisible: Boolean
         @Bindable
@@ -14,6 +15,14 @@ class LanguageItem(var id: Int = -1,
         set(value) {
             isVisible = value
             notifyPropertyChanged(BR.setVisible)
+        }
+
+    var setCurrentLanguage: Boolean
+        @Bindable
+        get() = isCurrentLanguage
+        set(value) {
+            isCurrentLanguage = value
+            notifyPropertyChanged(BR.setCurrentLanguage)
         }
 
 }

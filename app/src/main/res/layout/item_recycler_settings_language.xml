@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
-        >
+        android:onClick="@{(view)->handler.onClickLanguageItem(model)}"
+        android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}">
 
         <RadioButton
             android:id="@+id/item_recycler_language_radio_button"
@@ -16,21 +16,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_padding"
             android:buttonTint="@color/colorEasternBlue"
+            android:checked="@{model.setCurrentLanguage}"
+            android:onClick="@{(view)->handler.onClickLanguageItem(model)}"
             android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@id/item_recycler_language_text_text_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/item_recycler_language_text_text_view"
             app:srcCompat="@drawable/ic_fill_circle" />
 
         <TextView
             android:id="@+id/item_recycler_language_text_text_view"
             style="@style/DescriptionText"
-            android:layout_marginTop="@dimen/normal_padding"
             android:layout_marginStart="@dimen/medium_padding"
-            android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
             android:text="@{model.text}"
+            android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/item_recycler_language_radio_button"
             app:layout_constraintStart_toEndOf="@id/item_recycler_language_radio_button"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/item_recycler_language_radio_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -41,5 +41,9 @@
         <variable
             name="model"
             type="com.ostrovec.mygarden.ui.settings.model.LanguageItem" />
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.settings.SettingsLanguageItemRecyclerHandler" />
     </data>
 </layout>

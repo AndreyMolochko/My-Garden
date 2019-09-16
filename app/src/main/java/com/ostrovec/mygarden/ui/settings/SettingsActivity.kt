@@ -3,15 +3,11 @@ package com.ostrovec.mygarden.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
-import com.ostrovec.mygarden.ui.settings.model.LanguageItem
-import com.ostrovec.mygarden.ui.settings.model.ListItem
-import com.ostrovec.mygarden.ui.settings.model.SwitchItem
-import com.ostrovec.mygarden.ui.settings.model.TitleItem
+import com.ostrovec.mygarden.ui.settings.model.*
 
 class SettingsActivity : BaseNavigationActivity() {
 
@@ -46,7 +42,7 @@ class SettingsActivity : BaseNavigationActivity() {
         settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
 
         for (language in Languages.values()) {
-            settingsList.add(LanguageItem(0, language.name, false))
+            settingsList.add(LanguageItem(0, language.name, false,true))
         }
     }
 
