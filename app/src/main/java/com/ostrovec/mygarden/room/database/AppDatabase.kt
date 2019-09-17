@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.room.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.ostrovec.mygarden.room.dao.PlantDao
+import com.ostrovec.mygarden.room.dao.SettingsDao
 import com.ostrovec.mygarden.room.database.AppDatabase.Companion.VERSION
 import com.ostrovec.mygarden.room.model.Plant
 
@@ -15,4 +16,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun plantDao(): PlantDao
+
+    abstract fun settingsDao(): SettingsDao
 }

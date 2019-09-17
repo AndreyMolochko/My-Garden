@@ -15,7 +15,7 @@ interface SettingsDao {
     fun insertListItem(listItem: ListItem)
 
     @Query("SELECT * FROM Settings")
-    fun getListItems(): Flowable<ListItem>
+    fun getListItems(): Flowable<List<ListItem>>
 
     @Update(onConflict = REPLACE)
     fun updateListItem(listItem: ListItem)
