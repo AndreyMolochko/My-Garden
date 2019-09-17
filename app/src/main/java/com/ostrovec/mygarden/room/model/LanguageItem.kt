@@ -2,12 +2,20 @@ package com.ostrovec.mygarden.room.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.ostrovec.mygarden.BR
 
-class LanguageItem(var id: Int = -1,
-                   var text: String = "",
-                   var isVisible: Boolean = false,
-                   var isCurrentLanguage: Boolean = false) : ListItem, BaseObservable() {
+@Entity(tableName = "SettingsLanguage")
+data class LanguageItem(
+        @PrimaryKey
+        var id: Int = -1,
+        var text: String = "",
+        @ColumnInfo(name = "is_visible")
+        var isVisible: Boolean = false,
+        @ColumnInfo(name = "is_current_language")
+        var isCurrentLanguage: Boolean = false) : ListItem, BaseObservable() {
 
     var setVisible: Boolean
         @Bindable

@@ -7,20 +7,23 @@ import androidx.fragment.app.Fragment
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
 import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.settings.SettingsViewModel
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import com.ostrovec.mygarden.utils.SharedPrefsWorker
 
 class GuideActivity : BaseActivity() {
 
-    val guideHandler: GuideHandler = object : GuideHandler{
+    val guideHandler: GuideHandler = object : GuideHandler {
         override fun onClickOK(context: Context) {
-                WelcomeActivity.open(context)
-                SharedPrefsWorker(context).setShownGuideActivity(false)
+            settingsViewModel.loadSettings()
+            WelcomeActivity.open(context)
+            SharedPrefsWorker(context).setShownGuideActivity(false)
         }
 
     }
 
     private lateinit var binding: ActivityGuideBinding
+    private lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,7 @@ class GuideActivity : BaseActivity() {
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_guide)
+        settingsViewModel = getViewModel(SettingsViewModel::class.java)
         initViews()
     }
 
