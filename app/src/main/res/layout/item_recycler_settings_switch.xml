@@ -35,6 +35,6 @@
 
         <variable
             name="model"
-            type="com.ostrovec.mygarden.ui.settings.model.SwitchItem" />
+            type="com.ostrovec.mygarden.room.model.SwitchItem" />
     </data>
 </layout>

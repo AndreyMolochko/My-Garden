@@ -3,7 +3,7 @@
     <data>
         <variable
             name="model"
-            type="com.ostrovec.mygarden.ui.settings.model.TitleItem" />
+            type="com.ostrovec.mygarden.room.model.TitleItem" />
         <variable
             name="handler"
             type="com.ostrovec.mygarden.ui.settings.SettingsTitleItemRecyclerHandler" />

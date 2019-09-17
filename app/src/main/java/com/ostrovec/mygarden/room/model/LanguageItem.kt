@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.settings.model
+package com.ostrovec.mygarden.room.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable

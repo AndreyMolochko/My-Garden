@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
+import com.ostrovec.mygarden.room.model.LanguageItem
+import com.ostrovec.mygarden.room.model.ListItem
+import com.ostrovec.mygarden.room.model.SwitchItem
+import com.ostrovec.mygarden.room.model.TitleItem
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.model.*
 
@@ -46,12 +50,12 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
         settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
 
         for (language in Languages.values()) {
-            settingsList.add(LanguageItem(0, language.name, false,true))
+            settingsList.add(LanguageItem(0, language.name, false, true))
         }
     }
 
     private fun initNotifications() {
-        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification,false,-1))
+        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification, false, -1))
 
         for (notification in Notifications.values()) {
             settingsList.add(SwitchItem(0, notification.name, true, false))

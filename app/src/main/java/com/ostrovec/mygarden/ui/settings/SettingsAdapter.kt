@@ -8,10 +8,10 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsLanguageBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsSwitchBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsTitleBinding
-import com.ostrovec.mygarden.ui.settings.model.LanguageItem
-import com.ostrovec.mygarden.ui.settings.model.ListItem
-import com.ostrovec.mygarden.ui.settings.model.SwitchItem
-import com.ostrovec.mygarden.ui.settings.model.TitleItem
+import com.ostrovec.mygarden.room.model.LanguageItem
+import com.ostrovec.mygarden.room.model.ListItem
+import com.ostrovec.mygarden.room.model.SwitchItem
+import com.ostrovec.mygarden.room.model.TitleItem
 
 class SettingsAdapter(var callback: SettingsListener, var settingsList: List<ListItem>) :
         RecyclerView

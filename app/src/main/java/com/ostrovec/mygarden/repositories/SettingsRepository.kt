@@ -1,6 +1,6 @@
 package com.ostrovec.mygarden.repositories
 
-import com.ostrovec.mygarden.ui.settings.model.ListItem
+import com.ostrovec.mygarden.room.model.ListItem
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
