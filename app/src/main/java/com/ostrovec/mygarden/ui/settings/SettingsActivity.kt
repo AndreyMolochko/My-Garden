@@ -9,7 +9,7 @@ import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.model.*
 
-class SettingsActivity : BaseNavigationActivity() {
+class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListener {
 
     companion object {
         val TITLE_LANGUAGES_ITEM = "Languages"
@@ -32,9 +32,13 @@ class SettingsActivity : BaseNavigationActivity() {
         displayRecyclerView()
     }
 
+    override fun onChangeRadioButton(languageItem: LanguageItem) {
+
+    }
+
     private fun displayRecyclerView() {
         binding.settingsRecyclerView.layoutManager = LinearLayoutManager(this)
-        settingsAdapter = SettingsAdapter(settingsList)
+        settingsAdapter = SettingsAdapter(this, settingsList)
         binding.settingsRecyclerView.adapter = settingsAdapter
     }
 
