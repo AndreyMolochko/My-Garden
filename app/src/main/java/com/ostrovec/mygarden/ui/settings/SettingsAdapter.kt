@@ -1,6 +1,5 @@
 package com.ostrovec.mygarden.ui.settings
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,23 +8,39 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsLanguageBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsSwitchBinding
 import com.ostrovec.mygarden.databinding.ItemRecyclerSettingsTitleBinding
-import com.ostrovec.mygarden.ui.settings.model.LanguageItem
-import com.ostrovec.mygarden.ui.settings.model.ListItem
-import com.ostrovec.mygarden.ui.settings.model.SwitchItem
-import com.ostrovec.mygarden.ui.settings.model.TitleItem
+import com.ostrovec.mygarden.room.model.LanguageItem
+import com.ostrovec.mygarden.room.model.ListItem
+import com.ostrovec.mygarden.room.model.SwitchItem
+import com.ostrovec.mygarden.room.model.TitleItem
 
-class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
-.Adapter<RecyclerView.ViewHolder>() {
+class SettingsAdapter(var callback: SettingsListener, var settingsList: List<ListItem>) :
+        RecyclerView
+        .Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER_ITEM = 0
     private val TYPE_LANGUAGE_ITEM = 1
     private val TYPE_SWITCH_ITEM = 2
+
+    interface SettingsListener {
+        fun onChangeRadioButton(languageItem: LanguageItem)
+    }
 
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
             SettingsTitleItemRecyclerHandler {
         override fun onClickItem(titleItem: TitleItem) {
             titleItem.setDroppedDown = !titleItem.setDroppedDown
             dropDownItems(titleItem.position)
+        }
+
+    }
+
+    val settingsLanguageItemRecyclerHandler: SettingsLanguageItemRecyclerHandler = object :
+            SettingsLanguageItemRecyclerHandler {
+        override fun onClickLanguageItem(languageItem: LanguageItem) {
+            removeOldLanguage()
+            languageItem.setCurrentLanguage = true
+            callback.onChangeRadioButton(languageItem)
+            notifyDataSetChanged()
         }
 
     }
@@ -67,6 +82,8 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
             is LanguageItem -> {
                 val viewHolder = holder as LanguageItemViewHolder
                 viewHolder.bind(settingsList[position] as LanguageItem)
+                viewHolder.binding.itemRecyclerLanguageRadioButton.isChecked =
+                        (settingsList[position] as LanguageItem).isCurrentLanguage
             }
             else -> {
                 val viewHolder = holder as SwitchItemViewHolder
@@ -103,6 +120,14 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         }
     }
 
+    private fun removeOldLanguage() {
+        for (language in settingsList) {
+            if (language is LanguageItem) {
+                language.isCurrentLanguage = false
+            }
+        }
+    }
+
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(titleItem: TitleItem) {
@@ -112,10 +137,11 @@ class SettingsAdapter(var settingsList: List<ListItem>) : RecyclerView
         }
     }
 
-    inner class LanguageItemViewHolder(private var binding: ItemRecyclerSettingsLanguageBinding) :
+    inner class LanguageItemViewHolder(var binding: ItemRecyclerSettingsLanguageBinding) :
             RecyclerView.ViewHolder(binding.root) {
         fun bind(languageItem: LanguageItem) {
             binding.model = languageItem
+            binding.handler = settingsLanguageItemRecyclerHandler
         }
     }
 

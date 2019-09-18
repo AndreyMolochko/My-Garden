@@ -6,14 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
+import com.ostrovec.mygarden.common.comparators.ListItemComparatorById
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
+import com.ostrovec.mygarden.room.model.LanguageItem
+import com.ostrovec.mygarden.room.model.ListItem
+import com.ostrovec.mygarden.room.model.SwitchItem
+import com.ostrovec.mygarden.room.model.TitleItem
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
-import com.ostrovec.mygarden.ui.settings.model.LanguageItem
-import com.ostrovec.mygarden.ui.settings.model.ListItem
-import com.ostrovec.mygarden.ui.settings.model.SwitchItem
-import com.ostrovec.mygarden.ui.settings.model.TitleItem
+import com.ostrovec.mygarden.ui.settings.model.*
+import java.util.*
 
-class SettingsActivity : BaseNavigationActivity() {
+class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListener {
 
     companion object {
         val TITLE_LANGUAGES_ITEM = "Languages"
@@ -25,36 +28,29 @@ class SettingsActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var settingsAdapter: SettingsAdapter
+    private lateinit var settingsViewModel: SettingsViewModel
     private var settingsList: MutableList<ListItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_settings)
-        initLanguages()
-        initNotifications()
-        displayRecyclerView()
+        settingsViewModel = getViewModel(SettingsViewModel::class.java)
+        settingsViewModel.getSettings().subscribe {
+            Log.e("subscribe", "subscribe")
+            settingsList.addAll(it.sortedBy { it.id })
+            Collections.sort(settingsList, ListItemComparatorById())
+            displayRecyclerView()
+        }
+    }
+
+    override fun onChangeRadioButton(languageItem: LanguageItem) {
+
     }
 
     private fun displayRecyclerView() {
         binding.settingsRecyclerView.layoutManager = LinearLayoutManager(this)
-        settingsAdapter = SettingsAdapter(settingsList)
+        settingsAdapter = SettingsAdapter(this, settingsList)
         binding.settingsRecyclerView.adapter = settingsAdapter
-    }
-
-    private fun initLanguages() {
-        settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
-
-        for (language in Languages.values()) {
-            settingsList.add(LanguageItem(0, language.name, false))
-        }
-    }
-
-    private fun initNotifications() {
-        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification,false,-1))
-
-        for (notification in Notifications.values()) {
-            settingsList.add(SwitchItem(0, notification.name, true, false))
-        }
     }
 }
