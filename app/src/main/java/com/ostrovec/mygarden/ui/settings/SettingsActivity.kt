@@ -53,20 +53,4 @@ class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListe
         settingsAdapter = SettingsAdapter(this, settingsList)
         binding.settingsRecyclerView.adapter = settingsAdapter
     }
-
-    /*private fun initLanguages() {
-        settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
-
-        for (language in Languages.values()) {
-            settingsList.add(LanguageItem(0, language.name, false, true))
-        }
-    }
-
-    private fun initNotifications() {
-        settingsList.add(TitleItem(4, "Notification", R.drawable.ic_notification, false, -1))
-
-        for (notification in Notifications.values()) {
-            settingsList.add(SwitchItem(0, notification.name, true, false))
-        }
-    }*/
 }
