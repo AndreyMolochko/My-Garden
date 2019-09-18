@@ -10,7 +10,7 @@ import com.ostrovec.mygarden.BR
 @Entity(tableName = "SettingsSwitch")
 data class SwitchItem(
         @PrimaryKey
-        var id: Int = -1,
+        override var id: Int = -1,
         var text: String = "",
         @ColumnInfo(name = "is_checked")
         var isChecked: Boolean = false,

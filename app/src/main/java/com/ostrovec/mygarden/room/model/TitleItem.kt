@@ -10,7 +10,7 @@ import com.ostrovec.mygarden.BR
 @Entity(tableName = "SettingsTitle")
 data class TitleItem(
         @PrimaryKey
-        var id: Int = -1,
+        override var id: Int = -1,
         var title: String = "",
         @ColumnInfo(name = "icon_id")
         var iconId: Int = -1,

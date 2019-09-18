@@ -10,7 +10,7 @@ import com.ostrovec.mygarden.BR
 @Entity(tableName = "SettingsLanguage")
 data class LanguageItem(
         @PrimaryKey
-        var id: Int = -1,
+        override var id: Int = -1,
         var text: String = "",
         @ColumnInfo(name = "is_visible")
         var isVisible: Boolean = false,

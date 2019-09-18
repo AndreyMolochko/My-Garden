@@ -1,3 +1,5 @@
 package com.ostrovec.mygarden.room.model
 
-interface ListItem
+interface ListItem{
+    val id: Int
+}

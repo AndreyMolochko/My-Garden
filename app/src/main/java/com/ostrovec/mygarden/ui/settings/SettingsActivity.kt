@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
+import com.ostrovec.mygarden.common.comparators.ListItemComparatorById
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
@@ -13,8 +14,9 @@ import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.room.model.TitleItem
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.model.*
+import java.util.*
 
-class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListener {
+class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListener {
 
     companion object {
         val TITLE_LANGUAGES_ITEM = "Languages"
@@ -27,7 +29,7 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var settingsAdapter: SettingsAdapter
     private lateinit var settingsViewModel: SettingsViewModel
-    private var settingsList: List<ListItem> = mutableListOf()
+    private var settingsList: MutableList<ListItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +37,11 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
         binding = setContainerView(R.layout.activity_settings)
         settingsViewModel = getViewModel(SettingsViewModel::class.java)
         settingsViewModel.getSettings().subscribe {
-            settingsList = it
+            Log.e("subscribe", "subscribe")
+            settingsList.addAll(it.sortedBy { it.id })
+            Collections.sort(settingsList, ListItemComparatorById())
+            displayRecyclerView()
         }
-        initLanguages()
-        initNotifications()
-        displayRecyclerView()
     }
 
     override fun onChangeRadioButton(languageItem: LanguageItem) {
@@ -52,7 +54,7 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
         binding.settingsRecyclerView.adapter = settingsAdapter
     }
 
-    private fun initLanguages() {
+    /*private fun initLanguages() {
         settingsList.add(TitleItem(0, "Language", R.drawable.ic_worlwide, false, -1))
 
         for (language in Languages.values()) {
@@ -66,5 +68,5 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
         for (notification in Notifications.values()) {
             settingsList.add(SwitchItem(0, notification.name, true, false))
         }
-    }
+    }*/
 }
