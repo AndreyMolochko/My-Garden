@@ -3,6 +3,7 @@ package com.ostrovec.mygarden.ui.settings
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
@@ -25,12 +26,17 @@ class SettingsActivity : BaseNavigationActivity(),SettingsAdapter.SettingsListen
 
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var settingsAdapter: SettingsAdapter
-    private var settingsList: MutableList<ListItem> = mutableListOf()
+    private lateinit var settingsViewModel: SettingsViewModel
+    private var settingsList: List<ListItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = setContainerView(R.layout.activity_settings)
+        settingsViewModel = getViewModel(SettingsViewModel::class.java)
+        settingsViewModel.getSettings().subscribe {
+            settingsList = it
+        }
         initLanguages()
         initNotifications()
         displayRecyclerView()

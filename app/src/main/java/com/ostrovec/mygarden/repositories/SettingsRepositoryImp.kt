@@ -24,19 +24,19 @@ class SettingsRepositoryImp(val appDatabase: AppDatabase) : SettingsRepository {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getTitleItems(): Flowable<List<TitleItem>> {
+    override fun getTitleItems(): Flowable<out List<ListItem>> {
         return appDatabase.settingsDao().getTitlesItems()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getLanguageItems(): Flowable<List<LanguageItem>> {
+    override fun getLanguageItems(): Flowable<out List<ListItem>> {
         return appDatabase.settingsDao().getLanguagesItems()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getSwitchItems(): Flowable<List<SwitchItem>> {
+    override fun getSwitchItems(): Flowable<out List<ListItem>> {
         return appDatabase.settingsDao().getSwitchesItems()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
