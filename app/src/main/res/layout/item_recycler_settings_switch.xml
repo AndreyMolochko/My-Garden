@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
+        android:onClick="@{(view)->handler.onChangeSwitchItem(model)}"
         android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}">
 
         <Switch
@@ -14,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_padding"
             android:checked="@{model.checked}"
+            android:onClick="@{(view)->handler.onChangeSwitchItem(model)}"
             android:visibility="@{model.setVisible ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,5 +38,9 @@
         <variable
             name="model"
             type="com.ostrovec.mygarden.room.model.SwitchItem" />
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.settings.SettingsSwitchItemRecyclerHandler" />
     </data>
 </layout>

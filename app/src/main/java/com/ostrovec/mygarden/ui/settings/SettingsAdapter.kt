@@ -55,6 +55,13 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
 
     }
 
+    val settingsSwitchItemRecyclerHandler: SettingsSwitchItemRecyclerHandler = object :
+            SettingsSwitchItemRecyclerHandler{
+        override fun onChangeSwitchItem(switchItem: SwitchItem) {
+
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         return when (viewType) {
@@ -165,6 +172,7 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(switchItem: SwitchItem) {
             binding.model = switchItem
+            binding.handler = settingsSwitchItemRecyclerHandler
         }
     }
 
