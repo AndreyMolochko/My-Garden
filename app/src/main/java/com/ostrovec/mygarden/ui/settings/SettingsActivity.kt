@@ -14,6 +14,7 @@ import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.room.model.TitleItem
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.model.*
+import io.reactivex.disposables.Disposable
 import java.util.*
 
 class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListener {
@@ -34,18 +35,26 @@ class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.e("onCreate","onCreate")
+
         binding = setContainerView(R.layout.activity_settings)
         settingsViewModel = getViewModel(SettingsViewModel::class.java)
-        settingsViewModel.getSettings().subscribe {
+        settingsList.clear()
+        settingsViewModel.compositeDisposable.add(settingsViewModel.getSettings()
+                .subscribe {
             Log.e("subscribe", "subscribe")
             settingsList.addAll(it.sortedBy { it.id })
             Collections.sort(settingsList, ListItemComparatorById())
             displayRecyclerView()
-        }
+        })
+        Log.e("oncraetae","after")
     }
 
-    override fun onChangeRadioButton(languageItem: LanguageItem) {
-
+    override fun onChangeRadioButton(oldLanguage: LanguageItem, newLanguage: LanguageItem) {
+        Log.e("onChangeRadioButton","change")
+        settingsViewModel.compositeDisposable.dispose()
+        settingsViewModel.updateLanguageItems(oldLanguage)
+        settingsViewModel.updateLanguageItems(newLanguage)
     }
 
     private fun displayRecyclerView() {

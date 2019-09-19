@@ -14,21 +14,27 @@ import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(var settingsRepository: SettingsRepository) : BaseViewModel() {
 
-    fun getSettings():Flowable<List<ListItem>>{
+    fun getSettings(): Flowable<List<ListItem>> {
         var titlesList: Flowable<out List<ListItem>> = settingsRepository.getTitleItems()
         var languagesList: Flowable<out List<ListItem>> = settingsRepository.getLanguageItems()
         var switchesList: Flowable<out List<ListItem>> = settingsRepository.getSwitchItems()
 
+        return Flowable.merge(titlesList, languagesList, switchesList)
+    }
 
-        return Flowable.merge(titlesList,languagesList,switchesList)
+    fun updateLanguageItems(listItem: ListItem) {
+        settingsRepository.updateListItem(listItem).subscribe()
     }
 
     fun loadSettings() {
         settingsRepository.insertListItem(TitleItem(0, "Language", R.drawable.ic_worlwide, false,
                 -1)).subscribe()
-        settingsRepository.insertListItem(LanguageItem(1, Languages.English.name, false, true)).subscribe()
-        settingsRepository.insertListItem(LanguageItem(2, Languages.Русский.name, false, true)).subscribe()
-        settingsRepository.insertListItem(LanguageItem(3, Languages.Беларуская.name, false, true)).subscribe()
+        settingsRepository.insertListItem(LanguageItem(1, Languages.English.name, false, true))
+                .subscribe()
+        settingsRepository.insertListItem(LanguageItem(2, Languages.Русский.name, false, false))
+                .subscribe()
+        settingsRepository.insertListItem(LanguageItem(3, Languages.Беларуская.name, false, false))
+                .subscribe()
 
         settingsRepository.insertListItem(TitleItem(4, "Notification", R.drawable
                 .ic_notification, false, -1)).subscribe()

@@ -1,5 +1,6 @@
 package com.ostrovec.mygarden.ui.settings
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -22,7 +23,7 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
     private val TYPE_SWITCH_ITEM = 2
 
     interface SettingsListener {
-        fun onChangeRadioButton(languageItem: LanguageItem)
+        fun onChangeRadioButton(oldLanguage: LanguageItem, newLanguage: LanguageItem)
     }
 
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
@@ -37,10 +38,19 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
     val settingsLanguageItemRecyclerHandler: SettingsLanguageItemRecyclerHandler = object :
             SettingsLanguageItemRecyclerHandler {
         override fun onClickLanguageItem(languageItem: LanguageItem) {
-            removeOldLanguage()
+
+            val oldLanguage = removeCurrentLanguage()
             languageItem.setCurrentLanguage = true
-            callback.onChangeRadioButton(languageItem)
+            callback.onChangeRadioButton(oldLanguage, languageItem)
+            oldLanguage.isVisible = true
+            languageItem.isVisible = true
             notifyDataSetChanged()
+            for (language in settingsList) {
+                if (language is LanguageItem) {
+                    Log.e("onClikLanguage visible", "${language.text} , visible =  ${language
+                            .setVisible} , currentLanguage = ${language.setCurrentLanguage}")
+                }
+            }
         }
 
     }
@@ -120,12 +130,18 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
         }
     }
 
-    private fun removeOldLanguage() {
+    private fun removeCurrentLanguage(): LanguageItem {
         for (language in settingsList) {
             if (language is LanguageItem) {
-                language.isCurrentLanguage = false
+                if (language.isCurrentLanguage) {
+                    language.isCurrentLanguage = false
+
+                    return language
+                }
             }
         }
+
+        return LanguageItem(1, "test", true, false)
     }
 
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
