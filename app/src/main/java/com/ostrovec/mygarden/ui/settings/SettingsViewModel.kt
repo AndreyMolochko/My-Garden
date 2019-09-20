@@ -15,14 +15,14 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(var settingsRepository: SettingsRepository) : BaseViewModel() {
 
     fun getSettings(): Flowable<List<ListItem>> {
-        var titlesList: Flowable<out List<ListItem>> = settingsRepository.getTitleItems()
-        var languagesList: Flowable<out List<ListItem>> = settingsRepository.getLanguageItems()
-        var switchesList: Flowable<out List<ListItem>> = settingsRepository.getSwitchItems()
+        val titlesList: Flowable<out List<ListItem>> = settingsRepository.getTitleItems()
+        val languagesList: Flowable<out List<ListItem>> = settingsRepository.getLanguageItems()
+        val switchesList: Flowable<out List<ListItem>> = settingsRepository.getSwitchItems()
 
         return Flowable.merge(titlesList, languagesList, switchesList)
     }
 
-    fun updateLanguageItems(listItem: ListItem) {
+    fun updateListItem(listItem: ListItem) {
         settingsRepository.updateListItem(listItem).subscribe()
     }
 

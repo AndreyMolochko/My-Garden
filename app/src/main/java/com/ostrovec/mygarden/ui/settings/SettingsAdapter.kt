@@ -1,6 +1,5 @@
 package com.ostrovec.mygarden.ui.settings
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -13,6 +12,7 @@ import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
 import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.room.model.TitleItem
+import com.ostrovec.mygarden.ui.settings.model.Notifications
 
 class SettingsAdapter(var callback: SettingsListener, var settingsList: List<ListItem>) :
         RecyclerView
@@ -24,6 +24,8 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
 
     interface SettingsListener {
         fun onChangeRadioButton(oldLanguage: LanguageItem, newLanguage: LanguageItem)
+
+        fun onChangeSwitch(notificationSwitch: SwitchItem, soundSwitch: SwitchItem)
     }
 
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
@@ -45,12 +47,6 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
             oldLanguage.isVisible = true
             languageItem.isVisible = true
             notifyDataSetChanged()
-            for (language in settingsList) {
-                if (language is LanguageItem) {
-                    Log.e("onClikLanguage visible", "${language.text} , visible =  ${language
-                            .setVisible} , currentLanguage = ${language.setCurrentLanguage}")
-                }
-            }
         }
 
     }
@@ -141,7 +137,31 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
             }
         }
 
-        return LanguageItem(1, "test", true, false)
+        return LanguageItem(1, "error", true, false)
+    }
+
+    private fun getNotificationSwitch():SwitchItem{
+        for(switch in settingsList){
+            if(switch is SwitchItem){
+                if(switch.text == Notifications.Notificaitons.name){
+                    return switch
+                }
+            }
+        }
+
+        return SwitchItem(1,"error",false,false)
+    }
+
+    private fun getSoundSwitch(): SwitchItem{
+        for(switch in settingsList){
+            if(switch is SwitchItem){
+                if(switch.text == Notifications.Sound.name){
+                    return switch
+                }
+            }
+        }
+
+        return SwitchItem(1,"error",false,false)
     }
 
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
@@ -165,6 +185,25 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(switchItem: SwitchItem) {
             binding.model = switchItem
+            setSwitchLogic(switchItem)
+            binding.itemRecyclerSwitchSwitch.setOnCheckedChangeListener {
+                buttonView, isChecked ->
+                switchItem.isChecked = isChecked
+                setSwitchLogic(switchItem)
+                callback.onChangeSwitch(getNotificationSwitch(),getSoundSwitch())
+                notifyDataSetChanged()
+            }
+        }
+
+        fun setSwitchLogic(switchItem: SwitchItem){
+            if(switchItem.text == Notifications.Sound.name) {
+                if (getNotificationSwitch().isChecked) {
+                    binding.itemRecyclerSwitchSwitch.isEnabled = true
+                }else{
+                    binding.itemRecyclerSwitchSwitch.isChecked = false
+                    binding.itemRecyclerSwitchSwitch.isEnabled = false
+                }
+            }
         }
     }
 
