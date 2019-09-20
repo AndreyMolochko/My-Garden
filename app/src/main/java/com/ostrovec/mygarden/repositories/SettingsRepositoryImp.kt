@@ -31,13 +31,15 @@ class SettingsRepositoryImp(val appDatabase: AppDatabase) : SettingsRepository {
     }
 
     override fun getLanguageItems(): Flowable<out List<ListItem>> {
-        return appDatabase.settingsDao().getLanguagesItems().map { changeVisibility(it) }
+        return appDatabase.settingsDao().getLanguagesItems()
+                .map { changeVisibility(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun getSwitchItems(): Flowable<out List<ListItem>> {
         return appDatabase.settingsDao().getSwitchesItems()
+                .map { changeVisibility(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
@@ -55,11 +57,14 @@ class SettingsRepositoryImp(val appDatabase: AppDatabase) : SettingsRepository {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    private fun changeVisibility(languagesItems: List<LanguageItem>): List<LanguageItem> {
-        languagesItems.forEach {
-            it.isVisible = false
+    private fun changeVisibility(listItems: List<out ListItem>): List<out ListItem> {
+        listItems.forEach {
+            when (it) {
+                is LanguageItem -> it.isVisible = false
+                is SwitchItem -> it.isVisible = false
+            }
         }
 
-        return languagesItems
+        return listItems
     }
 }

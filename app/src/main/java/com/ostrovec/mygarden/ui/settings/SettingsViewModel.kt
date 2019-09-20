@@ -22,7 +22,7 @@ class SettingsViewModel @Inject constructor(var settingsRepository: SettingsRepo
         return Flowable.merge(titlesList, languagesList, switchesList)
     }
 
-    fun updateLanguageItems(listItem: ListItem) {
+    fun updateListItem(listItem: ListItem) {
         settingsRepository.updateListItem(listItem).subscribe()
     }
 
