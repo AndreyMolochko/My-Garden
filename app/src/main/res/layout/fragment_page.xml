@@ -8,8 +8,8 @@
 
         <ImageView
             android:id="@+id/fragment_page_image_view"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
+            android:layout_width="@dimen/size_image_guide"
+            android:layout_height="@dimen/size_image_guide"
             android:layout_marginBottom="@dimen/big_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

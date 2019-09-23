@@ -19,5 +19,8 @@
     <dimen name="size_check_image_view">24dp</dimen>
     <dimen name="height_image_view">180dp</dimen>
     <dimen name="size_little_dot">3dp</dimen>
+    <dimen name="size_image_guide">240dp</dimen>
+    <dimen name="height_tab_layout">14dp</dimen>
+    <dimen name="height_view_pager">300dp</dimen>
 
 </resources>

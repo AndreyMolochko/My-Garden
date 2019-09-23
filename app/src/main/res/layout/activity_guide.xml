@@ -25,7 +25,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/guide_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="14dp"
+            android:layout_height="@dimen/height_tab_layout"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/big_padding"
             app:layout_constraintBottom_toTopOf="@+id/guide_ok_text_view"
