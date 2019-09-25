@@ -20,8 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.welcome.WelcomeActivity"
-            android:screenOrientation="portrait" />
+            android:name=".ui.welcome.WelcomeActivity" />
         <activity
             android:name=".ui.myplants.MyPlantsActivity"
             android:screenOrientation="portrait" />
