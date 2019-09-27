@@ -21,8 +21,7 @@
         </activity>
         <activity android:name=".ui.welcome.WelcomeActivity" />
         <activity
-            android:name=".ui.myplants.MyPlantsActivity"
-            android:screenOrientation="portrait" />
+            android:name=".ui.myplants.MyPlantsActivity" />
         <activity
             android:name=".ui.addplant.AddPlantActivity"
             android:screenOrientation="portrait" />
