@@ -19,8 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.welcome.WelcomeActivity" />
+        <activity android:name=".ui.welcome.WelcomeActivity" />
         <activity
             android:name=".ui.myplants.MyPlantsActivity"
             android:screenOrientation="portrait" />
@@ -36,15 +35,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.sign.signin.SignInActivity"
-            android:noHistory="true"
+            android:noHistory="true" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.settings.SettingsActivity"
-            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 

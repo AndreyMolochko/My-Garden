@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:paddingEnd="@dimen/medium_padding"
+                android:paddingStart="@dimen/medium_padding"
+                tools:context=".ui.sign.signin.SignInActivity">
+
+                <CheckBox
+                    android:id="@+id/sign_in_remember_creds_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_padding"
+                    android:buttonTint="@color/colorEasternBlue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sign_in_password_edit_text" />
+
+                <EditText
+                    android:id="@+id/sign_in_password_edit_text"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/medium_padding"
+                    android:layout_marginTop="@dimen/medium_padding"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:onTextChanged="@{handler::onPasswordChanged}"
+                    android:text="@={model.password}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sign_in_email_edit_text" />
+
+                <EditText
+                    android:id="@+id/sign_in_email_edit_text"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/medium_padding"
+                    android:layout_marginTop="@dimen/normal_padding"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:onTextChanged="@{handler::onEmailChanged}"
+                    android:text="@={model.setEmail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sign_in_title_text_view" />
+
+                <TextView
+                    android:id="@+id/sign_in_title_text_view"
+                    style="@style/HeaderTitle"
+                    android:text="@string/sign_in"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sign_in_remember_creds_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_medium"
+                    android:text="@string/remember_email_and_password"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/tiny_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/sign_in_remember_creds_check_box"
+                    app:layout_constraintStart_toEndOf="@id/sign_in_remember_creds_check_box"
+                    app:layout_constraintTop_toTopOf="@id/sign_in_remember_creds_check_box" />
+
+                <TextView
+                    android:id="@+id/sign_in_sign_in_text_view"
+                    style="@style/BaseButton.SecondaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_padding"
+                    android:onClick="@{(view)->handler.onClickSignIn()}"
+                    android:text="@string/sign_in"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sign_in_remember_creds_check_box" />
+
+                <TextView
+                    android:id="@+id/sign_in_sign_up_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_padding"
+                    android:onClick="@{(view)->handler.onClickSignUp()}"
+                    android:text="@string/don_t_have_an_account_sign_up"
+                    android:textColor="@color/colorEasternBlue"
+                    android:paddingBottom="@dimen/medium_padding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sign_in_sign_in_text_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.ostrovec.mygarden.ui.sign.model.User" />
+
+        <variable
+            name="handler"
+            type="com.ostrovec.mygarden.ui.sign.signin.SignInHandler" />
+    </data>
+</layout>
