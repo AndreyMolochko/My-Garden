@@ -69,11 +69,13 @@
                 <TextView
                     android:id="@+id/sign_up_sign_up_text_view"
                     style="@style/BaseButton.SecondaryButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/big_medium_padding"
                     android:onClick="@{(view)->handler.onClickSignUp()}"
                     android:text="@string/sign_up"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".75"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sign_up_password_edit_text" />

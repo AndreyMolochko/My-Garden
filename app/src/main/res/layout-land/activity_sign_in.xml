@@ -78,11 +78,13 @@
                 <TextView
                     android:id="@+id/sign_in_sign_in_text_view"
                     style="@style/BaseButton.SecondaryButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/medium_padding"
                     android:onClick="@{(view)->handler.onClickSignIn()}"
                     android:text="@string/sign_in"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent=".75"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sign_in_remember_creds_check_box" />
