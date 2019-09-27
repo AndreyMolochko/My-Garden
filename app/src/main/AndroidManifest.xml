@@ -31,8 +31,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.sign.signup.SignUpActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
+            android:noHistory="true" />
         <activity
             android:name=".ui.sign.signin.SignInActivity"
             android:noHistory="true" />
