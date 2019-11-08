@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:paddingEnd="@dimen/medium_padding"
         android:paddingStart="@dimen/medium_padding"
+        android:paddingEnd="@dimen/medium_padding"
         tools:context=".ui.sign.signin.SignInActivity">
 
         <CheckBox
@@ -23,8 +24,8 @@
             android:id="@+id/sign_in_password_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:onTextChanged="@{handler::onPasswordChanged}"
@@ -37,8 +38,8 @@
             android:id="@+id/sign_in_email_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:onTextChanged="@{handler::onEmailChanged}"
@@ -79,16 +80,27 @@
             app:layout_constraintTop_toBottomOf="@id/sign_in_remember_creds_check_box" />
 
         <TextView
-            android:id="@+id/sign_in_sign_up_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/sign_in_dont_have_account_text_view"
+            style="@style/LabelText.Black"
             android:layout_marginTop="@dimen/medium_padding"
             android:onClick="@{(view)->handler.onClickSignUp()}"
             android:text="@string/don_t_have_an_account_sign_up"
-            android:textColor="@color/colorEasternBlue"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sign_in_sign_up_text_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sign_in_sign_in_text_view" />
+
+        <TextView
+            android:id="@+id/sign_in_sign_up_text_view"
+            style="@style/LabelText.EasternBlue"
+            android:layout_marginStart="@dimen/normal_padding"
+            android:text="@string/sign_up"
+            android:onClick="@{(view)->handler.onClickSignUp()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/sign_in_dont_have_account_text_view"
+            app:layout_constraintTop_toTopOf="@id/sign_in_dont_have_account_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

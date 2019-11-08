@@ -65,4 +65,18 @@
         <item name="android:textSize">@dimen/edit_text_font_size</item>
     </style>
 
+    <style name="LabelText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="LabelText.Black">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="LabelText.EasternBlue">
+        <item name="android:textColor">@color/colorEasternBlue</item>
+    </style>
+
 </resources>
