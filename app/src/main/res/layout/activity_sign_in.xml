@@ -11,15 +11,6 @@
         android:paddingEnd="@dimen/medium_padding"
         tools:context=".ui.sign.signin.SignInActivity">
 
-        <CheckBox
-            android:id="@+id/sign_in_remember_creds_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_padding"
-            android:buttonTint="@color/colorEasternBlue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_in_password_edit_text" />
-
         <EditText
             android:id="@+id/sign_in_password_edit_text"
             style="@style/EditText"
@@ -56,18 +47,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/sign_in_remember_creds_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_medium"
-            android:text="@string/remember_email_and_password"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/tiny_font_size"
-            app:layout_constraintBottom_toBottomOf="@id/sign_in_remember_creds_check_box"
-            app:layout_constraintStart_toEndOf="@id/sign_in_remember_creds_check_box"
-            app:layout_constraintTop_toTopOf="@id/sign_in_remember_creds_check_box" />
-
-        <TextView
             android:id="@+id/sign_in_sign_in_text_view"
             style="@style/BaseButton.SecondaryButton"
             android:layout_width="match_parent"
@@ -77,7 +56,7 @@
             android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sign_in_remember_creds_check_box" />
+            app:layout_constraintTop_toBottomOf="@id/sign_in_password_edit_text" />
 
         <TextView
             android:id="@+id/sign_in_dont_have_account_text_view"
@@ -95,8 +74,8 @@
             android:id="@+id/sign_in_sign_up_text_view"
             style="@style/LabelText.EasternBlue"
             android:layout_marginStart="@dimen/normal_padding"
-            android:text="@string/sign_up"
             android:onClick="@{(view)->handler.onClickSignUp()}"
+            android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sign_in_dont_have_account_text_view"
