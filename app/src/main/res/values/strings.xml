@@ -35,4 +35,5 @@
     <string name="remember_email_and_password">Remember email and password</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account?</string>
     <string name="settings">Settings</string>
+    <string name="do_you_have_an_account">Do you have an account?</string>
 </resources>

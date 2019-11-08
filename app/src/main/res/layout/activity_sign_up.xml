@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:paddingEnd="@dimen/medium_padding"
         android:paddingStart="@dimen/medium_padding"
+        android:paddingEnd="@dimen/medium_padding"
         tools:context=".ui.sign.signup.SignUpActivity">
 
         <TextView
@@ -32,8 +32,8 @@
             android:id="@+id/sign_up_name_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:hint="@string/name"
             android:onTextChanged="@{handler::onNameChanged}"
             android:text="@={model.setName}"
@@ -45,8 +45,8 @@
             android:id="@+id/sign_up_email_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:onTextChanged="@{handler::onEmailChanged}"
@@ -59,8 +59,8 @@
             android:id="@+id/sign_up_password_edit_text"
             style="@style/EditText"
             android:layout_width="0dp"
-            android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginTop="@dimen/normal_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:onTextChanged="@{handler::onPasswordChanged}"
@@ -82,16 +82,27 @@
             app:layout_constraintTop_toBottomOf="@id/sign_up_password_edit_text" />
 
         <TextView
-            android:id="@+id/sign_in_sign_in_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/sign_up_do_you_have_account_text_view"
+            style="@style/LabelText.Black"
             android:layout_marginTop="@dimen/medium_padding"
             android:onClick="@{(view)->handler.onClickSignIn()}"
-            android:text="@string/sign_in"
-            android:textColor="@color/colorEasternBlue"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/do_you_have_an_account"
+            app:layout_constraintEnd_toStartOf="@+id/sign_up_sign_in_text_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sign_up_sign_up_text_view" />
+
+        <TextView
+            android:id="@+id/sign_up_sign_in_text_view"
+            style="@style/LabelText.EasternBlue"
+            android:layout_marginStart="@dimen/normal_padding"
+            android:onClick="@{(view)->handler.onClickSignIn()}"
+            android:text="@string/sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/sign_up_do_you_have_account_text_view"
+            app:layout_constraintTop_toTopOf="@id/sign_up_do_you_have_account_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
