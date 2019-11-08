@@ -17,6 +17,7 @@ import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
 import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.SettingsActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
 class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener {
@@ -37,11 +38,11 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener 
     val deleteDialogHandler: DeleteDialogHandler = object : DeleteDialogHandler {
         override fun onClickYes(plant: Plant) {
             myPlantsViewModel.deletePlant(plant).subscribe {
-                Log.e("ondata","plant was deleted")
+                Log.e("ondata", "plant was deleted")
                 deleteAlertDialog.cancel()
             }
             myPlantsViewModel.deleteRemotePlant(plant.id).subscribe {
-                Log.e("firebase","plant was deleted")
+                Log.e("firebase", "plant was deleted")
             }
         }
 
@@ -62,10 +63,10 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener 
         binding.handler = myPlantHandler
         initSettingsButton(settingsButtonListener())
         myPlantsViewModel = getViewModel(MyPlantsViewModel::class.java)
-        val myPlants: Disposable = myPlantsViewModel.getPlants().subscribe {
-            displayRecyclerView(it)
-        }
-        myPlantsViewModel.getRemotePlants()
+
+        myPlantsViewModel.getRemotePlants().subscribe {
+            Log.e("subscribe activity", it.toString())
+            displayRecyclerView(it) }
     }
 
     override fun onClickUpdate(plant: Plant) {
@@ -94,7 +95,7 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener 
         binding.myPlantsRecyclerView.adapter = plantsAdapter
     }
 
-    private fun settingsButtonListener(): View.OnClickListener{
+    private fun settingsButtonListener(): View.OnClickListener {
         return View.OnClickListener {
             SettingsActivity.open(this@MyPlantsActivity)
         }

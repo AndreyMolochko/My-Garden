@@ -49,6 +49,10 @@ data class Plant(
             parcel.readLong()
     )
 
+    constructor(): this(
+        0,"",0,"","",0,0
+    )
+
     var setName: String
         @Bindable
         get() = name

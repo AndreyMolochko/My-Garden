@@ -140,28 +140,28 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
         return LanguageItem(1, "error", true, false)
     }
 
-    private fun getNotificationSwitch():SwitchItem{
-        for(switch in settingsList){
-            if(switch is SwitchItem){
-                if(switch.text == Notifications.Notificaitons.name){
+    private fun getNotificationSwitch(): SwitchItem {
+        for (switch in settingsList) {
+            if (switch is SwitchItem) {
+                if (switch.text == Notifications.Notificaitons.name) {
                     return switch
                 }
             }
         }
 
-        return SwitchItem(1,"error",false,false)
+        return SwitchItem(1, "error", false, false)
     }
 
-    private fun getSoundSwitch(): SwitchItem{
-        for(switch in settingsList){
-            if(switch is SwitchItem){
-                if(switch.text == Notifications.Sound.name){
+    private fun getSoundSwitch(): SwitchItem {
+        for (switch in settingsList) {
+            if (switch is SwitchItem) {
+                if (switch.text == Notifications.Sound.name) {
                     return switch
                 }
             }
         }
 
-        return SwitchItem(1,"error",false,false)
+        return SwitchItem(1, "error", false, false)
     }
 
     inner class HeaderItemViewHolder(private var binding: ItemRecyclerSettingsTitleBinding)
@@ -186,20 +186,19 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
         fun bind(switchItem: SwitchItem) {
             binding.model = switchItem
             setSwitchLogic(switchItem)
-            binding.itemRecyclerSwitchSwitch.setOnCheckedChangeListener {
-                buttonView, isChecked ->
+            binding.itemRecyclerSwitchSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                 switchItem.isChecked = isChecked
                 setSwitchLogic(switchItem)
-                callback.onChangeSwitch(getNotificationSwitch(),getSoundSwitch())
+                callback.onChangeSwitch(getNotificationSwitch(), getSoundSwitch())
                 notifyDataSetChanged()
             }
         }
 
-        fun setSwitchLogic(switchItem: SwitchItem){
-            if(switchItem.text == Notifications.Sound.name) {
+        fun setSwitchLogic(switchItem: SwitchItem) {
+            if (switchItem.text == Notifications.Sound.name) {
                 if (getNotificationSwitch().isChecked) {
                     binding.itemRecyclerSwitchSwitch.isEnabled = true
-                }else{
+                } else {
                     binding.itemRecyclerSwitchSwitch.isChecked = false
                     binding.itemRecyclerSwitchSwitch.isEnabled = false
                 }

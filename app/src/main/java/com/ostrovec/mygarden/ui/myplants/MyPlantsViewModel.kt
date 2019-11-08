@@ -13,11 +13,6 @@ import javax.inject.Inject
 
 class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepository) : BaseViewModel() {
 
-    init {
-        plantsRepository.getChangeObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-    }
-
     fun getPlants(): Flowable<List<Plant>> {
         return plantsRepository.loadPlants()
     }
@@ -30,7 +25,7 @@ class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepositor
         return plantsRepository.deleteRemotePlant(taskId)
     }
 
-    fun getRemotePlants(): Single<List<Plant>> {
+    fun getRemotePlants(): Observable<List<Plant>> {
         return plantsRepository.loadRemotePlants()
     }
 }

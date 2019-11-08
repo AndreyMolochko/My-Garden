@@ -34,8 +34,7 @@
             android:name=".ui.sign.signin.SignInActivity"
             android:noHistory="true" />
         <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:screenOrientation="portrait" />
+            android:name=".ui.settings.SettingsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -22,7 +22,5 @@ interface PlantRepository {
 
     fun updateRemotePlant(plant: Plant): Completable
 
-    fun loadRemotePlants(): Single<List<Plant>>
-
-    fun getChangeObservable(): Observable<List<Plant>>
+    fun loadRemotePlants(): Observable<List<Plant>>
 }
