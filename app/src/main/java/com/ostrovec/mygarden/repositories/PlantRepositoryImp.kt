@@ -107,7 +107,6 @@ class PlantRepositoryImp(val database: AppDatabase) : PlantRepository {
                         Log.e("FIRESTORELOAD", it.message)
                     }.addOnSuccessListener { result ->
                         emitter.onNext(mapQuerySnapshot(result))
-                        Log.e("firestore", "on success ${result.documents.get(0).data}")
                     }.addOnCompleteListener {
                         Log.e("firestore", "on complete")
                     }.addOnCanceledListener {
