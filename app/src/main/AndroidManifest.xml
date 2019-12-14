@@ -23,7 +23,7 @@
         <activity
             android:name=".ui.myplants.MyPlantsActivity" />
         <activity
-            android:name=".ui.addplant.AddPlantActivity" />
+            android:name=".ui.addplant.activity.AddPlantActivity" />
         <activity
             android:name=".ui.updateplant.UpdatePlantActivity"
             android:screenOrientation="portrait" />

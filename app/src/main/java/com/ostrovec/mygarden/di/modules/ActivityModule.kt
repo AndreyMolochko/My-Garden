@@ -1,6 +1,6 @@
 package com.ostrovec.mygarden.di.modules
 
-import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
+import com.ostrovec.mygarden.ui.addplant.activity.AddPlantActivity
 import com.ostrovec.mygarden.ui.guide.GuideActivity
 import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
 import com.ostrovec.mygarden.ui.settings.SettingsActivity

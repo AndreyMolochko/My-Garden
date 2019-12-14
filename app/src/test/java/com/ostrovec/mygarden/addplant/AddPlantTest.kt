@@ -1,6 +1,6 @@
 package com.ostrovec.mygarden.addplant
 
-import com.ostrovec.mygarden.ui.addplant.AddPlantViewModel
+import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +15,8 @@ class AddPlantTest {
     @Before
     fun setUp(){
         MockitoAnnotations.initMocks(this)
-        addPlantViewModel = AddPlantViewModel()
+        addPlantViewModel =
+            AddPlantViewModel()
     }
 
     @Test

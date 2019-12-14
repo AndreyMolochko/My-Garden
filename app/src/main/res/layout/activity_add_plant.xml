@@ -6,7 +6,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.addplant.AddPlantHandler" />
+            type="com.ostrovec.mygarden.ui.addplant.handler.AddPlantHandler" />
 
         <variable
             name="model"
@@ -19,7 +19,7 @@
         android:background="@color/colorWhite"
         android:paddingEnd="@dimen/medium_padding"
         android:paddingStart="@dimen/medium_padding"
-        tools:context=".ui.addplant.AddPlantActivity">
+        tools:context=".ui.addplant.activity.AddPlantActivity">
 
         <TextView
             android:id="@+id/add_plants_title_text_view"

@@ -18,7 +18,7 @@
                 android:paddingEnd="@dimen/medium_padding"
                 android:paddingBottom="@dimen/medium_padding"
                 android:paddingStart="@dimen/medium_padding"
-                tools:context=".ui.addplant.AddPlantActivity">
+                tools:context=".ui.addplant.activity.AddPlantActivity">
 
                 <EditText
                     android:id="@+id/add_plants_name_edit_text"
@@ -129,7 +129,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.addplant.AddPlantHandler" />
+            type="com.ostrovec.mygarden.ui.addplant.handler.AddPlantHandler" />
 
         <variable
             name="model"
