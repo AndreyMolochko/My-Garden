@@ -3,7 +3,7 @@ package com.ostrovec.mygarden.ui.sign.signin
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.ostrovec.mygarden.repositories.AuthRepository
-import com.ostrovec.mygarden.ui.base.BaseViewModel
+import com.ostrovec.mygarden.ui.base.viewmodel.BaseViewModel
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 

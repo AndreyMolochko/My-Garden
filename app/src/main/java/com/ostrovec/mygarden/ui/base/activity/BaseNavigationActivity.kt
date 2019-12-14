@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.base
+package com.ostrovec.mygarden.ui.base.activity
 
 import android.os.Bundle
 import android.view.View

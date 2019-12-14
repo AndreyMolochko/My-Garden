@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.base
+package com.ostrovec.mygarden.ui.base.viewmodel
 
 import android.content.ContentResolver
 import android.content.Context
@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), BaseViewModelType {
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
@@ -19,7 +19,8 @@ abstract class BaseViewModel : ViewModel() {
         compositeDisposable.clear()
     }
 
-    fun extractImageFilePath(contentResolver: ContentResolver, bitmap: Bitmap, context: Context): String {
+
+    override fun extractImageFilePath(contentResolver: ContentResolver, bitmap: Bitmap, context: Context): String {
         val tempUri: Uri = getImageUri(context, bitmap)
         val file = File(getRealPathFromURI(contentResolver, tempUri))
 

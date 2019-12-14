@@ -1,20 +1,16 @@
-package com.ostrovec.mygarden.ui.base
+package com.ostrovec.mygarden.ui.base.activity
 
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -25,11 +21,10 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.AlertDialogCameraBinding
 import com.ostrovec.mygarden.databinding.AlertDialogNumberPickerBinding
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.addplant.DialogCameraHandler
-import com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler
+import com.ostrovec.mygarden.ui.addplant.handler.DialogCameraHandler
+import com.ostrovec.mygarden.ui.addplant.handler.DialogNumberPickerHandler
 import com.ostrovec.mygarden.utils.CalendarWorker
 import dagger.android.AndroidInjection
-import java.io.File
 import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity() {

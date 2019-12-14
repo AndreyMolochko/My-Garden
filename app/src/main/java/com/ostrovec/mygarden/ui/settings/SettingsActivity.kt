@@ -11,7 +11,7 @@ import com.ostrovec.mygarden.databinding.ActivitySettingsBinding
 import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
 import com.ostrovec.mygarden.room.model.SwitchItem
-import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
 import java.util.*
 
 class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListener {

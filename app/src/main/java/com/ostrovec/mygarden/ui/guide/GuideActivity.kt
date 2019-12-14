@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
-import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseActivity
 import com.ostrovec.mygarden.ui.settings.SettingsViewModel
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import com.ostrovec.mygarden.utils.SharedPrefsWorker

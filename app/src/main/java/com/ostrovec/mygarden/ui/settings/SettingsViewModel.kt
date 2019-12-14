@@ -6,7 +6,7 @@ import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
 import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.room.model.TitleItem
-import com.ostrovec.mygarden.ui.base.BaseViewModel
+import com.ostrovec.mygarden.ui.base.viewmodel.BaseViewModel
 import com.ostrovec.mygarden.ui.settings.model.Languages
 import com.ostrovec.mygarden.ui.settings.model.Notifications
 import io.reactivex.Flowable

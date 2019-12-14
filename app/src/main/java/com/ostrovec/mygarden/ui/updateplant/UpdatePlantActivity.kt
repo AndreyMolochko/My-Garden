@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.base.BaseAddUpdateActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseAddUpdateActivity
 import com.ostrovec.mygarden.ui.base.CustomBindingAdapter.getBitmapImage
 
 class UpdatePlantActivity : BaseAddUpdateActivity() {

@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.base
+package com.ostrovec.mygarden.ui.base.activity
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,16 +10,18 @@ import android.view.View
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.addplant.AddPlantHandler
-import com.ostrovec.mygarden.ui.addplant.AddPlantViewModel
-import com.ostrovec.mygarden.ui.addplant.DialogCameraHandler
-import com.ostrovec.mygarden.ui.addplant.DialogNumberPickerHandler
+import com.ostrovec.mygarden.ui.addplant.handler.AddPlantHandler
+import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
+import com.ostrovec.mygarden.ui.addplant.handler.DialogCameraHandler
+import com.ostrovec.mygarden.ui.addplant.handler.DialogNumberPickerHandler
+import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModel
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantViewModel
 import com.ostrovec.mygarden.utils.CalendarWorker
 
 abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
 
-    protected val addPlantHandler: AddPlantHandler = object : AddPlantHandler {
+    protected val addPlantHandler: AddPlantHandler = object :
+        AddPlantHandler {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             plant.name = p0.toString()
             checkSaveButton()
@@ -52,7 +54,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
     }
 
     private val dialogNumberPickerHandler: DialogNumberPickerHandler = object :
-            DialogNumberPickerHandler {
+        DialogNumberPickerHandler {
 
         override fun clickOk() {
             closeNumberPickerDialog()
@@ -65,7 +67,8 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         }
     }
 
-    private val dialogCameraHandler: DialogCameraHandler = object : DialogCameraHandler {
+    private val dialogCameraHandler: DialogCameraHandler = object :
+        DialogCameraHandler {
         override fun clickOnCamera() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (requestCameraAndStoragePermissions()) {

@@ -2,7 +2,7 @@ package com.ostrovec.mygarden.ui.updateplant
 
 import com.ostrovec.mygarden.repositories.PlantRepository
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.base.BaseAddUpdateViewModel
+import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModel
 import io.reactivex.Completable
 import javax.inject.Inject
 

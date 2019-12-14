@@ -13,12 +13,10 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityMyPlantsBinding
 import com.ostrovec.mygarden.databinding.AlertDialogDeletePlantBinding
 import com.ostrovec.mygarden.room.model.Plant
-import com.ostrovec.mygarden.ui.addplant.AddPlantActivity
-import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.addplant.activity.AddPlantActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.settings.SettingsActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 
 class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener {
 

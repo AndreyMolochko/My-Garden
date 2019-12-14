@@ -3,12 +3,9 @@ package com.ostrovec.mygarden.ui.sign.signin
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivitySignInBinding
-import com.ostrovec.mygarden.ui.base.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.myplants.MyPlantsActivity
 import com.ostrovec.mygarden.ui.sign.model.User
 import com.ostrovec.mygarden.ui.sign.signup.SignUpActivity

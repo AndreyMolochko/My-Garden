@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
-import com.ostrovec.mygarden.ui.base.BaseActivity
+import com.ostrovec.mygarden.ui.base.activity.BaseActivity
 import com.ostrovec.mygarden.ui.sign.signin.SignInActivity
 import com.ostrovec.mygarden.ui.sign.signup.SignUpActivity
 
