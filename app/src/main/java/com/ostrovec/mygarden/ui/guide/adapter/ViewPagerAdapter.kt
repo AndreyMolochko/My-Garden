@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.guide
+package com.ostrovec.mygarden.ui.guide.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

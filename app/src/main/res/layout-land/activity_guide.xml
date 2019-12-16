@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlack"
-        tools:context=".ui.guide.GuideActivity">
+        tools:context=".ui.guide.activity.GuideActivity">
 
 
         <ScrollView
@@ -61,7 +61,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.guide.GuideHandler" />
+            type="com.ostrovec.mygarden.ui.guide.handler.GuideHandler" />
     </data>
 
 </layout>

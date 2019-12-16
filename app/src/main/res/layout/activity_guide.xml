@@ -5,7 +5,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.guide.GuideHandler" />
+            type="com.ostrovec.mygarden.ui.guide.handler.GuideHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlack"
-        tools:context=".ui.guide.GuideActivity">
+        tools:context=".ui.guide.activity.GuideActivity">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/guide_view_pager"

@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.guide
+package com.ostrovec.mygarden.ui.guide.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,8 @@ class PageFragment : Fragment() {
         private val IMAGE_KEY = "IMAGE_KEY"
 
         fun getNewInstance(description: Int, image: Int): PageFragment {
-            val pageFragment = PageFragment()
+            val pageFragment =
+                PageFragment()
             val bundle = Bundle()
             bundle.putInt(DESCRIPTION_KEY, description)
             bundle.putInt(IMAGE_KEY, image)

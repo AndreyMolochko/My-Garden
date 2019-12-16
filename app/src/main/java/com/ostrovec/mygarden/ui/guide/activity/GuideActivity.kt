@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.guide
+package com.ostrovec.mygarden.ui.guide.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityGuideBinding
 import com.ostrovec.mygarden.ui.base.activity.BaseActivity
+import com.ostrovec.mygarden.ui.guide.handler.GuideHandler
+import com.ostrovec.mygarden.ui.guide.fragment.PageFragment
+import com.ostrovec.mygarden.ui.guide.adapter.ViewPagerAdapter
 import com.ostrovec.mygarden.ui.settings.SettingsViewModel
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import com.ostrovec.mygarden.utils.SharedPrefsWorker
 
 class GuideActivity : BaseActivity() {
 
-    val guideHandler: GuideHandler = object : GuideHandler {
+    val guideHandler: GuideHandler = object :
+        GuideHandler {
         override fun onClickOK(context: Context) {
             settingsViewModel.loadSettings()
             WelcomeActivity.open(context)
@@ -37,7 +41,10 @@ class GuideActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        val viewPagerAdapter =
+            ViewPagerAdapter(
+                supportFragmentManager
+            )
         binding.guideViewPager.adapter = viewPagerAdapter
         viewPagerAdapter.setPages(getPagesFragments())
         binding.guideTabLayout.setupWithViewPager(binding.guideViewPager)
@@ -45,15 +52,24 @@ class GuideActivity : BaseActivity() {
     }
 
     private fun getPagesFragments(): List<Fragment> {
-        val guideSignUpFragment = PageFragment.getNewInstance(R.string
-                .guide_text_sign_up,
-                R.drawable.ic_log_in)
-        val guideAddPlantsFragment = PageFragment.getNewInstance(R.string
-                .guide_text_add_plants,
-                R.drawable.ic_flower_pot)
-        val guideNotificationFragment = PageFragment.getNewInstance(R.string
-                .guide_text_turn_notification,
-                R.drawable.ic_message)
+        val guideSignUpFragment =
+            PageFragment.getNewInstance(
+                R.string
+                    .guide_text_sign_up,
+                R.drawable.ic_log_in
+            )
+        val guideAddPlantsFragment =
+            PageFragment.getNewInstance(
+                R.string
+                    .guide_text_add_plants,
+                R.drawable.ic_flower_pot
+            )
+        val guideNotificationFragment =
+            PageFragment.getNewInstance(
+                R.string
+                    .guide_text_turn_notification,
+                R.drawable.ic_message
+            )
         return arrayListOf(guideSignUpFragment, guideAddPlantsFragment, guideNotificationFragment)
     }
 }
