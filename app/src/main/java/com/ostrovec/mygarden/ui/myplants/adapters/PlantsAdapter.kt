@@ -1,15 +1,15 @@
-package com.ostrovec.mygarden.ui.myplants
+package com.ostrovec.mygarden.ui.myplants.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ostrovec.mygarden.databinding.ItemRecyclerMyPlantsBinding
 import com.ostrovec.mygarden.room.model.Plant
+import com.ostrovec.mygarden.ui.myplants.handlers.MyPlantsItemRecyclerHandler
 
 class PlantsAdapter(private var callback: PlantsListener, private
 var plantsList: List<Plant>) : RecyclerView
-.Adapter<PlantsAdapter
-.PlantsHolder>() {
+.Adapter<PlantsAdapter.PlantsHolder>() {
 
     interface PlantsListener {
         fun onClickUpdate(plant: Plant)
@@ -18,7 +18,7 @@ var plantsList: List<Plant>) : RecyclerView
     }
 
     val myPlantsItemRecyclerHandler: MyPlantsItemRecyclerHandler = object :
-            MyPlantsItemRecyclerHandler {
+        MyPlantsItemRecyclerHandler {
         override fun clickOnUpdate(plant: Plant) {
             callback.onClickUpdate(plant)
         }
@@ -35,7 +35,9 @@ var plantsList: List<Plant>) : RecyclerView
         binding = ItemRecyclerMyPlantsBinding.inflate(layoutInflater, parent, false)
         binding.handler = myPlantsItemRecyclerHandler
 
-        return PlantsHolder(binding)
+        return PlantsHolder(
+            binding
+        )
     }
 
     override fun getItemCount(): Int {

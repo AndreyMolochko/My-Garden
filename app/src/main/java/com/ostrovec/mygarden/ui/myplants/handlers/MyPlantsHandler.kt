@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.myplants
+package com.ostrovec.mygarden.ui.myplants.handlers
 
 import android.content.Context
 

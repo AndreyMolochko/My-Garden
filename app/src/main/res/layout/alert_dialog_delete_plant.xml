@@ -9,7 +9,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.myplants.DeleteDialogHandler" />
+            type="com.ostrovec.mygarden.ui.myplants.handlers.DeleteDialogHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

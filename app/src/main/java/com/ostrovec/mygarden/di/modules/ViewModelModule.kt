@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ostrovec.mygarden.di.ViewModelFactory
 import com.ostrovec.mygarden.di.ViewModelKey
 import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
-import com.ostrovec.mygarden.ui.myplants.MyPlantsViewModel
+import com.ostrovec.mygarden.ui.myplants.viewmodel.MyPlantsViewModel
 import com.ostrovec.mygarden.ui.settings.SettingsViewModel
 import com.ostrovec.mygarden.ui.sign.signin.SignInViewModel
 import com.ostrovec.mygarden.ui.sign.signup.SignUpViewModel

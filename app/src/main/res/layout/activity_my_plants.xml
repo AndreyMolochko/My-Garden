@@ -4,7 +4,7 @@
     <data>
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.myplants.MyPlantsHandler" />
+            type="com.ostrovec.mygarden.ui.myplants.handlers.MyPlantsHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        tools:context=".ui.myplants.MyPlantsActivity">
+        tools:context=".ui.myplants.activity.MyPlantsActivity">
 
         <TextView
             android:id="@+id/my_plants_title_text_view"

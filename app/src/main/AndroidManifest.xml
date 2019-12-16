@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".ui.welcome.WelcomeActivity" />
         <activity
-            android:name=".ui.myplants.MyPlantsActivity" />
+            android:name=".ui.myplants.activity.MyPlantsActivity" />
         <activity
             android:name=".ui.addplant.activity.AddPlantActivity" />
         <activity

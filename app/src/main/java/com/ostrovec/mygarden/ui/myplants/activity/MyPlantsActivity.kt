@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.myplants
+package com.ostrovec.mygarden.ui.myplants.activity
 
 import android.app.AlertDialog
 import android.content.Context
@@ -15,6 +15,10 @@ import com.ostrovec.mygarden.databinding.AlertDialogDeletePlantBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.activity.AddPlantActivity
 import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.myplants.handlers.DeleteDialogHandler
+import com.ostrovec.mygarden.ui.myplants.handlers.MyPlantsHandler
+import com.ostrovec.mygarden.ui.myplants.viewmodel.MyPlantsViewModel
+import com.ostrovec.mygarden.ui.myplants.adapters.PlantsAdapter
 import com.ostrovec.mygarden.ui.settings.SettingsActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 
@@ -27,13 +31,15 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener 
         }
     }
 
-    val myPlantHandler: MyPlantsHandler = object : MyPlantsHandler {
+    val myPlantHandler: MyPlantsHandler = object :
+        MyPlantsHandler {
         override fun onClickAdd(context: Context) {
             AddPlantActivity.open(this@MyPlantsActivity)
         }
     }
 
-    val deleteDialogHandler: DeleteDialogHandler = object : DeleteDialogHandler {
+    val deleteDialogHandler: DeleteDialogHandler = object :
+        DeleteDialogHandler {
         override fun onClickYes(plant: Plant) {
             myPlantsViewModel.deletePlant(plant).subscribe {
                 Log.e("ondata", "plant was deleted")
@@ -89,7 +95,10 @@ class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener 
 
     private fun displayRecyclerView(plantList: List<Plant>) {
         binding.myPlantsRecyclerView.layoutManager = LinearLayoutManager(this)
-        plantsAdapter = PlantsAdapter(this, plantList)
+        plantsAdapter = PlantsAdapter(
+            this,
+            plantList
+        )
         binding.myPlantsRecyclerView.adapter = plantsAdapter
     }
 

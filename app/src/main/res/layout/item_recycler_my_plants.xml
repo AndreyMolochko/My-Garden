@@ -9,7 +9,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.myplants.MyPlantsItemRecyclerHandler" />
+            type="com.ostrovec.mygarden.ui.myplants.handlers.MyPlantsItemRecyclerHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
