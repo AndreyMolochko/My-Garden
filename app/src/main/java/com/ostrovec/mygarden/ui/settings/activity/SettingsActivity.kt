@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.settings
+package com.ostrovec.mygarden.ui.settings.activity
 
 import android.content.Context
 import android.content.Intent
@@ -12,9 +12,12 @@ import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
 import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
+import com.ostrovec.mygarden.ui.settings.adapter.SettingsAdapter
+import com.ostrovec.mygarden.ui.settings.viewmodel.SettingsViewModel
 import java.util.*
 
-class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListener {
+class SettingsActivity : BaseNavigationActivity(),
+    SettingsAdapter.SettingsListener {
 
     companion object {
         val TITLE_LANGUAGES_ITEM = "Languages"
@@ -62,7 +65,11 @@ class SettingsActivity : BaseNavigationActivity(), SettingsAdapter.SettingsListe
 
     private fun displayRecyclerView() {
         binding.settingsRecyclerView.layoutManager = LinearLayoutManager(this)
-        settingsAdapter = SettingsAdapter(this, settingsList)
+        settingsAdapter =
+            SettingsAdapter(
+                this,
+                settingsList
+            )
         binding.settingsRecyclerView.adapter = settingsAdapter
     }
 }

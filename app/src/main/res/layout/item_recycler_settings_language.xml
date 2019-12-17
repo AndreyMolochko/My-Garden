@@ -44,6 +44,6 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.settings.SettingsLanguageItemRecyclerHandler" />
+            type="com.ostrovec.mygarden.ui.settings.handler.SettingsLanguageItemRecyclerHandler" />
     </data>
 </layout>

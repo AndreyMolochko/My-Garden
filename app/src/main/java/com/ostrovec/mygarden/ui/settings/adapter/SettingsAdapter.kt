@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.settings
+package com.ostrovec.mygarden.ui.settings.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,6 +12,8 @@ import com.ostrovec.mygarden.room.model.LanguageItem
 import com.ostrovec.mygarden.room.model.ListItem
 import com.ostrovec.mygarden.room.model.SwitchItem
 import com.ostrovec.mygarden.room.model.TitleItem
+import com.ostrovec.mygarden.ui.settings.handler.SettingsLanguageItemRecyclerHandler
+import com.ostrovec.mygarden.ui.settings.handler.SettingsTitleItemRecyclerHandler
 import com.ostrovec.mygarden.ui.settings.model.Notifications
 
 class SettingsAdapter(var callback: SettingsListener, var settingsList: List<ListItem>) :
@@ -29,7 +31,7 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
     }
 
     val settingsTitleItemRecyclerHandler: SettingsTitleItemRecyclerHandler = object :
-            SettingsTitleItemRecyclerHandler {
+        SettingsTitleItemRecyclerHandler {
         override fun onClickItem(titleItem: TitleItem) {
             titleItem.setDroppedDown = !titleItem.setDroppedDown
             dropDownItems(titleItem.position)
@@ -38,7 +40,7 @@ class SettingsAdapter(var callback: SettingsListener, var settingsList: List<Lis
     }
 
     val settingsLanguageItemRecyclerHandler: SettingsLanguageItemRecyclerHandler = object :
-            SettingsLanguageItemRecyclerHandler {
+        SettingsLanguageItemRecyclerHandler {
         override fun onClickLanguageItem(languageItem: LanguageItem) {
 
             val oldLanguage = removeCurrentLanguage()
