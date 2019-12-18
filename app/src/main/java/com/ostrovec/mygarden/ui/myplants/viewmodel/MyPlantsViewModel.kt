@@ -8,7 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepository) : BaseViewModel() {
+class MyPlantsViewModel @Inject constructor(var plantsRepository: PlantRepository) : BaseViewModel(),MyPlantsViewModelType {
 
     fun getPlants(): Flowable<List<Plant>> {
         return plantsRepository.loadPlants()
