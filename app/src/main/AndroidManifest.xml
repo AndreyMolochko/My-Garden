@@ -25,7 +25,7 @@
         <activity
             android:name=".ui.addplant.activity.AddPlantActivity" />
         <activity
-            android:name=".ui.updateplant.UpdatePlantActivity"
+            android:name=".ui.updateplant.activity.UpdatePlantActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.sign.signup.activity.SignUpActivity"

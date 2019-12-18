@@ -9,7 +9,7 @@ import com.ostrovec.mygarden.ui.myplants.viewmodel.MyPlantsViewModel
 import com.ostrovec.mygarden.ui.settings.viewmodel.SettingsViewModel
 import com.ostrovec.mygarden.ui.sign.signin.viewmodel.SignInViewModel
 import com.ostrovec.mygarden.ui.sign.signup.viewmodel.SignUpViewModel
-import com.ostrovec.mygarden.ui.updateplant.UpdatePlantViewModel
+import com.ostrovec.mygarden.ui.updateplant.viewmodel.UpdatePlantViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.updateplant
+package com.ostrovec.mygarden.ui.updateplant.viewmodel
 
 import com.ostrovec.mygarden.repositories.PlantRepository
 import com.ostrovec.mygarden.room.model.Plant

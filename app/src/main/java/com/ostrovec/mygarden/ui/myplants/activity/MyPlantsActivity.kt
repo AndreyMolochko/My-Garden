@@ -20,7 +20,7 @@ import com.ostrovec.mygarden.ui.myplants.handlers.MyPlantsHandler
 import com.ostrovec.mygarden.ui.myplants.viewmodel.MyPlantsViewModel
 import com.ostrovec.mygarden.ui.myplants.adapters.PlantsAdapter
 import com.ostrovec.mygarden.ui.settings.activity.SettingsActivity
-import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
+import com.ostrovec.mygarden.ui.updateplant.activity.UpdatePlantActivity
 
 class MyPlantsActivity : BaseNavigationActivity(), PlantsAdapter.PlantsListener {
 

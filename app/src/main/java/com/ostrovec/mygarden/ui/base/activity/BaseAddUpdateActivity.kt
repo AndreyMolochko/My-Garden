@@ -15,7 +15,7 @@ import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
 import com.ostrovec.mygarden.ui.addplant.handler.DialogCameraHandler
 import com.ostrovec.mygarden.ui.addplant.handler.DialogNumberPickerHandler
 import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModel
-import com.ostrovec.mygarden.ui.updateplant.UpdatePlantViewModel
+import com.ostrovec.mygarden.ui.updateplant.viewmodel.UpdatePlantViewModel
 import com.ostrovec.mygarden.utils.CalendarWorker
 
 abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
