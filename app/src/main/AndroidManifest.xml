@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.welcome.WelcomeActivity" />
+        <activity android:name=".ui.welcome.activity.WelcomeActivity" />
         <activity
             android:name=".ui.myplants.activity.MyPlantsActivity" />
         <activity

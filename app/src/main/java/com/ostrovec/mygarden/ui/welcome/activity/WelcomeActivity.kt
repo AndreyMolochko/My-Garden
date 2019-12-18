@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.welcome
+package com.ostrovec.mygarden.ui.welcome.activity
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import com.ostrovec.mygarden.databinding.ActivityWelcomPageBinding
 import com.ostrovec.mygarden.ui.base.activity.BaseActivity
 import com.ostrovec.mygarden.ui.sign.signin.activity.SignInActivity
 import com.ostrovec.mygarden.ui.sign.signup.activity.SignUpActivity
+import com.ostrovec.mygarden.ui.welcome.handler.WelcomeHandler
 
 class WelcomeActivity : BaseActivity() {
 
@@ -19,7 +20,8 @@ class WelcomeActivity : BaseActivity() {
         }
     }
 
-    private val welcomeHandler: WelcomeHandler = object : WelcomeHandler {
+    private val welcomeHandler: WelcomeHandler = object :
+        WelcomeHandler {
         override fun onClickSignIn() {
             SignInActivity.open(this@WelcomeActivity)
         }

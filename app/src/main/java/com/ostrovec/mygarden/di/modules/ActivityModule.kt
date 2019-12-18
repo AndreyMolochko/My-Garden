@@ -7,7 +7,7 @@ import com.ostrovec.mygarden.ui.settings.activity.SettingsActivity
 import com.ostrovec.mygarden.ui.sign.signin.activity.SignInActivity
 import com.ostrovec.mygarden.ui.sign.signup.activity.SignUpActivity
 import com.ostrovec.mygarden.ui.updateplant.activity.UpdatePlantActivity
-import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
+import com.ostrovec.mygarden.ui.welcome.activity.WelcomeActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

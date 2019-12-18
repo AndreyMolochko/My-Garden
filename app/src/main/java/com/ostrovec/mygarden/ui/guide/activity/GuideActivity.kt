@@ -11,7 +11,7 @@ import com.ostrovec.mygarden.ui.guide.handler.GuideHandler
 import com.ostrovec.mygarden.ui.guide.fragment.PageFragment
 import com.ostrovec.mygarden.ui.guide.adapter.ViewPagerAdapter
 import com.ostrovec.mygarden.ui.settings.viewmodel.SettingsViewModel
-import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
+import com.ostrovec.mygarden.ui.welcome.activity.WelcomeActivity
 import com.ostrovec.mygarden.utils.SharedPrefsWorker
 
 class GuideActivity : BaseActivity() {
