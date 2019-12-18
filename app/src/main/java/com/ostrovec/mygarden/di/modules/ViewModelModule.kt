@@ -7,8 +7,8 @@ import com.ostrovec.mygarden.di.ViewModelKey
 import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
 import com.ostrovec.mygarden.ui.myplants.viewmodel.MyPlantsViewModel
 import com.ostrovec.mygarden.ui.settings.viewmodel.SettingsViewModel
-import com.ostrovec.mygarden.ui.sign.signin.SignInViewModel
-import com.ostrovec.mygarden.ui.sign.signup.SignUpViewModel
+import com.ostrovec.mygarden.ui.sign.signin.viewmodel.SignInViewModel
+import com.ostrovec.mygarden.ui.sign.signup.viewmodel.SignUpViewModel
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantViewModel
 import dagger.Binds
 import dagger.Module

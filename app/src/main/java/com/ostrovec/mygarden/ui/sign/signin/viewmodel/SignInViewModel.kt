@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.sign.signin
+package com.ostrovec.mygarden.ui.sign.signin.viewmodel
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

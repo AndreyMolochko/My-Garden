@@ -4,8 +4,8 @@ import com.ostrovec.mygarden.ui.addplant.activity.AddPlantActivity
 import com.ostrovec.mygarden.ui.guide.activity.GuideActivity
 import com.ostrovec.mygarden.ui.myplants.activity.MyPlantsActivity
 import com.ostrovec.mygarden.ui.settings.activity.SettingsActivity
-import com.ostrovec.mygarden.ui.sign.signin.SignInActivity
-import com.ostrovec.mygarden.ui.sign.signup.SignUpActivity
+import com.ostrovec.mygarden.ui.sign.signin.activity.SignInActivity
+import com.ostrovec.mygarden.ui.sign.signup.activity.SignUpActivity
 import com.ostrovec.mygarden.ui.updateplant.UpdatePlantActivity
 import com.ostrovec.mygarden.ui.welcome.WelcomeActivity
 import dagger.Module

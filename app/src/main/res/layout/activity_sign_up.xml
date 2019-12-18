@@ -9,7 +9,7 @@
 
         <variable
             name="handler"
-            type="com.ostrovec.mygarden.ui.sign.signup.SignUpHandler" />
+            type="com.ostrovec.mygarden.ui.sign.signup.handler.SignUpHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,7 +19,7 @@
         android:background="@color/colorWhite"
         android:paddingStart="@dimen/medium_padding"
         android:paddingEnd="@dimen/medium_padding"
-        tools:context=".ui.sign.signup.SignUpActivity">
+        tools:context=".ui.sign.signup.activity.SignUpActivity">
 
         <TextView
             android:id="@+id/sign_up_title_text_view"

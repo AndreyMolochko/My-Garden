@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.sign.signup
+package com.ostrovec.mygarden.ui.sign.signup.activity
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,9 @@ import com.ostrovec.mygarden.databinding.ActivitySignUpBinding
 import com.ostrovec.mygarden.ui.base.activity.BaseNavigationActivity
 import com.ostrovec.mygarden.ui.myplants.activity.MyPlantsActivity
 import com.ostrovec.mygarden.ui.sign.model.User
-import com.ostrovec.mygarden.ui.sign.signin.SignInActivity
+import com.ostrovec.mygarden.ui.sign.signin.activity.SignInActivity
+import com.ostrovec.mygarden.ui.sign.signup.handler.SignUpHandler
+import com.ostrovec.mygarden.ui.sign.signup.viewmodel.SignUpViewModel
 
 class SignUpActivity : BaseNavigationActivity() {
 
@@ -18,7 +20,8 @@ class SignUpActivity : BaseNavigationActivity() {
         }
     }
 
-    private val signUpHandler: SignUpHandler = object : SignUpHandler {
+    private val signUpHandler: SignUpHandler = object :
+        SignUpHandler {
         override fun onNameChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             user.name = p0.toString()
             checkSaveButton()

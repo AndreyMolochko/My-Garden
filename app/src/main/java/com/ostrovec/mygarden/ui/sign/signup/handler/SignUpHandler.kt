@@ -1,4 +1,4 @@
-package com.ostrovec.mygarden.ui.sign.signup
+package com.ostrovec.mygarden.ui.sign.signup.handler
 
 interface SignUpHandler {
     //TODO: replace three methods on one (I used here a bad practise)

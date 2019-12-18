@@ -28,10 +28,10 @@
             android:name=".ui.updateplant.UpdatePlantActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.sign.signup.SignUpActivity"
+            android:name=".ui.sign.signup.activity.SignUpActivity"
             android:noHistory="true" />
         <activity
-            android:name=".ui.sign.signin.SignInActivity"
+            android:name=".ui.sign.signin.activity.SignInActivity"
             android:noHistory="true" />
         <activity
             android:name=".ui.settings.activity.SettingsActivity" />
