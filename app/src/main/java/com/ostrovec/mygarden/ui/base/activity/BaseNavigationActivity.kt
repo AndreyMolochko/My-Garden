@@ -19,6 +19,12 @@ open class BaseNavigationActivity : BaseActivity() {
         initToolbar()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding.unbind()
+    }
+
     protected fun <T : ViewDataBinding> setContainerView(layoutId: Int): T {
         val containerView = findViewById<ViewGroup>(R.id.base_navigation_container_frame_layout)
         val inflatedView = View.inflate(this, layoutId, null)

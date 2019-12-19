@@ -40,6 +40,12 @@ class GuideActivity : BaseActivity() {
         initViews()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding.unbind()
+    }
+
     private fun initViews() {
         val viewPagerAdapter =
             ViewPagerAdapter(

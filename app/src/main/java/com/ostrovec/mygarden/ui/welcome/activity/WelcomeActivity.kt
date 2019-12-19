@@ -39,4 +39,10 @@ class WelcomeActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_welcom_page)
         binding.handler = welcomeHandler
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding.unbind()
+    }
 }
