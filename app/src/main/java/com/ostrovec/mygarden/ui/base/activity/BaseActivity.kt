@@ -29,13 +29,13 @@ import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity() {
 
+    protected val defaultValuePicker = 5
     protected val CAMERA_REQUEST_CODE = 0
     protected val GALLERY_REQUEST_CODE = 1
     private val CAMERA_AND_STORADE_REQUEST_CODE = 2
     private val WRITE_STORAGE_REQUEST_CODE = 3
     private val minValuePicker = 1
     private val maxValuePicker = 180
-    private val defaultValuePicker = 5
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest
             .permission.WRITE_EXTERNAL_STORAGE)
 

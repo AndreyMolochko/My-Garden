@@ -57,6 +57,9 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         DialogNumberPickerHandler {
 
         override fun clickOk() {
+            if(plant.irrigationPeriod == 0L){
+                plant.setIrrigationPeriod = CalendarWorker.convertDaysToMilliseconds(defaultValuePicker)
+            }
             closeNumberPickerDialog()
         }
 
