@@ -7,6 +7,7 @@ import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.firestore.PropertyName
 import com.google.gson.annotations.SerializedName
 import com.ostrovec.mygarden.BR
 import com.ostrovec.mygarden.ui.sign.model.RemotePlant
@@ -20,11 +21,13 @@ data class Plant(
         var name: String,
 
         @ColumnInfo(name = "irrigation_period")
-        @SerializedName("irrigation_period")
+        @SerializedName("irrigation period")
+        @get:PropertyName("irrigation period")
+        @set:PropertyName("irrigation period")
         var irrigationPeriod: Long,
 
         @ColumnInfo(name = "url_local_photo")
-        @SerializedName("url_local_photo")
+        @SerializedName("url local photo")
         var urlLocalPhoto: String,
 
         @ColumnInfo(name = "url_server_photo")
