@@ -11,10 +11,10 @@ import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.addplant.handler.AddPlantHandler
-import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
 import com.ostrovec.mygarden.ui.addplant.handler.DialogCameraHandler
 import com.ostrovec.mygarden.ui.addplant.handler.DialogNumberPickerHandler
-import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModel
+import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
+import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModelType
 import com.ostrovec.mygarden.ui.updateplant.viewmodel.UpdatePlantViewModel
 import com.ostrovec.mygarden.utils.CalendarWorker
 
@@ -39,13 +39,13 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
             if (plantViewModel is AddPlantViewModel) {
                 (plantViewModel as AddPlantViewModel).addPlant(plant).subscribe {
                     plant.id = it
-                    (plantViewModel as AddPlantViewModel).addRemotePlant(plant).subscribe {
+                    (plantViewModel as AddPlantViewModel).addRemotePlant(plant).doOnComplete {
                         finish()
                     }
                 }
             } else if (plantViewModel is UpdatePlantViewModel) {
                 (plantViewModel as UpdatePlantViewModel).updatePlant(plant).subscribe {
-                    (plantViewModel as UpdatePlantViewModel).updateRemotePlant(plant).subscribe {
+                    (plantViewModel as UpdatePlantViewModel).updateRemotePlant(plant).doOnComplete {
                         finish()
                     }
                 }
@@ -96,7 +96,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
 
 
     protected lateinit var binding: ActivityAddPlantBinding
-    protected lateinit var plantViewModel: BaseAddUpdateViewModel
+    protected lateinit var plantViewModel: BaseAddUpdateViewModelType
     protected lateinit var plant: Plant
 
     override fun onCreate(savedInstanceState: Bundle?) {
