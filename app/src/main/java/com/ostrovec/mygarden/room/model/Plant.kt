@@ -28,18 +28,26 @@ data class Plant(
 
         @ColumnInfo(name = "url_local_photo")
         @SerializedName("url local photo")
+        @get:PropertyName("local url photo")
+        @set:PropertyName("local url photo")
         var urlLocalPhoto: String,
 
         @ColumnInfo(name = "url_server_photo")
         @SerializedName("url_server_photo")
+        @get:PropertyName("server url photo")
+        @set:PropertyName("server url photo")
         var urlServerPhoto: String?,
 
         @ColumnInfo(name = "start_irrigation")
         @SerializedName("start_irrigation")
+        @get:PropertyName("start irrigation period")
+        @set:PropertyName("start irrigation period")
         var startIrrigation: Long,
 
         @ColumnInfo(name = "end_irrigation")
         @SerializedName("end_irrigation")
+        @get:PropertyName("end irrigation period")
+        @set:PropertyName("end irrigation period")
         var endIrrigation: Long) : BaseObservable(), Parcelable {
 
     constructor(parcel: Parcel) : this(
