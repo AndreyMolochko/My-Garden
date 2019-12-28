@@ -39,15 +39,14 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
             if (plantViewModel is AddPlantViewModel) {
                 (plantViewModel as AddPlantViewModel).addPlant(plant).subscribe {
                     plant.id = it
-                    (plantViewModel as AddPlantViewModel).addRemotePlant(plant).doOnComplete {
+                    (plantViewModel as AddPlantViewModel).addRemotePlant(plant).subscribe {
                         finish()
                     }
                 }
             } else if (plantViewModel is UpdatePlantViewModel) {
-                (plantViewModel as UpdatePlantViewModel).updatePlant(plant).subscribe {
-                    (plantViewModel as UpdatePlantViewModel).updateRemotePlant(plant).doOnComplete {
-                        finish()
-                    }
+                (plantViewModel as UpdatePlantViewModel).updatePlant(plant)
+                    .mergeWith((plantViewModel as UpdatePlantViewModel).updateRemotePlant(plant)).subscribe {
+                    finish()
                 }
             }
         }
@@ -57,7 +56,7 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
         DialogNumberPickerHandler {
 
         override fun clickOk() {
-            if(plant.irrigationPeriod == 0L){
+            if (plant.irrigationPeriod == 0L) {
                 plant.setIrrigationPeriod = CalendarWorker.convertDaysToMilliseconds(defaultValuePicker)
             }
             closeNumberPickerDialog()

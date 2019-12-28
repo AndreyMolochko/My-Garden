@@ -9,11 +9,11 @@ import javax.inject.Inject
 
 class AddPlantViewModel @Inject constructor(var plantRepository: PlantRepository) : BaseAddUpdateViewModel(), AddPlantViewModelType {
 
-    override fun addPlant(plant: Plant):Flowable<Long> {
+    override fun addPlant(plant: Plant): Flowable<Long> {
         return plantRepository.insertPlant(plant)
     }
 
-    override fun addRemotePlant(plant: Plant):Completable{
+    override fun addRemotePlant(plant: Plant): Completable {
         return plantRepository.addRemotePlant(plant)
     }
 }
