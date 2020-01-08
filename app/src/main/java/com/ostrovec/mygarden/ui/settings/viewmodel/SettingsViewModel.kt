@@ -12,7 +12,8 @@ import com.ostrovec.mygarden.ui.settings.model.Notifications
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class SettingsViewModel @Inject constructor(var settingsRepository: SettingsRepository) : BaseViewModel(),SettingsViewModelType {
+class SettingsViewModel @Inject constructor(var settingsRepository: SettingsRepository) : BaseViewModel(),
+    SettingsViewModelType {
 
     fun getSettings(): Flowable<List<ListItem>> {
         val titlesList: Flowable<out List<ListItem>> = settingsRepository.getTitleItems()
