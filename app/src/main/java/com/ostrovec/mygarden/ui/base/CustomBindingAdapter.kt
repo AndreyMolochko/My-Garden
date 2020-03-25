@@ -2,13 +2,13 @@ package com.ostrovec.mygarden.ui.base
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Build
+import android.util.Base64
 import android.widget.ImageView
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.ostrovec.mygarden.R
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 object CustomBindingAdapter {
@@ -40,10 +40,7 @@ object CustomBindingAdapter {
     @JvmStatic
     @BindingAdapter("bind:setImage")
     fun setPlantImage(imageView: ImageView, localUrlPhoto: String) {
-        val bitmap = getBitmapImage(localUrlPhoto)
-        if (bitmap != null) {
-            imageView.setImageBitmap(bitmap)
-        }
+        Glide.with(imageView.context).asBitmap().load(decodeBitmap(localUrlPhoto)).into(imageView)
     }
 
     @JvmStatic
@@ -69,5 +66,20 @@ object CustomBindingAdapter {
         } else {
             null
         }
+    }
+
+    fun encodeBitmap(bitmap: Bitmap): String {
+        val qualityImage = 100
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, qualityImage, byteArrayOutputStream)
+
+        return Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT)
+    }
+
+    fun decodeBitmap(urlImage: String): Bitmap? {
+        val offset = 0
+        val decodedByteArray = Base64.decode(urlImage, Base64.DEFAULT)
+
+        return BitmapFactory.decodeByteArray(decodedByteArray, offset, decodedByteArray.size)
     }
 }

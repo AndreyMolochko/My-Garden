@@ -53,7 +53,7 @@ class SignInActivity : BaseNavigationActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var signInViewModel: SignInViewModel
-    private var user: User = User("", "molochko.andrey@mail.ru", "123456")
+    private var user: User = User("", "tech@mail.ru", "111111")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.room.model.Plant
 import com.ostrovec.mygarden.ui.base.activity.BaseAddUpdateActivity
-import com.ostrovec.mygarden.ui.base.CustomBindingAdapter.getBitmapImage
 import com.ostrovec.mygarden.ui.updateplant.viewmodel.UpdatePlantViewModel
 
 class UpdatePlantActivity : BaseAddUpdateActivity() {
@@ -37,10 +36,7 @@ class UpdatePlantActivity : BaseAddUpdateActivity() {
         binding.addPlantsTitleTextView.text = getString(R.string.change_plant_title)
         binding.addPlantsSaveTextView.text = getString(R.string.change_plant_title)
         if (plant.urlLocalPhoto.isNotEmpty()) {
-            val bitmap = getBitmapImage(plant.urlLocalPhoto)
-            if (bitmap != null) {
-                setImageFromResourses(bitmap)
-            }
+            setImageFromResourses(plant.urlLocalPhoto)
         }
     }
 }

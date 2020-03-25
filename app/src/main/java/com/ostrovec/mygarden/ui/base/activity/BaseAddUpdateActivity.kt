@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.ostrovec.mygarden.R
 import com.ostrovec.mygarden.databinding.ActivityAddPlantBinding
 import com.ostrovec.mygarden.room.model.Plant
@@ -14,6 +15,7 @@ import com.ostrovec.mygarden.ui.addplant.handler.AddPlantHandler
 import com.ostrovec.mygarden.ui.addplant.handler.DialogCameraHandler
 import com.ostrovec.mygarden.ui.addplant.handler.DialogNumberPickerHandler
 import com.ostrovec.mygarden.ui.addplant.viewmodel.AddPlantViewModel
+import com.ostrovec.mygarden.ui.base.CustomBindingAdapter
 import com.ostrovec.mygarden.ui.base.viewmodel.BaseAddUpdateViewModelType
 import com.ostrovec.mygarden.ui.updateplant.viewmodel.UpdatePlantViewModel
 import com.ostrovec.mygarden.utils.CalendarWorker
@@ -111,19 +113,13 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
 
         if (requestCode == GALLERY_REQUEST_CODE && data != null) {
             val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data!!.data)
-            plant.setUrlLocalPhoto = plantViewModel.extractImageFilePath(
-                    contentResolver, bitmap,
-                    applicationContext
-            )
-            setImageFromResourses(bitmap)
+            plant.setUrlLocalPhoto = CustomBindingAdapter.encodeBitmap(bitmap)
+            setImageFromResourses(plant.setUrlLocalPhoto)
 
         } else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
             val bitmap = data!!.extras!!.get("data") as Bitmap
-            plant.setUrlLocalPhoto = plantViewModel.extractImageFilePath(
-                    contentResolver, bitmap,
-                    applicationContext
-            )
-            setImageFromResourses(bitmap)
+            plant.setUrlLocalPhoto = CustomBindingAdapter.encodeBitmap(bitmap)
+            setImageFromResourses(plant.setUrlLocalPhoto)
         }
         closeCameraDialog()
         checkSaveButton()
@@ -141,8 +137,8 @@ abstract class BaseAddUpdateActivity : BaseNavigationActivity() {
                 .setUrlLocalPhoto)
     }
 
-    protected fun setImageFromResourses(bitmap: Bitmap) {
-        binding.addPlantsPhotoImageView.setImageBitmap(bitmap)
+    protected fun setImageFromResourses(urlPhoto: String) {
+        Glide.with(this).asBitmap().load(CustomBindingAdapter.decodeBitmap(urlPhoto)).into(binding.addPlantsPhotoImageView)
         binding.addPlantsPhotoImageView.visibility = View.VISIBLE
         binding.addPlantsPhotoEditText.visibility = View.GONE
     }
